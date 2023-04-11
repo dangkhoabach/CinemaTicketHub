@@ -56,7 +56,8 @@
                 @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
-                <input type="submit" value="Lưu thay đổi" class="btn btn-outline-danger" />
+                @*<input type="submit" value="Lưu thay đổi" class="btn btn-outline-danger" />*@
+                <button type="submit" class="btn btn-outline-danger">Lưu thay đổi</button>
             </div>
         </div>
         <div class="col-5">
@@ -65,7 +66,7 @@
                 <h4 class="card-title" id="lbTenPhim" style="word-wrap: break-word; max-width: 500px; color: goldenrod">@Html.DisplayFor(model => model.TenPhim)</h4>
                 <img src="@Html.DisplayFor(model => model.HinhAnh)" class="card-img-top" id="previewimages" style="object-fit: contain; margin-top: 10px; max-width: 500px">
                 <div class="card-body">
-                    <p class="card-text" id="lbMoTa" style="word-wrap: break-word; max-width: 460px">@Html.DisplayFor(model => model.MoTa)</p>
+                    <p class="card-text" id="lbMoTa" style="word-wrap: break-word; max-width: 480px; text-align: justify">@Html.DisplayFor(model => model.MoTa)</p>
                     <div>Thể loại: <span class="text-body-secondary" id="lbTheLoai">@Html.DisplayFor(model => model.LoaiPhim.TenLoai)</span></div>
                 </div>
             </div>

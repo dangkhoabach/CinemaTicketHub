@@ -229,8 +229,15 @@
     <Content Include="Content\images\poster_landscape\chuacoposter.png" />
     <Content Include="Content\images\moviebanner\guardians of the galaxy 3_1.jpeg" />
     <Content Include="Content\images\poster_landscape\connhotmotchong.png" />
+    <Content Include="Content\images\poster_landscape\cuuprodautien.png" />
     <Content Include="Content\images\poster_landscape\duhanhvutrunhen.png" />
+    <Content Include="Content\images\poster_landscape\fastx.png" />
+    <Content Include="Content\images\poster_landscape\flash.png" />
+    <Content Include="Content\images\poster_landscape\khactinhcuaquy.png" />
+    <Content Include="Content\images\poster_landscape\kheuoc.png" />
     <Content Include="Content\images\poster_landscape\latmat6.png" />
+    <Content Include="Content\images\poster_landscape\matnaquy.png" />
+    <Content Include="Content\images\poster_landscape\vebinhgiainganha.png" />
     <Content Include="Content\js\scripts.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

@@ -28,9 +28,6 @@
             <th scope="col">
                 Poster
             </th>
-            <th scope="col">
-                Mô Tả
-            </th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -53,9 +50,6 @@
                 </td>
                 <td style="vertical-align: middle">
                     <img src="@Html.DisplayFor(modelItem => item.HinhAnh)" style="height: auto; width: 180px; object-fit: contain" />
-                </td>
-                <td style="vertical-align: middle">
-                    @Html.DisplayFor(modelItem => item.MoTa)
                 </td>
                 <td style="vertical-align: middle">
                     @Html.ActionLink("Chi tiết", "Details", new { MaPhim = item.MaPhim }) |

@@ -80,10 +80,10 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                     HinhAnh.SaveAs(path);
                     item.HinhAnh = "/Content/images/poster_landscape/" + Path.GetFileName(HinhAnh.FileName);
                 }
-                item.MaPhim = phim.MaPhim;
+                /*item.MaPhim = phim.MaPhim;*/
                 item.MoTa = phim.MoTa;
                 item.TenPhim = phim.TenPhim;
-                item.LoaiPhim = phim.LoaiPhim;
+                item.MaLoai = phim.MaLoai;
                 item.DoiTuong = phim.DoiTuong;
                 item.NgayKhoiChieu = phim.NgayKhoiChieu;
                 item.Trailer = phim.Trailer;

@@ -4,17 +4,55 @@
     ViewBag.Title = "Details";
 }
 
-@*<div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-        <div class="col-md-4">
-            <img src="@Model.HinhAnh" class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">@Model.TenPhim</h5>
-                <p class="card-text">@Model.MoTa</p>
-                <p class="card-text"><small class="text-body-secondary">@Model.DoiTuong</small></p>
+<div style="height: 86.2vh">
+    <section class="py-5 bg-light" id="scroll-target">
+        <h2 class="fw-bolder" style="text-align: center">Thông tin chi tiết phim</h2>
+        <div class="container px-5 my-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6">
+                    <iframe width="590" height="345" src="@Model.Trailer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="fw-bolder">@Model.TenPhim</h2>
+                    @*<h5>@Model.DoiTuong</h5>*@
+                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">@Model.DoiTuong</div>
+                    <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">@Model.MoTa</p>
+                </div>
             </div>
         </div>
-    </div>
-</div>*@
+        <div class="fw-bolder" style="text-align: center">
+            @Html.ActionLink("Quay lại danh sách phim", "NowShowing")
+        </div>
+    </section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"></p>
+                    <p class="card-text"><small class="text-body-secondary"></small></p>
+                </div>
+            </div>
+            <div>
+                <iframe width="560" height="315" src="@Model.Trailer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>*@
