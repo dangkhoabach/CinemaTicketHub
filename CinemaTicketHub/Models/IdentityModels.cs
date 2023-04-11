@@ -21,9 +21,15 @@ namespace CinemaTicketHub.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("CinemaTicketHubModel", throwIfV1Schema: false)
         {
         }
+
+        public virtual DbSet<KhachHang> KhachHang { get; set; }
+        public virtual DbSet<LoaiPhim> LoaiPhim { get; set; }
+        public virtual DbSet<Phim> Phim { get; set; }
+        public virtual DbSet<PhongChieu> PhongChieu { get; set; }
+        public virtual DbSet<Ve> Ve { get; set; }
 
         public static ApplicationDbContext Create()
         {

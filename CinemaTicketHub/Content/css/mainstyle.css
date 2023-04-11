@@ -8160,8 +8160,10 @@ textarea.form-control-lg {
 }
 
 .bg-dark {
-  --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    --bs-bg-opacity: 1;
+    /*background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;*/
+    background-image: url("https://preview.redd.it/s0mp6t9ze0w71.png?auto=webp&s=682f44b0708a481f2915f22b492d79da89eebb64");
+    background-size: cover;
 }
 
 .bg-black {
