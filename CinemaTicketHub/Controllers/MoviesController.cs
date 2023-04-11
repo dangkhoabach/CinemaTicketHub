@@ -21,5 +21,11 @@ namespace CinemaTicketHub.Controllers
         {
             return View(_dbContext.Phim.ToList());
         }
+
+        public ActionResult Details(string MaPhim)
+        {
+            Phim phim = _dbContext.Phim.Find(MaPhim);
+            return View(phim);
+        }
     }
 }

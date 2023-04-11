@@ -33,6 +33,8 @@ namespace CinemaTicketHub.Models
 
         public string MoTa { get; set; }
 
+        public string Trailer { get; set; }
+
         public virtual LoaiPhim LoaiPhim { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

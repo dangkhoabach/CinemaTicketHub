@@ -1,0 +1,131 @@
+﻿@model CinemaTicketHub.Models.Phim
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Thêm Phim Mới</h2>
+<hr />
+<div class="row">
+    <div class="col-7">
+        @using (Html.BeginForm("SaveMovies", "MoviesManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Tên phim</label>
+                @Html.EditorFor(model => model.TenPhim, new { htmlAttributes = new { @class = "form-control", id = "txtTenPhim" } })
+                @Html.ValidationMessageFor(model => model.TenPhim, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Mã phim</label>
+                @Html.EditorFor(model => model.MaPhim, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaPhim, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Thể loại</label>
+                @Html.DropDownList("MaLoai", new SelectList(ViewBag.TheLoai, "MaLoai", "TenLoai"), htmlAttributes: new { @class = "form-control", id = "ChonTheLoai" })
+                @Html.ValidationMessageFor(model => model.MaLoai, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Đối tượng</label>
+                @Html.EditorFor(model => model.DoiTuong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DoiTuong, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Ngày khởi chiếu</label>
+                @Html.EditorFor(model => model.NgayKhoiChieu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NgayKhoiChieu, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Mô tả</label>
+                @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control", id = "txtMoTa" } })
+                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Trailer (Lick nhúng)</label>
+                @Html.EditorFor(model => model.Trailer, new { htmlAttributes = new { @class = "form-control", id = "txtTrailer" } })
+                @Html.ValidationMessageFor(model => model.Trailer, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Poster phim (600x350)</label>
+                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control", type = "file", id = "uploadimages", accept = ".png, .jpg, .jpeg" } })
+                @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Thêm phim" class="btn btn-outline-danger" />
+            </div>
+        }
+    </div>
+    <div class="col-5">
+        <p class="card-text"><small class="text-body-secondary" style="color: #eb1616; font-size: medium"><b>Live Preview</b></small></p>
+        <div class="border border-danger" style="margin:25px; padding: 25px">
+            <h4 class="card-title" id="lbTenPhim" style="word-wrap: break-word; max-width: 500px; color: goldenrod">Tên phim</h4>
+            <img src="~/Content/images/poster_landscape/chuacoposter.png" class="card-img-top" id="previewimages" style="object-fit: contain; margin-top: 10px; max-width: 500px">
+            <div class="card-body">
+                <p class="card-text" id="lbMoTa" style="word-wrap: break-word; max-width: 460px">Chưa có mô tả phim</p>
+                <div>Thể loại: <span class="text-body-secondary" id="lbTheLoai"></span></div>
+            </div>
+        </div>
+    </div>
+    <div>
+    </div>
+    <hr />
+    <div>
+        @Html.ActionLink("Quay lại danh sách phim", "List")
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    /*Tên phim*/
+    var txtTenPhim = document.getElementById("txtTenPhim");
+    var lbTenPhim = document.getElementById("lbTenPhim");
+
+    txtTenPhim.addEventListener("input", function () {
+        lbTenPhim.innerHTML = txtTenPhim.value;
+    });
+
+    /*Mô Tả*/
+    var txtMoTa = document.getElementById("txtMoTa");
+    var lbMoTa = document.getElementById("lbMoTa");
+
+    txtMoTa.addEventListener("input", function () {
+        lbMoTa.innerHTML = txtMoTa.value;
+    });
+
+    /*Thể Loại*/
+    var ChonTheLoai = document.getElementById("ChonTheLoai");
+    var lbTheLoai = document.getElementById("lbTheLoai");
+
+    ChonTheLoai.addEventListener("change", function () {
+        var selectedOption = ChonTheLoai.options[ChonTheLoai.selectedIndex];
+        lbTheLoai.innerText = selectedOption.innerText;
+    });
+
+    /*Ảnh sản phẩm*/
+    var uploadimages = document.getElementById("uploadimages");
+    var previewimages = document.getElementById("previewimages");
+
+    uploadimages.addEventListener("change", function () {
+        var file = uploadimages.files[0];
+        var reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            previewimages.src = reader.result;
+        });
+        reader.readAsDataURL(file);
+    });
+
+    /*Ràng buộc kích thước file ảnh không được lớn hơn 10MB*/
+    var fileInput = document.getElementById("uploadimages");
+    fileInput.addEventListener("change", function () {
+        var fileSize = this.files[0].size;
+        if (fileSize > 10485760) {
+            alert("Kích thước ảnh phải nhỏ hơn 10MB");
+            this.value = null;
+        }
+    });
+</script>

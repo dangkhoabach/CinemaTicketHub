@@ -172,6 +172,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MoviesManageController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -325,6 +326,9 @@
     <Content Include="Areas\Admin\Content\scss\bootstrap\scss\_type.scss" />
     <Content Include="Areas\Admin\Content\scss\bootstrap\scss\_utilities.scss" />
     <Content Include="Areas\Admin\Content\scss\bootstrap\scss\_variables.scss" />
+    <Content Include="Areas\Admin\Views\MoviesManage\List.cshtml" />
+    <Content Include="Areas\Admin\Views\MoviesManage\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MoviesManage\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -371,6 +375,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Movies\NowShowing.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

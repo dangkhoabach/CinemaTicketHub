@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CinemaTicketHub.Models.Phim>
+
+@{
+    ViewBag.Title = "[Admin] Danh sách tất cả phim";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Danh sách tất cả phim</h2>
+
+<p>
+    @Html.ActionLink("Thêm Phim Mới", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">
+                Tên Phim
+            </th>
+            <th scope="col">
+                Thể Loại
+            </th>
+            <th scope="col">
+                Ngày Khởi Chiếu
+            </th>
+            <th scope="col">
+                Đối Tượng
+            </th>
+            <th scope="col">
+                Poster
+            </th>
+            <th scope="col">
+                Mô Tả
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody class="table-group-divider">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="vertical-align: middle; font-weight: bold; color: goldenrod">                  
+                    @Html.DisplayFor(modelItem => item.TenPhim)
+                </td>
+                <td style="vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.LoaiPhim.TenLoai)
+                </td>
+                <td style="vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.NgayKhoiChieu)
+                </td>
+                <td style="vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.DoiTuong)
+                </td>
+                <td style="vertical-align: middle">
+                    <img src="@Html.DisplayFor(modelItem => item.HinhAnh)" style="height: auto; width: 180px; object-fit: contain" />
+                </td>
+                <td style="vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.MoTa)
+                </td>
+                <td style="vertical-align: middle">
+                    @Html.ActionLink("Chi tiết", "Details", new { MaPhim = item.MaPhim }) |
+                    @Html.ActionLink("Xóa", "Delete", new { MaPhim = item.MaPhim }, new { onclick = "return confirm('Bạn có muốn xóa phim này không?');", @class = "delete-button" })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
