@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -45,6 +46,21 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                     Path.GetFileName(HinhAnh.FileName));
                 HinhAnh.SaveAs(path);
                 phim.HinhAnh = "/Content/images/poster_landscape/" + Path.GetFileName(HinhAnh.FileName);
+
+                var List = _dbContext.Phim.ToList();
+                Phim item = List.LastOrDefault();
+
+                string MaPhim = "";
+                
+                MatchCollection matches = Regex.Matches(item.MaPhim, @"\d+");
+                foreach (Match match in matches)
+                {
+                    MaPhim += match.Value;
+                }
+
+                int count = int.Parse(MaPhim.ToString()) + 1;
+                phim.MaPhim = "MV" + count;
+
                 _dbContext.Phim.Add(phim);
                 _dbContext.SaveChanges();
             }

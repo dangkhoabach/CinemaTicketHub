@@ -17,7 +17,7 @@ namespace CinemaTicketHub.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", controller = "Dashboard", id = UrlParameter.Optional }
             );
         }
     }

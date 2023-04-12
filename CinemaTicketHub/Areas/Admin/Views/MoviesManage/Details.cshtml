@@ -21,18 +21,13 @@
                 @Html.ValidationMessageFor(model => model.TenPhim, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Mã phim</label>
-                @Html.EditorFor(model => model.MaPhim, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaPhim, "", new { @class = "text-danger" })
-            </div>
-            <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Thể loại</label>
-                @Html.DropDownList("MaLoai", new SelectList(ViewBag.TheLoai, "MaLoai", "TenLoai"), htmlAttributes: new { @class = "form-control", id = "ChonTheLoai" })
+                @Html.DropDownList("MaLoai", new SelectList(ViewBag.TheLoai, "MaLoai", "TenLoai"), "--Vui lòng chọn thể loại phim--", htmlAttributes: new { @class = "form-control", id = "ChonTheLoai" })
                 @Html.ValidationMessageFor(model => model.MaLoai, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Đối tượng</label>
-                @Html.EditorFor(model => model.DoiTuong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.DoiTuong, new SelectList(new List<string>{"P", "C13", "C16", "C18"}), "--Vui lòng chọn đối tượng (độ tuổi)--", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DoiTuong, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
@@ -66,8 +61,9 @@
                 <h4 class="card-title" id="lbTenPhim" style="word-wrap: break-word; max-width: 500px; color: goldenrod">@Html.DisplayFor(model => model.TenPhim)</h4>
                 <img src="@Html.DisplayFor(model => model.HinhAnh)" class="card-img-top" id="previewimages" style="object-fit: contain; margin-top: 10px; max-width: 500px">
                 <div class="card-body">
+                    <div style="font-weight: bold; margin-bottom: 10px; text-align: center">Thể loại: <span class="text-body-secondary" id="lbTheLoai">@Html.DisplayFor(model => model.LoaiPhim.TenLoai)</span></div>
+                    <hr />
                     <p class="card-text" id="lbMoTa" style="word-wrap: break-word; max-width: 480px; text-align: justify">@Html.DisplayFor(model => model.MoTa)</p>
-                    <div>Thể loại: <span class="text-body-secondary" id="lbTheLoai">@Html.DisplayFor(model => model.LoaiPhim.TenLoai)</span></div>
                 </div>
             </div>
         </div>
