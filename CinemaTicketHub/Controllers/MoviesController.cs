@@ -19,7 +19,14 @@ namespace CinemaTicketHub.Controllers
 
         public ActionResult NowShowing()
         {
-            return View(_dbContext.Phim.ToList());
+            var nowshowing = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).ToList();
+            return View(nowshowing);
+        }
+
+        public ActionResult ComingSoon()
+        {
+            var comingsoon = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu > DateTime.Now).ToList();
+            return View(comingsoon);
         }
 
         public ActionResult Details(string MaPhim)

@@ -22,6 +22,7 @@ namespace CinemaTicketHub.Models
         [Required]
         public string TenPhim { get; set; }
 
+        [Column(TypeName = "date")]
         public DateTime NgayKhoiChieu { get; set; }
 
         public int MaLoai { get; set; }
@@ -34,6 +35,8 @@ namespace CinemaTicketHub.Models
         public string MoTa { get; set; }
 
         public string Trailer { get; set; }
+
+        public bool? TrangThai { get; set; }
 
         public virtual LoaiPhim LoaiPhim { get; set; }
 

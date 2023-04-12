@@ -26,6 +26,9 @@
                 Đối Tượng
             </th>
             <th scope="col">
+                Trạng Thái
+            </th>
+            <th scope="col">
                 Poster
             </th>
             <th scope="col"></th>
@@ -36,20 +39,43 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td style="vertical-align: middle; font-weight: bold; color: goldenrod">                  
-                    @Html.DisplayFor(modelItem => item.TenPhim)
+                <td style="vertical-align: middle; font-weight: bold; color: goldenrod">
+                    @item.TenPhim
                 </td>
                 <td style="vertical-align: middle">
-                    @Html.DisplayFor(modelItem => item.LoaiPhim.TenLoai)
+                    @item.LoaiPhim.TenLoai
                 </td>
                 <td style="vertical-align: middle">
-                    @Html.DisplayFor(modelItem => item.NgayKhoiChieu)
+                    @item.NgayKhoiChieu.ToShortDateString()
                 </td>
                 <td style="vertical-align: middle">
-                    @Html.DisplayFor(modelItem => item.DoiTuong)
+                    @item.DoiTuong
                 </td>
+                @if (item.TrangThai == true)
+                {
+
+                    if (item.NgayKhoiChieu > DateTime.Now)
+                    {
+                        <td style="vertical-align: middle">Phim sắp chiếu | @Html.ActionLink("Đổi", "ChangeStatus", new { MaPhim = item.MaPhim }, new { onclick = "return confirm('Bạn có muốn thay đổi trạng thái không?');" })</td>
+                    }
+                    else
+                    {
+                        <td style="vertical-align: middle">Phim đang chiếu | @Html.ActionLink("Đổi", "ChangeStatus", new { MaPhim = item.MaPhim }, new { onclick = "return confirm('Bạn có muốn thay đổi trạng thái không?');" })</td>
+                    }
+                }
+                else
+                {
+                    if (item.NgayKhoiChieu > DateTime.Now)
+                    {
+                        <td style="vertical-align: middle">Không xác định | @Html.ActionLink("Đổi", "ChangeStatus", new { MaPhim = item.MaPhim }, new { onclick = "return confirm('Bạn có muốn thay đổi trạng thái không?');" })</td>
+                    }
+                    else
+                    {
+                        <td style="vertical-align: middle">Phim ngưng chiếu | @Html.ActionLink("Đổi", "ChangeStatus", new { MaPhim = item.MaPhim }, new { onclick = "return confirm('Bạn có muốn thay đổi trạng thái không?');" })</td>
+                    }
+                }
                 <td style="vertical-align: middle">
-                    <img src="@Html.DisplayFor(modelItem => item.HinhAnh)" style="height: auto; width: 180px; object-fit: contain" />
+                    <img src="@item.HinhAnh" style="height: auto; width: 180px; object-fit: contain" />
                 </td>
                 <td style="vertical-align: middle">
                     @Html.ActionLink("Chi tiết", "Details", new { MaPhim = item.MaPhim }) |

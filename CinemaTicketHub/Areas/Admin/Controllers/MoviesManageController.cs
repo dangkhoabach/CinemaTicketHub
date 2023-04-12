@@ -61,6 +61,8 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 int count = int.Parse(MaPhim.ToString()) + 1;
                 phim.MaPhim = "MV" + count;
 
+                phim.TrangThai = true;
+
                 _dbContext.Phim.Add(phim);
                 _dbContext.SaveChanges();
             }
@@ -122,6 +124,24 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
             }
             _dbContext.Phim.Remove(item);
             _dbContext.SaveChanges();
+            return RedirectToAction("List", "MoviesManage");
+        }
+
+        public ActionResult ChangeStatus(Phim phim)
+        {
+            var item = _dbContext.Phim.Find(phim.MaPhim);
+
+            if (item.TrangThai == true)
+            {
+                item.TrangThai = false;
+            }
+            else
+            {
+                item.TrangThai = true;
+            }    
+
+            _dbContext.SaveChanges();
+
             return RedirectToAction("List", "MoviesManage");
         }
     }
