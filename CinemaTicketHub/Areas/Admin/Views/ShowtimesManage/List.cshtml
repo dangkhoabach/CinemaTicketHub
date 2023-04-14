@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "[Admin] Danh sách suất chiếu phim";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Danh sách suất chiếu phim</h2>
+
+<p>
+    @Html.ActionLink("Thêm Suất Chiếu Mới", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">
+                Mã suất chiếu
+            </th>
+            <th scope="col">
+                Phim
+            </th>
+            <th scope="col">
+                Mã phòng
+            </th>
+            <th scope="col">
+                Ngày chiếu
+            </th>
+            <th scope="col">
+                Giờ bắt đầu
+            </th>
+            <th scope="col">
+                Giờ kết thúc
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody class="table-group-divider">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="vertical-align: middle">
+                    @item.MaSuatChieu
+                </td>
+                <td style="vertical-align: middle">
+                    @item.Phim.TenPhim
+                </td>
+                <td style="vertical-align: middle">
+                    @item.PhongChieu.TenPhong
+                </td>
+                <td style="vertical-align: middle">
+                    @item.NgayChieu.ToShortDateString()
+                </td>
+                <td style="vertical-align: middle">
+                    @item.GioBatDau
+                </td>
+                <td style="vertical-align: middle">
+                    @item.GioKetThuc
+                </td>
+                <td style="vertical-align: middle">
+                    @Html.ActionLink("Chi tiết", "Details", new { MaSuatChieu = item.MaSuatChieu }) |
+                    @Html.ActionLink("Xóa", "Delete", new { MaSuatChieu = item.MaSuatChieu }, new { onclick = "return confirm('Bạn có muốn xóa suất chiếu này không?');", @class = "delete-button" })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

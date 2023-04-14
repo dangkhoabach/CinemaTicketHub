@@ -173,6 +173,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\MoviesManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ShowtimesManageController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -182,12 +183,13 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CinemaTicketHubModel.cs" />
+    <Compile Include="Models\Ghe.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\LoaiPhim.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Phim.cs" />
     <Compile Include="Models\PhongChieu.cs" />
+    <Compile Include="Models\SuatChieu.cs" />
     <Compile Include="Models\Ve.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -362,6 +364,9 @@
     <Content Include="Areas\Admin\Views\MoviesManage\List.cshtml" />
     <Content Include="Areas\Admin\Views\MoviesManage\Create.cshtml" />
     <Content Include="Areas\Admin\Views\MoviesManage\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ShowtimesManage\List.cshtml" />
+    <Content Include="Areas\Admin\Views\ShowtimesManage\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ShowtimesManage\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

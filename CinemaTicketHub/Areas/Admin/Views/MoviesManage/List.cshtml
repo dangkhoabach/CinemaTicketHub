@@ -26,6 +26,12 @@
                 Đối Tượng
             </th>
             <th scope="col">
+                Ngôn ngữ
+            </th>
+            <th scope="col">
+                Thời Lượng
+            </th>
+            <th scope="col">
                 Trạng Thái
             </th>
             <th scope="col">
@@ -39,10 +45,10 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td style="vertical-align: middle; font-weight: bold; color: goldenrod">
+                <td style="vertical-align: middle; font-weight: bold; color: goldenrod; word-wrap: break-word; max-width: 250px; text-align: center">
                     @item.TenPhim
                 </td>
-                <td style="vertical-align: middle">
+                <td style="vertical-align: middle; word-wrap: break-word; max-width: 150px; text-align: center">
                     @item.LoaiPhim.TenLoai
                 </td>
                 <td style="vertical-align: middle">
@@ -51,6 +57,21 @@
                 <td style="vertical-align: middle">
                     @item.DoiTuong
                 </td>
+                <td style="vertical-align: middle">
+                    @item.NgonNgu
+                </td>
+                @if (item.ThoiLuong == null)
+                {
+                    <td style="vertical-align: middle">
+                        ...
+                    </td>
+                }
+                else
+                {
+                    <td style="vertical-align: middle">
+                        @item.ThoiLuong Phút
+                    </td>
+                }
                 @if (item.TrangThai == true)
                 {
 

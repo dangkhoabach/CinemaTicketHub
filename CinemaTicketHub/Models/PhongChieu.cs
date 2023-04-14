@@ -12,18 +12,25 @@ namespace CinemaTicketHub.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PhongChieu()
         {
-            Ve = new HashSet<Ve>();
+            Ghe = new HashSet<Ghe>();
+            SuatChieu = new HashSet<SuatChieu>();
         }
 
         [Key]
         public int MaPhong { get; set; }
 
-        [Required]
+        [StringLength(100)]
         public string TenPhong { get; set; }
 
-        public int SoLuongGhe { get; set; }
+        [StringLength(5)]
+        public string SoLuongDay { get; set; }
+
+        public int? SoLuongCot { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ve> Ve { get; set; }
+        public virtual ICollection<Ghe> Ghe { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SuatChieu> SuatChieu { get; set; }
     }
 }

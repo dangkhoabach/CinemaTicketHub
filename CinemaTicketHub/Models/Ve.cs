@@ -12,24 +12,22 @@ namespace CinemaTicketHub.Models
         [Key]
         public int MaVe { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Ghe { get; set; }
+        public int MaGhe { get; set; }
 
         public DateTime NgayBanVe { get; set; }
 
-        public int MaKH { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string id { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(10)]
         public string MaPhim { get; set; }
 
-        public int MaPhong { get; set; }
+        public int MaSuatChieu { get; set; }
 
-        public virtual KhachHang KhachHang { get; set; }
+        public virtual Ghe Ghe { get; set; }
 
-        public virtual Phim Phim { get; set; }
-
-        public virtual PhongChieu PhongChieu { get; set; }
+        public virtual SuatChieu SuatChieu { get; set; }
     }
 }

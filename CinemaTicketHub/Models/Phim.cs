@@ -12,11 +12,11 @@ namespace CinemaTicketHub.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Phim()
         {
-            Ve = new HashSet<Ve>();
+            SuatChieu = new HashSet<SuatChieu>();
         }
 
         [Key]
-        [StringLength(50)]
+        [StringLength(10)]
         public string MaPhim { get; set; }
 
         [Required]
@@ -38,9 +38,14 @@ namespace CinemaTicketHub.Models
 
         public bool? TrangThai { get; set; }
 
+        public int? ThoiLuong { get; set; }
+
+        [StringLength(50)]
+        public string NgonNgu { get; set; }
+
         public virtual LoaiPhim LoaiPhim { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ve> Ve { get; set; }
+        public virtual ICollection<SuatChieu> SuatChieu { get; set; }
     }
 }

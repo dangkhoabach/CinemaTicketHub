@@ -12,17 +12,18 @@ namespace CinemaTicketHub.Models
         {
         }
 
-        public virtual DbSet<KhachHang> KhachHang { get; set; }
+        public virtual DbSet<Ghe> Ghe { get; set; }
         public virtual DbSet<LoaiPhim> LoaiPhim { get; set; }
         public virtual DbSet<Phim> Phim { get; set; }
         public virtual DbSet<PhongChieu> PhongChieu { get; set; }
+        public virtual DbSet<SuatChieu> SuatChieu { get; set; }
         public virtual DbSet<Ve> Ve { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<KhachHang>()
+            modelBuilder.Entity<Ghe>()
                 .HasMany(e => e.Ve)
-                .WithRequired(e => e.KhachHang)
+                .WithRequired(e => e.Ghe)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<LoaiPhim>()
@@ -31,13 +32,23 @@ namespace CinemaTicketHub.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Phim>()
-                .HasMany(e => e.Ve)
+                .HasMany(e => e.SuatChieu)
                 .WithRequired(e => e.Phim)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PhongChieu>()
-                .HasMany(e => e.Ve)
+                .HasMany(e => e.Ghe)
                 .WithRequired(e => e.PhongChieu)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PhongChieu>()
+                .HasMany(e => e.SuatChieu)
+                .WithRequired(e => e.PhongChieu)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<SuatChieu>()
+                .HasMany(e => e.Ve)
+                .WithRequired(e => e.SuatChieu)
                 .WillCascadeOnDelete(false);
         }
     }

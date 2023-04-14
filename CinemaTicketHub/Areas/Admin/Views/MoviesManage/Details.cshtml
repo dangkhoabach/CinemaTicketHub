@@ -9,7 +9,6 @@
 {
     @Html.AntiForgeryToken()
     <h2>Thông tin chi tiết phim</h2>
-
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.MaPhim)
@@ -27,13 +26,23 @@
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Đối tượng</label>
-                @Html.DropDownListFor(model => model.DoiTuong, new SelectList(new List<string>{"P", "C13", "C16", "C18"}), "--Vui lòng chọn đối tượng (độ tuổi)--", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.DoiTuong, new SelectList(new List<string> { "P", "C13", "C16", "C18" }), "--Vui lòng chọn đối tượng (độ tuổi)--", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DoiTuong, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Ngôn ngữ</label>
+                @Html.EditorFor(model => model.NgonNgu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NgonNgu, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Ngày khởi chiếu</label>
                 @Html.EditorFor(model => model.NgayKhoiChieu, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NgayKhoiChieu, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Thời lượng phim (Phút)</label>
+                @Html.EditorFor(model => model.ThoiLuong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ThoiLuong, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Mô tả</label>

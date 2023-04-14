@@ -6,26 +6,34 @@ namespace CinemaTicketHub.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("KhachHang")]
-    public partial class KhachHang
+    [Table("SuatChieu")]
+    public partial class SuatChieu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KhachHang()
+        public SuatChieu()
         {
             Ve = new HashSet<Ve>();
         }
 
         [Key]
-        public int MaKH { get; set; }
+        public int MaSuatChieu { get; set; }
+
+        public TimeSpan? GioBatDau { get; set; }
+
+        public TimeSpan? GioKetThuc { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? NgayChieu { get; set; }
 
         [Required]
-        public string HoTen { get; set; }
+        [StringLength(10)]
+        public string MaPhim { get; set; }
 
-        public int? NamSinh { get; set; }
+        public int MaPhong { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string SDT { get; set; }
+        public virtual Phim Phim { get; set; }
+
+        public virtual PhongChieu PhongChieu { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ve> Ve { get; set; }

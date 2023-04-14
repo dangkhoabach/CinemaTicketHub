@@ -32,6 +32,7 @@ namespace CinemaTicketHub.Controllers
         public ActionResult Details(string MaPhim)
         {
             Phim phim = _dbContext.Phim.Find(MaPhim);
+            ViewBag.SuatChieu = _dbContext.SuatChieu.Where(m => m.MaPhim == MaPhim).ToList();
             return View(phim);
         }
     }
