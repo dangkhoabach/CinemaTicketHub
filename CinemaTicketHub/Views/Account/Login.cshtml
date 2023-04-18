@@ -1,63 +1,69 @@
 ﻿@using CinemaTicketHub.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Log in";
+    Layout = null;
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Đăng nhập</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/Content/css/authenticatestyle.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-box">
+        <h2>Đăng nhập</h2>
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="user-box">
+                <input type="text" name="" required="" id="txtemail1">
+                <label>Email</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "txtemail2" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="user-box">
+                <input type="password" name="" required="" id="txtpassword1">
+                <label>Mật khẩu</label>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "txtpassword2" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+            <a href="#" onclick="document.querySelector('.btn-default').click(); return false;">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Đăng nhập
+            </a>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+            <input type="submit" value="Log in" class="btn btn-default" />
+        }
+        <a href="/Account/Register" class="gotosignup">Bạn chưa có tài khoản?</a>
+        @*<hr />
+            <a href="/Account/ForgotPassword" class="gotosignup">Bạn quên mật khẩu?</a>*@
+    </div>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $('#txtemail1').on('input', function () {
+        var value = $(this).val();
+
+        // Gán giá trị của textbox 1 cho Html.TextBoxFor
+        $('#txtemail2').val(value);
+    });
+
+
+    $('#txtpassword1').on('input', function () {
+        var value = $(this).val();
+
+        // Gán giá trị của textbox 1 cho Html.TextBoxFor
+        $('#txtpassword2').val(value);
+    });
+</script>

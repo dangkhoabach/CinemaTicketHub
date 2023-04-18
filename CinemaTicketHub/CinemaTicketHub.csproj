@@ -228,7 +228,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\authenticatestyle.css" />
     <Content Include="Content\css\mainstyle.css" />
+    <Content Include="Content\images\authenticate\film1.jpg" />
+    <Content Include="Content\images\authenticate\film2.jpg" />
+    <Content Include="Content\images\authenticate\wallpaper1.jpg" />
     <Content Include="Content\images\poster_landscape\air.png" />
     <Content Include="Content\images\poster_landscape\amvucchet.png" />
     <Content Include="Content\images\poster_landscape\barbie.png" />

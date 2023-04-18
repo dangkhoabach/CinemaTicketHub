@@ -47,6 +47,14 @@ namespace CinemaTicketHub.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<SuatChieu>()
+                .Property(e => e.GioBatDau)
+                .HasPrecision(0);
+
+            modelBuilder.Entity<SuatChieu>()
+                .Property(e => e.GioKetThuc)
+                .HasPrecision(0);
+
+            modelBuilder.Entity<SuatChieu>()
                 .HasMany(e => e.Ve)
                 .WithRequired(e => e.SuatChieu)
                 .WillCascadeOnDelete(false);
