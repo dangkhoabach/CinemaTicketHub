@@ -14,17 +14,23 @@
                 </div>
                 <div class="col-lg-6">
                     <h2 class="fw-bolder">@Model.TenPhim</h2>
-                    @*<h5>@Model.DoiTuong</h5>*@
                     <div class="badge bg-primary bg-gradient rounded-pill mb-2">@Model.DoiTuong</div>
                     <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Ngày khởi chiếu: @Model.NgayKhoiChieu.ToShortDateString()</p>
-                    <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Thời lượng: @Model.ThoiLuong phút</p>
+                    @if (Model.ThoiLuong != null)
+                    {
+                        <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Thời lượng: @Model.ThoiLuong phút</p>
+                    }
+                    else
+                    {
+                        <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Thời lượng: Chưa xác định</p>
+                    }
                     <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Ngôn ngữ: @Model.NgonNgu</p>
 
                     <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Các suất chiếu hôm nay:</p>
                     <ul>
                         @foreach (var item in ViewBag.SuatChieu)
                         {
-                            <li style="display: inline-block; margin: 20px 20px 10px 0"><button class="btn btn-outline-danger">@item.GioBatDau</button></li>
+                            <li style="display: inline-block; margin: 20px 20px 10px 0"><button class="btn btn-outline-danger" style="font-weight: bold">@item.GioBatDau</button></li>
                         }
                     </ul>
                     <hr />
