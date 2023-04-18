@@ -179,6 +179,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,6 +231,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\authenticatestyle.css" />
     <Content Include="Content\css\mainstyle.css" />
+    <Content Include="Content\css\profilestyle.css" />
     <Content Include="Content\images\authenticate\film1.jpg" />
     <Content Include="Content\images\authenticate\film2.jpg" />
     <Content Include="Content\images\authenticate\wallpaper1.jpg" />
@@ -420,6 +422,7 @@
     <Content Include="Views\Movies\NowShowing.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\ComingSoon.cshtml" />
+    <Content Include="Views\Profile\MyInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
