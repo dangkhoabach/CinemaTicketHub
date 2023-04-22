@@ -60,7 +60,6 @@
                 @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
-                @*<input type="submit" value="Lưu thay đổi" class="btn btn-outline-danger" />*@
                 <button type="submit" class="btn btn-outline-danger">Lưu thay đổi</button>
             </div>
         </div>
@@ -75,8 +74,6 @@
                     <p class="card-text" id="lbMoTa" style="word-wrap: break-word; max-width: 480px; text-align: justify">@Html.DisplayFor(model => model.MoTa)</p>
                 </div>
             </div>
-        </div>
-        <div>
         </div>
     </div>
 }

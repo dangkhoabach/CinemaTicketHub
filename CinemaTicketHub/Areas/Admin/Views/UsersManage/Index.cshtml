@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Quản lý Users</h2>
+
+<div class="row" style="margin-top: 50px">
+    <div class="col-6">
+        <div>
+            <div class="card" style="border-radius: 20px;">
+                <div class="card-body p-4">
+                    <div class="d-flex text-black">
+                        <div class="flex-shrink-0">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="" class="img-fluid" style="width: 180px; border-radius: 20px;">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <p class="mb-2 pb-1" style="font-size: 20px; font-weight: bold; color: #2b2a2a; text-transform: uppercase">User</p>
+                            <p style="text-align: left; font-size: 16px"><b>Email: </b>user@gmail.com</p>
+                            <p style="text-align: left; font-size: 16px"><b>Số điện thoại: </b>0123456789</p>
+                            <p style="text-align: left; font-size: 16px"><b>Ngày sinh: </b>01/01/2000</p>
+                            <p style="text-align: left; font-size: 16px"><b>Role: </b>Member</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Chọn User</label>
+            @Html.DropDownList("UserId", ViewBag.Users as SelectList, "--Chọn User--", new { @class = "form-control" })
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Chọn Role muốn đổi</label>
+            @Html.DropDownList("RoleId", ViewBag.Roles as SelectList, "--Chọn Role--", new { @class = "form-control" })
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-outline-danger">Lưu thay đổi</button>
+        </div>
+    </div>
+</div>
