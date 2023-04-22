@@ -32,7 +32,12 @@
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#">Rạp Chiếu</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Admin">Admin</a></li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item"><a class="nav-link" href="/Admin">Admin</a></li>
+                        }
+                        else
+                        { }
                         <li class="nav-item dropdown">@Html.Partial("_LoginPartial")</li>
                     </ul>
                 </div>

@@ -17,6 +17,7 @@ namespace CinemaTicketHub.Models
         public virtual DbSet<Phim> Phim { get; set; }
         public virtual DbSet<PhongChieu> PhongChieu { get; set; }
         public virtual DbSet<SuatChieu> SuatChieu { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Ve> Ve { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

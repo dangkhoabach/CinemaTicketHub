@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace CinemaTicketHub.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ShowtimesManageController : Controller
     {
         ApplicationDbContext _dbContext = new ApplicationDbContext();

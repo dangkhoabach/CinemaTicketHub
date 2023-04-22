@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CinemaTicketHub.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         // GET: Profile

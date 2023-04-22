@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CinemaTicketHub.Models
@@ -77,8 +78,18 @@ namespace CinemaTicketHub.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Mật khẩu không trùng khớp.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [StringLength(255)]
+        public string Name { get; set; }
+        [Required]
+        [MinimumAge]
+        public DateTime Birthday { get; set; }
     }
 
     public class ResetPasswordViewModel
@@ -96,7 +107,7 @@ namespace CinemaTicketHub.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Mật khẩu không trùng khớp.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

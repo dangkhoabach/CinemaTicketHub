@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace CinemaTicketHub.Controllers
 {
+    [Authorize]
     public class BookingController : Controller
     {
         ApplicationDbContext _dbContext = new ApplicationDbContext();

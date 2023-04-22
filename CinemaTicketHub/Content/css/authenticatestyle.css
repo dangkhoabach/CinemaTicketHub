@@ -187,10 +187,14 @@ body {
     }
 }
 
-#txtemail2, #txtname2, #txtphone2, #txtaddress2, #txtpassword2, #txtpassword4, .btn-default {
+#txtemail2, #txtname2, #txtphone2, #txtbirthday2, #txtpassword2, #txtpassword4, .btn-default {
     display: none;
 }
 
 .login-box .text-danger {
     color: #e99c2e;
+}
+
+.error-message {
+    display: none;
 }

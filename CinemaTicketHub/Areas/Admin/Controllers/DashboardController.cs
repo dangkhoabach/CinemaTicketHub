@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CinemaTicketHub.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
         // GET: Admin/Dashboard

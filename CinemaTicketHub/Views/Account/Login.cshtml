@@ -12,10 +12,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="~/Content/css/authenticatestyle.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/818e023cf2.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="login-box">
-        <h2>Đăng nhập</h2>
+        <a href="/Home/Index" class="gotosignup" style="float: left"><i class="fa-solid fa-arrow-left"></i></a>
+        <h2 style="margin-top: 20px">Đăng nhập</h2>
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()

@@ -11,10 +11,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="~/Content/css/authenticatestyle.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/818e023cf2.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="login-box">
-        <h2>Đăng ký</h2>
+        <a href="/Home/Index" class="gotosignup" style="float: left"><i class="fa-solid fa-arrow-left"></i></a>
+        <h2 style="margin-top: 20px">Đăng ký</h2>
         @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
@@ -24,7 +26,7 @@
                 <label>Email</label>
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "txtemail2" })
             </div>
-            @*<div class="user-box">
+            <div class="user-box">
                 <input type="text" name="" required="" id="txtname1">
                 <label>Họ và Tên</label>
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "txtname2" })
@@ -35,10 +37,11 @@
                 @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", id = "txtphone2" })
             </div>
             <div class="user-box">
-                <input type="text" name="" required="" id="txtaddress1">
-                <label>Địa chỉ</label>
-                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", id = "txtaddress2" })
-            </div>*@
+                <input type="text" name="" required="" id="txtbirthday1">
+                <label>Ngày sinh</label>
+                @Html.TextBoxFor(m => m.Birthday, new { @class = "form-control", id = "txtbirthday2" })
+                @Html.ValidationMessageFor(m => m.Birthday, "", new { @class = "error-message" })
+            </div>
             <div class="user-box">
                 <input type="password" name="" required="" id="txtpassword1">
                 <label>Mật khẩu</label>
@@ -74,7 +77,7 @@
         $('#txtemail2').val(value);
     });
 
-/*    $('#txtname1').on('input', function () {
+    $('#txtname1').on('input', function () {
         var value = $(this).val();
 
         // Gán giá trị của textbox 1 cho Html.TextBoxFor
@@ -88,12 +91,12 @@
         $('#txtphone2').val(value);
     });
 
-    $('#txtaddress1').on('input', function () {
+    $('#txtbirthday1').on('input', function () {
         var value = $(this).val();
 
         // Gán giá trị của textbox 1 cho Html.TextBoxFor
-        $('#txtaddress2').val(value);
-    });*/
+        $('#txtbirthday2').val(value);
+    });
 
 
     $('#txtpassword1').on('input', function () {

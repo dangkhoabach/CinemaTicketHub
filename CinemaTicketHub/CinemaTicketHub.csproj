@@ -184,6 +184,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BirthdayValidation.cs" />
     <Compile Include="Models\CinemaTicketHubModel.cs" />
     <Compile Include="Models\Ghe.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Models\Phim.cs" />
     <Compile Include="Models\PhongChieu.cs" />
     <Compile Include="Models\SuatChieu.cs" />
+    <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\Ve.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -428,6 +430,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Booking\" />
+    <Folder Include="Content\images\authenticate\avtprofile\" />
     <Folder Include="Views\Booking\" />
   </ItemGroup>
   <ItemGroup>
