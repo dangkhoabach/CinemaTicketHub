@@ -1,44 +1,125 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@using Microsoft.Owin.Security
+@using System.Security.Claims
+@using System.Threading.Tasks
+@using CinemaTicketHub.Models
+
 @{
-    ViewBag.Title = "Index";
+    if (IsPost)
+    {
+        var userId = Request.Form["userId"];
+        var newRole = Request.Form["newRole"];
+
+        var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        var user = userManager.FindById(userId);
+        if (user != null)
+        {
+            if (newRole != null)
+            {
+                userManager.RemoveFromRoles(userId, userManager.GetRoles(userId).ToArray());
+                userManager.AddToRole(userId, newRole);
+
+                <p>Role của @user.UserName đã được thay đổi thành @newRole</p>
+            }
+            else
+            {
+                <p>Vui lòng chọn Role mới!</p>
+            }
+        }
+        else
+        {
+            <p>Không tìm thấy User!</p>
+        }
+    }
+}
+
+@{
+    var _dbContext = new ApplicationDbContext();
+    var userManagerInfo = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_dbContext));
+    var users = userManagerInfo.Users.ToList();
+}
+
+@{
+    ViewBag.Title = "[Admin] Quản Lý Users";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Quản lý Users</h2>
 
 <div class="row" style="margin-top: 50px">
-    <div class="col-6">
-        <div>
-            <div class="card" style="border-radius: 20px;">
-                <div class="card-body p-4">
-                    <div class="d-flex text-black">
-                        <div class="flex-shrink-0">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="" class="img-fluid" style="width: 180px; border-radius: 20px;">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <p class="mb-2 pb-1" style="font-size: 20px; font-weight: bold; color: #2b2a2a; text-transform: uppercase">User</p>
-                            <p style="text-align: left; font-size: 16px"><b>Email: </b>user@gmail.com</p>
-                            <p style="text-align: left; font-size: 16px"><b>Số điện thoại: </b>0123456789</p>
-                            <p style="text-align: left; font-size: 16px"><b>Ngày sinh: </b>01/01/2000</p>
-                            <p style="text-align: left; font-size: 16px"><b>Role: </b>Member</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="col-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Avatar
+                    </th>
+                    <th scope="col">
+                        Họ và Tên
+                    </th>
+                    <th scope="col">
+                        Email
+                    </th>
+                    <th scope="col">
+                        Số điện thoại
+                    </th>
+                    <th scope="col">
+                        Ngày Sinh
+                    </th>
+                    @*<th scope="col">
+            Role
+        </th>*@
+                </tr>
+            </thead>
+
+            <tbody class="table-group-divider">
+                @foreach (var item in users)
+                {
+                    <tr>
+                        <td style="vertical-align: middle">
+                            <img src="@item.Avatar" class="rounded-circle" style="height: auto; width: 100px; object-fit: contain" />
+                        </td>
+                        <td style="vertical-align: middle; font-weight: bold; color: goldenrod; word-wrap: break-word; max-width: 250px; text-align: center">
+                            @item.Name
+                        </td>
+                        <td style="vertical-align: middle">
+                            @item.Email
+                        </td>
+                        <td style="vertical-align: middle">
+                            @item.PhoneNumber
+                        </td>
+                        <td style="vertical-align: middle">
+                            @item.Birthday.ToShortDateString()
+                        </td>
+                        @*<td style="vertical-align: middle; word-wrap: break-word; max-width: 180px; text-align: center">
+            ROLE???
+        </td>*@
+                    </tr>
+                }
+        </table>
     </div>
 
-    <div class="col-6">
-        <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">Chọn User</label>
-            @Html.DropDownList("UserId", ViewBag.Users as SelectList, "--Chọn User--", new { @class = "form-control" })
-        </div>
-        <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">Chọn Role muốn đổi</label>
-            @Html.DropDownList("RoleId", ViewBag.Roles as SelectList, "--Chọn Role--", new { @class = "form-control" })
-        </div>
-        <div class="mb-3">
-            <button type="submit" class="btn btn-outline-danger">Lưu thay đổi</button>
+    <div class="col-4">
+        <p class="card-text"><small class="text-body-secondary" style="color: #0dcaf0; font-size: large"><b>Thay đổi Role cho Users</b></small></p>
+        <div class="border border-info" style="padding: 35px">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Chọn User</label>
+                    @Html.DropDownList("UserId", ViewBag.Users as SelectList, "--Vui lòng chọn User--", new { @class = "form-control", name = "userId" })
+                </div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Chọn Role muốn đổi</label>
+                    <select name="newRole" class="form-control">
+                        <option value="" disabled selected>--Vui lòng chọn Role--</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Member">Member</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-outline-info">Lưu thay đổi</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

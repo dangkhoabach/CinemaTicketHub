@@ -19,10 +19,6 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
             var users = userManager.Users.ToList();
             ViewBag.Users = new SelectList(users, "Id", "Email");
 
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-            var roles = roleManager.Roles.ToList();
-            ViewBag.Roles = new SelectList(roles, "Name", "Name");
-
             return View();
         }
     }

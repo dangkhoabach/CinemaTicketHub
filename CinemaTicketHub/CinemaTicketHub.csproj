@@ -202,7 +202,6 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Content\css\bootstrap.min.css" />
     <Content Include="Areas\Admin\Content\css\mainstyle.css" />
-    <Content Include="Areas\Admin\Content\img\admin_avatar.png" />
     <Content Include="Areas\Admin\Content\img\testimonial-1.jpg" />
     <Content Include="Areas\Admin\Content\img\testimonial-2.jpg" />
     <Content Include="Areas\Admin\Content\img\user.jpg" />
@@ -235,6 +234,7 @@
     <Content Include="Content\css\authenticatestyle.css" />
     <Content Include="Content\css\mainstyle.css" />
     <Content Include="Content\css\profilestyle.css" />
+    <Content Include="Content\images\authenticate\avtprofile\blankavatar.jpg" />
     <Content Include="Content\images\authenticate\film1.jpg" />
     <Content Include="Content\images\authenticate\film2.jpg" />
     <Content Include="Content\images\authenticate\wallpaper1.jpg" />
@@ -432,7 +432,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Booking\" />
-    <Folder Include="Content\images\authenticate\avtprofile\" />
     <Folder Include="Views\Booking\" />
   </ItemGroup>
   <ItemGroup>
