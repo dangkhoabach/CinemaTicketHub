@@ -30,7 +30,10 @@
                     <ul>
                         @foreach (var item in ViewBag.SuatChieu)
                         {
-                            <li style="display: inline-block; margin: 20px 20px 10px 0"><button class="btn btn-outline-danger" style="font-weight: bold">@item.GioBatDau.ToString("hh\\:mm")</button></li>
+                            if (item.NgayChieu == DateTime.Today)
+                            {
+                                <li style="display: inline-block; margin: 20px 20px 10px 0"><button class="btn btn-outline-danger" style="font-weight: bold">@item.GioBatDau.ToString("hh\\:mm")</button></li>
+                            }
                         }
                     </ul>
                     <hr />
@@ -43,34 +46,3 @@
         </div>
     </section>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*<div class="card mb-3">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text"></p>
-                    <p class="card-text"><small class="text-body-secondary"></small></p>
-                </div>
-            </div>
-            <div>
-                <iframe width="560" height="315" src="@Model.Trailer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>*@

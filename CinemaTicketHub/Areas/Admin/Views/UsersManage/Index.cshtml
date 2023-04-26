@@ -5,6 +5,15 @@
 @using System.Threading.Tasks
 @using CinemaTicketHub.Models
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
+
+<style type="text/css">
+    button {
+        padding: 15px;
+        text-align: center;
+    }
+</style>
 @{
     if (IsPost)
     {
@@ -20,16 +29,37 @@
                 userManager.RemoveFromRoles(userId, userManager.GetRoles(userId).ToArray());
                 userManager.AddToRole(userId, newRole);
 
-                <p>Role của @user.UserName đã được thay đổi thành @newRole</p>
+                <script>
+                    function showAlert() {
+                        Swal.fire(
+                            'Role của @user.Email đã được thay đổi thành @newRole',
+                        )
+                    }
+                    window.onload = showAlert;
+                </script>
             }
             else
             {
-                <p>Vui lòng chọn Role mới!</p>
+                <script>
+                    function showAlert() {
+                        Swal.fire(
+                            'Vui lòng chọn Role muốn thay đổi!',
+                        )
+                    }
+                    window.onload = showAlert;
+                </script>
             }
         }
         else
         {
-            <p>Không tìm thấy User!</p>
+            <script>
+                function showAlert() {
+                    Swal.fire(
+                        'Không tìm thấy User!',
+                    )
+                }
+                window.onload = showAlert;
+            </script>
         }
     }
 }
@@ -68,8 +98,8 @@
                         Ngày Sinh
                     </th>
                     @*<th scope="col">
-            Role
-        </th>*@
+                            Role
+                        </th>*@
                 </tr>
             </thead>
 
@@ -78,7 +108,7 @@
                 {
                     <tr>
                         <td style="vertical-align: middle">
-                            <img src="@item.Avatar" class="rounded-circle" style="height: auto; width: 100px; object-fit: contain" />
+                            <img src="@item.Avatar" class="rounded-circle" style="height: auto; width: 80px; object-fit: contain" />
                         </td>
                         <td style="vertical-align: middle; font-weight: bold; color: goldenrod; word-wrap: break-word; max-width: 250px; text-align: center">
                             @item.Name
@@ -93,8 +123,8 @@
                             @item.Birthday.ToShortDateString()
                         </td>
                         @*<td style="vertical-align: middle; word-wrap: break-word; max-width: 180px; text-align: center">
-            ROLE???
-        </td>*@
+                                ROLE???
+                            </td>*@
                     </tr>
                 }
         </table>
