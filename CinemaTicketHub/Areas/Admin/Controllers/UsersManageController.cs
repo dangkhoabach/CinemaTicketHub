@@ -21,5 +21,33 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
 
             return View();
         }
+
+        public ActionResult DeleteUser(string userId)
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userManager.FindById(userId);
+            /*string message;*/
+
+            if (user != null)
+            {
+                var result = userManager.Delete(user);
+                /*if (result.Succeeded)
+                {
+                    message = "Xoa User thanh cong!";
+                }
+                else
+                {
+                    message = "Xoa User that bai!";
+                }*/
+            }
+            /*else
+            {
+                message = "Khong tim thay User";
+            }
+
+            TempData["message"] = message;*/
+
+            return RedirectToAction("Index", "UsersManage");
+        }
     }
 }

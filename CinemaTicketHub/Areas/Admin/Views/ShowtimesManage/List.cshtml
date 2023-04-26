@@ -57,8 +57,8 @@
                     @item.GioKetThuc
                 </td>
                 <td style="vertical-align: middle">
-                    @Html.ActionLink("Chi tiết", "Details", new { MaSuatChieu = item.MaSuatChieu }) |
-                    @Html.ActionLink("Xóa", "Delete", new { MaSuatChieu = item.MaSuatChieu }, new { onclick = "return confirm('Bạn có muốn xóa suất chiếu này không?');", @class = "delete-button" })
+                    <a href="@Url.Action("Details", new { MaSuatChieu = item.MaSuatChieu })" style="color: goldenrod"><i class="fa-solid fa-pen-to-square"></i></a> |
+                    <a href="@Url.Action("Delete", new { MaSuatChieu = item.MaSuatChieu })" style="color: #eb1616" onclick="return confirm('Bạn có muốn xóa suất chiếu này không?');" class="delete-button"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
         }

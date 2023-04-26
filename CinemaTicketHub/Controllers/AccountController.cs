@@ -151,7 +151,7 @@ namespace CinemaTicketHub.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber , Name = model.Name, Birthday = model.Birthday };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, Name = model.Name, Birthday = model.Birthday, Avatar = "/Content/images/authenticate/avtprofile/blankavatar.jpg" };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
