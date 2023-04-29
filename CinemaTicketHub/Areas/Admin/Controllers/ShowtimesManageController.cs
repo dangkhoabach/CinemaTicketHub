@@ -23,13 +23,13 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
 
         public ActionResult List()
         {
-            return View(_dbContext.SuatChieu.ToList());
+            return View(_dbContext.SuatChieu.OrderBy(o => o.Phim.TenPhim).ThenBy(t => t.NgayChieu).ToList());
         }
 
         public ActionResult Create()
         {
-            ViewBag.Phim = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).ToList();
-            ViewBag.PhongChieu = _dbContext.PhongChieu.ToList();
+            ViewBag.Phim = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).OrderBy(o => o.TenPhim).ToList();
+            ViewBag.PhongChieu = _dbContext.PhongChieu.OrderBy(o => o.TenPhong).ToList();
             return View();
         }
 

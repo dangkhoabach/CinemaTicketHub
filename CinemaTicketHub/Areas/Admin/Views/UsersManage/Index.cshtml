@@ -80,7 +80,7 @@
 @{
     var _dbContext = new ApplicationDbContext();
     var userManagerInfo = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_dbContext));
-    var users = userManagerInfo.Users.ToList();
+    var users = userManagerInfo.Users.OrderBy(o => o.Name).ToList();
 }
 
 <h2>Quản lý Users</h2>

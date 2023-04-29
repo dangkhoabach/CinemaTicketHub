@@ -171,6 +171,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdAccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\MoviesManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShowtimesManageController.cs" />
@@ -238,6 +239,7 @@
     <Content Include="Content\images\authenticate\film1.jpg" />
     <Content Include="Content\images\authenticate\film2.jpg" />
     <Content Include="Content\images\authenticate\wallpaper1.jpg" />
+    <Content Include="Content\images\navbarbg.png" />
     <Content Include="Content\images\poster_landscape\air.png" />
     <Content Include="Content\images\poster_landscape\amvucchet.png" />
     <Content Include="Content\images\poster_landscape\barbie.png" />
@@ -431,6 +433,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\AdAccount\" />
     <Folder Include="Areas\Admin\Views\Booking\" />
     <Folder Include="Views\Booking\" />
   </ItemGroup>

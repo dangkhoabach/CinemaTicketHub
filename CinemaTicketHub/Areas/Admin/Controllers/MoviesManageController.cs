@@ -23,7 +23,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
 
         public ActionResult List()
         {
-            return View(_dbContext.Phim.ToList());
+            return View(_dbContext.Phim.OrderByDescending(o => o.TrangThai).ThenBy(t => t.NgayKhoiChieu).ToList());
         }
 
         public ActionResult Create()
@@ -43,10 +43,25 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                     return View("Create", phim);
                 }
 
-                string path = Path.Combine(Server.MapPath("/Content/images/poster_landscape/"),
-                    Path.GetFileName(HinhAnh.FileName));
+                string fileName = Path.GetFileName(HinhAnh.FileName);
+                string path = Path.Combine(Server.MapPath("/Content/images/poster_landscape/"), fileName);
+
+                if (System.IO.File.Exists(path))
+                {
+                    string extension = Path.GetExtension(fileName);
+                    string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+                    int i = 1;
+                    while (System.IO.File.Exists(path))
+                    {
+                        fileName = fileNameWithoutExtension + "_" + i + extension;
+                        path = Path.Combine(Server.MapPath("/Content/images/poster_landscape/"), fileName);
+                        i++;
+                    }
+                }
+
                 HinhAnh.SaveAs(path);
-                phim.HinhAnh = "/Content/images/poster_landscape/" + Path.GetFileName(HinhAnh.FileName);
+                phim.HinhAnh = "/Content/images/poster_landscape/" + fileName;
+
 
                 var List = _dbContext.Phim.ToList();
                 Phim item = List.LastOrDefault();
@@ -94,10 +109,42 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 ViewBag.TheLoai = _dbContext.LoaiPhim.ToList();
                 if (HinhAnh != null)
                 {
-                    string path = Path.Combine(Server.MapPath("/Content/images/poster_landscape/"),
-                        Path.GetFileName(HinhAnh.FileName));
-                    HinhAnh.SaveAs(path);
-                    item.HinhAnh = "/Content/images/poster_landscape/" + Path.GetFileName(HinhAnh.FileName);
+                    /*var oldImagePath = _dbContext.Phim.Where(x => x.MaPhim == phim.MaPhim).FirstOrDefault().HinhAnh;
+                    string newImagePath = "/Content/images/poster_landscape/" + Path.GetFileName(HinhAnh.FileName);
+
+                    if (System.IO.File.Exists(Server.MapPath(oldImagePath)))
+                    {
+                        System.IO.File.Delete(Server.MapPath(oldImagePath));
+                    }
+
+                    item.HinhAnh = newImagePath;
+                    HinhAnh.SaveAs(Server.MapPath(newImagePath));*/
+
+                    var oldImagePath = _dbContext.Phim.Where(x => x.MaPhim == phim.MaPhim).FirstOrDefault().HinhAnh;
+                    string fileName = Path.GetFileName(HinhAnh.FileName);
+                    string newImagePath = "/Content/images/poster_landscape/" + fileName;
+
+                    if (System.IO.File.Exists(Server.MapPath(newImagePath)))
+                    {
+                        string extension = Path.GetExtension(fileName);
+                        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+                        int i = 1;
+                        while (System.IO.File.Exists(Server.MapPath("/Content/images/poster_landscape/" + fileNameWithoutExtension + "_" + i + extension)))
+                        {
+                            i++;
+                        }
+                        fileName = fileNameWithoutExtension + "_" + i + extension;
+                        newImagePath = "/Content/images/poster_landscape/" + fileName;
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath(oldImagePath)))
+                    {
+                        System.IO.File.Delete(Server.MapPath(oldImagePath));
+                    }
+
+                    item.HinhAnh = newImagePath;
+                    HinhAnh.SaveAs(Server.MapPath(newImagePath));
+
                 }
 
                 item.MoTa = phim.MoTa;
@@ -122,10 +169,18 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
         public ActionResult Delete(Phim phim)
         {
             var item = _dbContext.Phim.Find(phim.MaPhim);
+            var oldImagePath = _dbContext.Phim.Where(x => x.MaPhim == phim.MaPhim).FirstOrDefault().HinhAnh;
+
             if (item == null)
             {
                 return HttpNotFound();
             }
+
+            if (System.IO.File.Exists(Server.MapPath(oldImagePath)))
+            {
+                System.IO.File.Delete(Server.MapPath(oldImagePath));
+            }
+
             _dbContext.Phim.Remove(item);
             _dbContext.SaveChanges();
             return RedirectToAction("List", "MoviesManage");

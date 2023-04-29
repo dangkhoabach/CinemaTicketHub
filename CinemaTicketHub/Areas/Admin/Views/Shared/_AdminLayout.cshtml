@@ -113,7 +113,11 @@
                         <span class="d-none d-lg-inline-flex">@user.Name</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" asp-controller="Account" asp-action="LogOff" class="dropdown-item">Đăng xuất</a>
+                        @using (Html.BeginForm("LogOff", "AdAccount", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a>
+                        }
                     </div>
                 </div>
             </div>
