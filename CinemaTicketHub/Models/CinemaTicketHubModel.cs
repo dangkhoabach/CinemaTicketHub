@@ -12,7 +12,6 @@ namespace CinemaTicketHub.Models
         {
         }
 
-        public virtual DbSet<Ghe> Ghe { get; set; }
         public virtual DbSet<LoaiPhim> LoaiPhim { get; set; }
         public virtual DbSet<Phim> Phim { get; set; }
         public virtual DbSet<PhongChieu> PhongChieu { get; set; }
@@ -22,11 +21,6 @@ namespace CinemaTicketHub.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Ghe>()
-                .HasMany(e => e.Ve)
-                .WithRequired(e => e.Ghe)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<LoaiPhim>()
                 .HasMany(e => e.Phim)
                 .WithRequired(e => e.LoaiPhim)
@@ -35,11 +29,6 @@ namespace CinemaTicketHub.Models
             modelBuilder.Entity<Phim>()
                 .HasMany(e => e.SuatChieu)
                 .WithRequired(e => e.Phim)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<PhongChieu>()
-                .HasMany(e => e.Ghe)
-                .WithRequired(e => e.PhongChieu)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PhongChieu>()

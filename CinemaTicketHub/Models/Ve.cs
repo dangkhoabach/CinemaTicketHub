@@ -26,8 +26,6 @@ namespace CinemaTicketHub.Models
 
         public int MaSuatChieu { get; set; }
 
-        public virtual Ghe Ghe { get; set; }
-
         public virtual SuatChieu SuatChieu { get; set; }
     }
 }

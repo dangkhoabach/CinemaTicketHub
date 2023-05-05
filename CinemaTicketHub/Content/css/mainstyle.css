@@ -8168,7 +8168,7 @@ textarea.form-control-lg {
 .bg-dark2 {
     --bs-bg-opacity: 1;
     /*background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;*/
-    background-image: url("/Content/images/authenticate/film2.jpg");
+    background-image: url("/Content/images/wallpaper.jpg");
     background-size: cover;
 }
 

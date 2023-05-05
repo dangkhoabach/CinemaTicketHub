@@ -188,7 +188,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BirthdayValidation.cs" />
     <Compile Include="Models\CinemaTicketHubModel.cs" />
-    <Compile Include="Models\Ghe.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoaiPhim.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -235,10 +234,7 @@
     <Content Include="Content\css\authenticatestyle.css" />
     <Content Include="Content\css\mainstyle.css" />
     <Content Include="Content\css\profilestyle.css" />
-    <Content Include="Content\images\authenticate\avtprofile\blankavatar.jpg" />
-    <Content Include="Content\images\authenticate\film1.jpg" />
-    <Content Include="Content\images\authenticate\film2.jpg" />
-    <Content Include="Content\images\authenticate\wallpaper1.jpg" />
+    <Content Include="Content\images\authenticate\blankavatar.jpg" />
     <Content Include="Content\images\navbarbg.png" />
     <Content Include="Content\images\poster_landscape\air.png" />
     <Content Include="Content\images\poster_landscape\amvucchet.png" />
@@ -248,7 +244,6 @@
     <Content Include="Content\images\poster_landscape\bluebeetle.png" />
     <Content Include="Content\images\poster_landscape\changtraixinhdepcuatoi.png" />
     <Content Include="Content\images\poster_landscape\chuacoposter.png" />
-    <Content Include="Content\images\moviebanner\guardians of the galaxy 3_1.jpeg" />
     <Content Include="Content\images\poster_landscape\chuyencuatoivamaquy.png" />
     <Content Include="Content\images\poster_landscape\clbsatthu.png" />
     <Content Include="Content\images\poster_landscape\connhotmotchong.png" />
@@ -278,6 +273,10 @@
     <Content Include="Content\images\poster_landscape\troll3.png" />
     <Content Include="Content\images\poster_landscape\vebinhgiainganha.png" />
     <Content Include="Content\images\poster_landscape\vuemdayyeu.png" />
+    <Content Include="Content\images\slide1.png" />
+    <Content Include="Content\images\slide2.png" />
+    <Content Include="Content\images\slide3.png" />
+    <Content Include="Content\images\wallpaper.jpg" />
     <Content Include="Content\js\scripts.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -433,9 +432,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\AdAccount\" />
-    <Folder Include="Areas\Admin\Views\Booking\" />
-    <Folder Include="Views\Booking\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

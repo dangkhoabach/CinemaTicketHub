@@ -17,9 +17,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var users = userManager.Users.OrderBy(o => o.Name).ToList();
-
             ViewBag.Users = new SelectList(users, "Id", "Email");
-
             return View();
         }
 
