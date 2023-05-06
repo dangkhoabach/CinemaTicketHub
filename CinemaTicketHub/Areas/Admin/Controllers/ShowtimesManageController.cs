@@ -46,6 +46,49 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 }
 
                 _dbContext.SuatChieu.Add(suatchieu);
+
+                Ghe ghe;
+                for(int i = 1; i <= 5; i++)
+                {
+                    for(int j = 1; j <= 10; j++)
+                    {
+                        ghe = new Ghe();
+                        ghe.Cot = j;
+                        if(i == 1)
+                        {
+                            ghe.Day = "A";
+                        }
+                        else
+                        {
+                            if(i == 2)
+                            {
+                                ghe.Day = "B";
+                            }
+                            else
+                            {
+                                if(i == 3)
+                                {
+                                    ghe.Day = "C";
+                                }    
+                                else
+                                {
+                                    if(i == 4)
+                                    {
+                                        ghe.Day = "D";
+                                    }    
+                                    else
+                                    {
+                                        ghe.Day = "E";
+                                    }    
+                                }    
+                            }
+                        }
+                        ghe.MaSuatChieu = suatchieu.MaSuatChieu;
+                        ghe.TrangThai = false;
+                        _dbContext.Ghe.Add(ghe);
+                    }
+                }
+
                 _dbContext.SaveChanges();
             }
             catch (Exception)
@@ -99,6 +142,11 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            var ghe = _dbContext.Ghe.Where(x => x.MaSuatChieu == suatchieu.MaSuatChieu).ToList();
+            foreach(var itemghe in ghe)
+            {
+                _dbContext.Ghe.Remove(itemghe);
+            }    
             _dbContext.SuatChieu.Remove(item);
             _dbContext.SaveChanges();
             return RedirectToAction("List", "ShowtimesManage");

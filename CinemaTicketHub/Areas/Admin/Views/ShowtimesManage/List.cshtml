@@ -30,6 +30,9 @@
             <th scope="col">
                 Giờ kết thúc
             </th>
+            <th scope="col">
+                Trạng thái
+            </th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -41,7 +44,7 @@
                 <td style="vertical-align: middle">
                     @item.MaSuatChieu
                 </td>
-                <td style="vertical-align: middle">
+                <td style="vertical-align: middle; font-weight: bold; color: goldenrod; word-wrap: break-word; max-width: 250px; text-align: center">
                     @item.Phim.TenPhim
                 </td>
                 <td style="vertical-align: middle">
@@ -56,6 +59,27 @@
                 <td style="vertical-align: middle">
                     @item.GioKetThuc
                 </td>
+                @if (item.NgayChieu.ToShortDateString() == DateTime.Now.ToShortDateString())
+                {
+                    <td style="vertical-align: middle; color: cyan">
+                        Chiếu hôm nay
+                    </td>
+                }
+                else
+                {
+                    if (DateTime.Parse(item.NgayChieu.ToShortDateString()) > DateTime.Now.Date)
+                    {
+                        <td style="vertical-align: middle; color: lime">
+                            Chờ chiếu
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="vertical-align: middle; color: red">
+                            Đã chiếu
+                        </td>
+                    }
+                }
                 <td style="vertical-align: middle">
                     <a href="@Url.Action("Details", new { MaSuatChieu = item.MaSuatChieu })" style="color: goldenrod"><i class="fa-solid fa-pen-to-square"></i></a> |
                     <a href="@Url.Action("Delete", new { MaSuatChieu = item.MaSuatChieu })" style="color: #eb1616" onclick="return confirm('Bạn có muốn xóa suất chiếu này không?');" class="delete-button"><i class="fa-solid fa-trash"></i></a>

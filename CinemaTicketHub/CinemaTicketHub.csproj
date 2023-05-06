@@ -188,6 +188,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BirthdayValidation.cs" />
     <Compile Include="Models\CinemaTicketHubModel.cs" />
+    <Compile Include="Models\Ghe.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoaiPhim.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -234,6 +235,7 @@
     <Content Include="Content\css\authenticatestyle.css" />
     <Content Include="Content\css\mainstyle.css" />
     <Content Include="Content\css\profilestyle.css" />
+    <Content Include="Content\css\seatstyle.css" />
     <Content Include="Content\images\authenticate\blankavatar.jpg" />
     <Content Include="Content\images\navbarbg.png" />
     <Content Include="Content\images\poster_landscape\air.png" />
@@ -428,6 +430,7 @@
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\ComingSoon.cshtml" />
     <Content Include="Views\Profile\MyInfo.cshtml" />
+    <Content Include="Views\Booking\SeatSelection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

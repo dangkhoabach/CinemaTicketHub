@@ -33,10 +33,12 @@ namespace CinemaTicketHub.Models
         {
         }
 
+        public virtual DbSet<Ghe> Ghe { get; set; }
         public virtual DbSet<LoaiPhim> LoaiPhim { get; set; }
         public virtual DbSet<Phim> Phim { get; set; }
         public virtual DbSet<PhongChieu> PhongChieu { get; set; }
         public virtual DbSet<SuatChieu> SuatChieu { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Ve> Ve { get; set; }
 
         public static ApplicationDbContext Create()
