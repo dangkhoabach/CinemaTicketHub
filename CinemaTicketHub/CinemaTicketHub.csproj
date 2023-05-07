@@ -185,6 +185,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ConstantHelper.cs" />
+    <Compile Include="Helper\SendMail.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BirthdayValidation.cs" />
     <Compile Include="Models\CinemaTicketHubModel.cs" />
@@ -237,6 +239,8 @@
     <Content Include="Content\css\profilestyle.css" />
     <Content Include="Content\css\seatstyle.css" />
     <Content Include="Content\images\authenticate\blankavatar.jpg" />
+    <Content Include="Content\images\authenticate\cinemabgpopcorn.jpg" />
+    <Content Include="Content\images\authenticate\film2.jpg" />
     <Content Include="Content\images\navbarbg.png" />
     <Content Include="Content\images\poster_landscape\air.png" />
     <Content Include="Content\images\poster_landscape\amvucchet.png" />
@@ -431,6 +435,7 @@
     <Content Include="Views\Movies\ComingSoon.cshtml" />
     <Content Include="Views\Profile\MyInfo.cshtml" />
     <Content Include="Views\Booking\SeatSelection.cshtml" />
+    <Content Include="Views\Account\EmailNotificationSent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CinemaTicketHub.Models;
+using CinemaTicketHub.Helper;
 
 namespace CinemaTicketHub.Controllers
 {
@@ -79,7 +80,15 @@ namespace CinemaTicketHub.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var mdUser = UserManager.FindByEmail(model.Email);
+
+                    if (!mdUser.EmailConfirmed)
+                    {
+                        AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                        return View("EmailNotificationSent");
+                    }
+                    else
+                        return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -151,20 +160,23 @@ namespace CinemaTicketHub.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, Name = model.Name, Birthday = model.Birthday, Avatar = "/Content/images/authenticate/blankavatar.jpg" };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, Name = model.Name, Birthday = model.Birthday, Avatar = "/Content/images/authenticate/blankavatar.jpg", EmailConfirmed = false };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await UserManager.AddToRoleAsync(user.Id, "Member");
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+                    /*await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);*/
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    /*await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");*/
 
-                    return RedirectToAction("Index", "Home");
+                    SendMail.SendEmail(user.Email, "Xác thực tài khoản Cinema Ticket HUB", "Vui lòng ấn vào đường dẫn sau để xác thực tài khoản " + callbackUrl + "", "");
+
+                    return View("EmailNotificationSent");
                 }
                 AddErrors(result);
             }
@@ -212,10 +224,13 @@ namespace CinemaTicketHub.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                 // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+
+                SendMail.SendEmail(user.Email, "Đặt lại mật khẩu Cinema Ticket HUB", "Vui lòng ấn vào đường dẫn sau để đặt lại mật khẩu mới " + callbackUrl + "", "");
+
+                return View("ForgotPasswordConfirmation");
             }
 
             // If we got this far, something failed, redisplay form
