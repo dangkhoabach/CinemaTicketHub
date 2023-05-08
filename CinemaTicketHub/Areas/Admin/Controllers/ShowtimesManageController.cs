@@ -23,7 +23,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
 
         public ActionResult List()
         {
-            return View(_dbContext.SuatChieu.OrderBy(o => o.Phim.TenPhim).ThenBy(t => t.NgayChieu).ToList());
+            return View(_dbContext.SuatChieu.OrderBy(o => o.NgayChieu).ThenBy(t => t.GioBatDau).ToList());
         }
 
         public ActionResult Create()
