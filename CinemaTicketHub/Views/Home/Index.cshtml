@@ -2,85 +2,15 @@
     ViewBag.Title = "Home Page";
 }
 
-@*
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <style>
-        html, body {
-            overflow-x: hidden;
-        }
-    </style>
-</head>
-
-<html lang="en">
-<body style="height: 100%; min-height: 100vh">
-    <div class="row" style="margin-top: 10px">
-        <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true" aria-label="First slide"></li>
-                <li data-bs-target="#carouselId" data-bs-slide-to="1" aria-label="Second slide"></li>
-                <li data-bs-target="#carouselId" data-bs-slide-to="2" aria-label="Third slide"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                    <img src="https://www.filmscalpel.com/wp-content/uploads/2018/06/the_apartment_before_and_after_1.jpg" class="w-100 d-block" style="height: 500px">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://www.slashncast.net/uploads/1/3/2/2/132231926/valentine1_orig.jpg" class="w-100 d-block" style="height: 500px">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://www.framestore.com/sites/default/files/styles/flexible_large_image/public/flexible/images/tdmd_0.jpg?itok=_9EgzcQL" class="w-100 d-block" style="height: 500px">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-    <div>
-        <div class="row justify-content-center" style="text-align: center; margin: 50px;">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas suscipit tristique libero,
-                vel imperdiet turpis pellentesque vel. Vestibulum mollis hendrerit nisi, sed consectetur nunc mattis at. Nulla in lacinia lacus.
-                Morbi venenatis, nisl eu mollis accumsan, velit velit placerat velit, ut congue est enim vel quam.
-                Duis luctus diam eu purus fermentum ultricies. Sed feugiat gravida justo, id tristique sapien tristique in.
-                Nullam eu lectus vitae quam rutrum scelerisque. Sed vel mauris non enim tempor placerat sed sit amet velit.
-                Aliquam in libero vel nulla malesuada tincidunt vitae ac tellus. Donec sed faucibus turpis.
-                Integer pharetra dolor eget elit cursus tristique.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas suscipit tristique libero,
-                vel imperdiet turpis pellentesque vel. Vestibulum mollis hendrerit nisi, sed consectetur nunc mattis at. Nulla in lacinia lacus.
-                Morbi venenatis, nisl eu mollis accumsan, velit velit placerat velit, ut congue est enim vel quam.
-                Duis luctus diam eu purus fermentum ultricies. Sed feugiat gravida justo, id tristique sapien tristique in.
-                Nullam eu lectus vitae quam rutrum scelerisque. Sed vel mauris non enim tempor placerat sed sit amet velit.
-                Aliquam in libero vel nulla malesuada tincidunt vitae ac tellus. Donec sed faucibus turpis.
-                Integer pharetra dolor eget elit cursus tristique.
-            </p>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
-</body>
-</html>*@
-
 <!-- Header-->
 <header class="bg-dark2 py-5" style="margin-top: 10px; height: 535px">
     <div class="container px-5">
         <div class="row gx-5 align-items-center justify-content-center">
             <div class="col-lg-8 col-xl-7 col-xxl-6">
                 <div class="my-5 text-center text-xl-start">
-                    <h1 class="fw-bolder mb-2" style="color: gold">@ViewBag.randomMovie.TenPhim</h1>
+                    <a href="@Url.Action("Details", "Movies", new { MaPhim = ViewBag.randomMovie.MaPhim })" class="fw-bolder mb-2" style="color: gold; text-decoration-line: none"><h2 class="fw-bolder mb-2" style="color: gold">@ViewBag.randomMovie.TenPhim</h2></a>
                     <p class="lead fw-normal text-white mb-4" style="text-align: justify; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; line-height: 1.5;">"@ViewBag.randomMovie.MoTa</p>
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                        @*<a class="btn btn-primary btn-lg px-4 me-sm-3" href="#">Đặt vé ngay</a>
-                        <a class="btn btn-outline-light btn-lg px-4" target="_blank" href="#">Xem Trailer</a>*@
                     </div>
                 </div>
             </div>
@@ -108,7 +38,7 @@
                         <img class="card-img-top" src="@item.HinhAnh" alt="..." />
                         <div class="card-body p-4">
                             <div class="badge bg-primary bg-gradient rounded-pill mb-2">@item.DoiTuong</div>
-                            <a class="text-decoration-none link-dark stretched-link" href="@Url.Action("Details", "Movies", new { MaPhim = item.MaPhim })"><h5 class="card-title mb-3">@item.TenPhim</h5></a>
+                            <a class="text-decoration-none link-dark stretched-link" href="@Url.Action("Details", "Movies", new { MaPhim = item.MaPhim })"><h2 class="card-title mb-3">@item.TenPhim</h2></a>
                             <p class="card-text mb-0" style="text-align: justify; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">@item.MoTa</p>
                         </div>
                         <div class="card-footer p-4 pt-0 bg-transparent border-top-0">

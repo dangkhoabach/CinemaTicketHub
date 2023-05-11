@@ -116,7 +116,7 @@
                         @using (Html.BeginForm("LogOff", "AdAccount", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                         {
                             @Html.AntiForgeryToken()
-                            <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a>
+                            <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()"><i class="fa-solid fa-right-from-bracket" style="color: #6c7293;"></i> Đăng xuất</a>
                         }
                     </div>
                 </div>

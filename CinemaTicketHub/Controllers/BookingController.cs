@@ -7,7 +7,6 @@ using System.Web.Mvc;
 
 namespace CinemaTicketHub.Controllers
 {
-    [Authorize]
     public class BookingController : Controller
     {
         ApplicationDbContext _dbContext = new ApplicationDbContext();
@@ -18,9 +17,17 @@ namespace CinemaTicketHub.Controllers
             return View();
         }
 
-        public ActionResult SeatSelection()
+        public ActionResult SeatSelection(int MaSuatChieu)
         {
-            return View();
+            /*var seat = _dbContext.Ghe.Where(p => p.MaSuatChieu == MaSuatChieu).OrderBy(o => o.Day).ThenBy(t => t.Cot).ToList();*/
+            ViewBag.rowA = _dbContext.Ghe.Where(x => x.MaSuatChieu == MaSuatChieu && x.Day == "A").ToList();
+            ViewBag.rowB = _dbContext.Ghe.Where(x => x.MaSuatChieu == MaSuatChieu && x.Day == "B").ToList();
+            ViewBag.rowC = _dbContext.Ghe.Where(x => x.MaSuatChieu == MaSuatChieu && x.Day == "C").ToList();
+            ViewBag.rowD = _dbContext.Ghe.Where(x => x.MaSuatChieu == MaSuatChieu && x.Day == "D").ToList();
+            ViewBag.rowE = _dbContext.Ghe.Where(x => x.MaSuatChieu == MaSuatChieu && x.Day == "E").ToList();
+
+            var moviesdetail = _dbContext.SuatChieu.Where(y => y.MaSuatChieu == MaSuatChieu).FirstOrDefault();
+            return View(moviesdetail);
         }
     }
 }

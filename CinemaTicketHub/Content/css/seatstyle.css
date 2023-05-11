@@ -24,10 +24,12 @@ body {
 
 .footer {
     position: fixed;
-    bottom: 10px;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    height: 50px; /* Điều chỉnh chiều cao tùy ý */
-    /*background-color: #f2f2f2;*/
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 

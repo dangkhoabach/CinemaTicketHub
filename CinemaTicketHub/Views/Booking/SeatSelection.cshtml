@@ -1,248 +1,99 @@
-﻿
+﻿@model CinemaTicketHub.Models.SuatChieu
 @{
     Layout = null;
 }
 
 <head>
     <link href="~/Content/css/seatstyle.css" rel="stylesheet">
+
+    <style>
+        .footer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .left-column {
+            display: flex;
+        }
+
+        .right-column {
+            margin-left: auto;
+        }
+
+        .rounded-div {
+            border-radius: 40px;
+            padding: 10px 11px;
+            background-color: white;
+        }
+    </style>
 </head>
+
 <body>
     <div class="header">
-        <h1 style="color: #dc3545   ">Vệ binh giải ngân hà 3</h1>
-        <h4>Ngày chiếu: 10/05/2023 - Suất chiếu 18:00 - Rạp 04</h4>
+        <h1 style="color: #dc3545">@Model.Phim.TenPhim</h1>
+        <h4>Ngày chiếu: @Model.NgayChieu - Suất chiếu: @Model.GioBatDau - @Model.PhongChieu.TenPhong</h4>
     </div>
     <div class="screen" style="width: 620px; margin-bottom: 70px"><h1 style="color: black; font-size: 30px; text-align: center">SCREEN</h1></div>
     <div class="row" style="margin-bottom: 70px; margin-left: 13px">
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
+        @foreach (var item in ViewBag.rowA)
+        {
+            <label class="checkbox-label">
+                <input type="checkbox">
+                <span>@item.Day@item.Cot</span>
+            </label>
+        }
     </div>
-
     <div class="row" style="margin-bottom: 70px; margin-left: 13px">
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
+        @foreach (var item in ViewBag.rowB)
+        {
+            <label class="checkbox-label">
+                <input type="checkbox">
+                <span>@item.Day@item.Cot</span>
+            </label>
+        }
     </div>
-
     <div class="row" style="margin-bottom: 70px; margin-left: 13px">
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
+        @foreach (var item in ViewBag.rowC)
+        {
+            <label class="checkbox-label">
+                <input type="checkbox">
+                <span>@item.Day@item.Cot</span>
+            </label>
+        }
     </div>
-
     <div class="row" style="margin-bottom: 70px; margin-left: 13px">
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-    </div>
+        @foreach (var item in ViewBag.rowD)
+        {
+            <label class="checkbox-label">
+                <input type="checkbox">
+                <span>@item.Day@item.Cot</span>
 
+            </label>
+        }
+    </div>
     <div class="row" style="margin-bottom: 70px; margin-left: 13px">
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
-        <label class="checkbox-label">
-            <input type="checkbox">
-            <span><p></p></span>
-        </label>
+        @foreach (var item in ViewBag.rowE)
+        {
+            <label class="checkbox-label">
+                <input type="checkbox">
+                <span>@item.Day@item.Cot</span>
+            </label>
+        }
     </div>
+</body>
 
-    <div>
-        <a href="#" style="margin-right: 30px">Hủy</a>
-        <input type="submit" value="Thanh toán" class="btn danger" />
-    </div>
-
-    <div class="footer">
-        <div class="row" style="margin-bottom: 70px; margin-left: 13px">
+<footer class="footer">
+    <div class="left-column" style="margin-left: 10px">
+        <div class="row">
             <label class="checkbox-label">
                 <input type="checkbox" disabled>
-                <span><p></p></span>
+                <span></span>
             </label>
             <span style="margin: 18px 50px 0 0">Ghế trống</span>
 
             <label class="checkbox-label">
                 <input type="checkbox" checked disabled>
-                <span><p></p></span>
+                <span></span>
             </label>
             <span style="margin: 18px 50px 0 0">Ghế đang chọn</span>
 
@@ -253,4 +104,12 @@
             <span style="margin: 18px 50px 0 0">Ghế đã chọn</span>
         </div>
     </div>
-</body>
+    <div class="right-column" style="margin-right: 50px">
+        <div class="rounded-div">
+            <div class="row">
+                <p style="margin-right: 20px; color: black">Tổng tiền: <b>500.000</b> ghế</p>
+                <button type="button" class="btn danger" style="border-radius: 40px">Thanh toán</button>
+            </div>
+        </div>
+    </div>
+</footer>

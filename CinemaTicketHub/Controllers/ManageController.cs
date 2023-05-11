@@ -238,7 +238,7 @@ namespace CinemaTicketHub.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                return View("ChangePasswordSuccess");
             }
             AddErrors(result);
             return View(model);
@@ -384,6 +384,11 @@ namespace CinemaTicketHub.Controllers
             Error
         }
 
-#endregion
+        #endregion
+
+        public ActionResult PersonalInfo()
+        {
+            return View();
+        }
     }
 }
