@@ -16,8 +16,6 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    /*background-color: black;*/
-    /*background-image: url("/Content/images/navbarbg.png");*/
     text-align: center;
     box-sizing: border-box;
 }
@@ -39,7 +37,7 @@ body {
     height: 70px;
     width: 100%;
     margin: 15px 0;
-    transform: rotateX(-45deg);
+    transform: rotateX(-45deg); 
     box-shadow: 0 3px 10px rgba(255, 255, 255, 0.75);
 }
 
@@ -67,39 +65,56 @@ body {
 
     .danger:hover {
         background: #dc3545;
-        color: #242333;
+        color: white;
     }
 
-/* Ẩn checkbox mặc định */
-input[type="checkbox"] {
-    display: none;
+
+.checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px;
 }
 
-/* Tạo label cho checkbox */
-label.checkbox-label {
-    display: inline-block;
-    position: relative;
-    padding-left: 25px;
-    margin-right: 40px;
-    cursor: pointer;
+.checkboxseat {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 50px;
+    height: 50px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    background-color: #444451;
 }
 
-    /* Tạo đối tượng span để hiển thị trạng thái của checkbox */
-    label.checkbox-label span {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 50px;
-        width: 50px;
-        background-color: #444451;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        text-align: center;
-        font-size: 20px;
+    .checkboxseat:hover {
+        cursor: pointer;
     }
 
-    /* Khi checkbox được chọn, thay đổi màu nền của span */
-    label.checkbox-label input[type="checkbox"]:checked + span {
-        background-color: #6feaf6;
+    .checkboxseat:checked {
+        background-color: white;
         color: black;
+    }
+
+    .checkboxseat::before {
+        content: attr(data-label);
+        display: inline-block;
+        border-radius: 2px;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        color: white;
+    }
+
+    .checkboxseat:checked::before {
+        background-color: white;
+        content: attr(data-label);
+        color: black;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 20px;
     }

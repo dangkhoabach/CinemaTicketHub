@@ -64,52 +64,51 @@
         }
         <a href="/Account/Login" class="gotosignup">Bạn đã có tài khoản?</a>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#txtemail1').on('input', function () {
+            var value = $(this).val();
+
+            // Gán giá trị của textbox 1 cho Html.TextBoxFor
+            $('#txtemail2').val(value);
+        });
+
+        $('#txtname1').on('input', function () {
+            var value = $(this).val();
+
+            // Gán giá trị của textbox 1 cho Html.TextBoxFor
+            $('#txtname2').val(value);
+        });
+
+        $('#txtphone1').on('input', function () {
+            var value = $(this).val();
+
+            // Gán giá trị của textbox 1 cho Html.TextBoxFor
+            $('#txtphone2').val(value);
+        });
+
+        $('#txtbirthday1').on('input', function () {
+            var value = $(this).val();
+
+            // Gán giá trị của textbox 1 cho Html.TextBoxFor
+            $('#txtbirthday2').val(value);
+        });
+
+
+        $('#txtpassword1').on('input', function () {
+            var value = $(this).val();
+
+            // Gán giá trị của textbox 1 cho Html.TextBoxFor
+            $('#txtpassword2').val(value);
+        });
+
+        $('#txtpassword3').on('input', function () {
+            var value = $(this).val();
+
+            // Gán giá trị của textbox 1 cho Html.TextBoxFor
+            $('#txtpassword4').val(value);
+        });
+    </script>
 </body>
 </html>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-    $('#txtemail1').on('input', function () {
-        var value = $(this).val();
-
-        // Gán giá trị của textbox 1 cho Html.TextBoxFor
-        $('#txtemail2').val(value);
-    });
-
-    $('#txtname1').on('input', function () {
-        var value = $(this).val();
-
-        // Gán giá trị của textbox 1 cho Html.TextBoxFor
-        $('#txtname2').val(value);
-    });
-
-    $('#txtphone1').on('input', function () {
-        var value = $(this).val();
-
-        // Gán giá trị của textbox 1 cho Html.TextBoxFor
-        $('#txtphone2').val(value);
-    });
-
-    $('#txtbirthday1').on('input', function () {
-        var value = $(this).val();
-
-        // Gán giá trị của textbox 1 cho Html.TextBoxFor
-        $('#txtbirthday2').val(value);
-    });
-
-
-    $('#txtpassword1').on('input', function () {
-        var value = $(this).val();
-
-        // Gán giá trị của textbox 1 cho Html.TextBoxFor
-        $('#txtpassword2').val(value);
-    });
-
-    $('#txtpassword3').on('input', function () {
-        var value = $(this).val();
-
-        // Gán giá trị của textbox 1 cho Html.TextBoxFor
-        $('#txtpassword4').val(value);
-    });
-</script>

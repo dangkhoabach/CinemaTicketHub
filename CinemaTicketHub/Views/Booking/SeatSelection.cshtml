@@ -1,4 +1,4 @@
-﻿@model CinemaTicketHub.Models.SuatChieu
+﻿@model CinemaTicketHub.Models.SelectSeatDataModel
 @{
     Layout = null;
 }
@@ -30,76 +30,69 @@
 
 <body>
     <div class="header">
-        <h1 style="color: #dc3545">@Model.Phim.TenPhim</h1>
-        <h4>Ngày chiếu: @Model.NgayChieu - Suất chiếu: @Model.GioBatDau - @Model.PhongChieu.TenPhong</h4>
+        <h1 style="color: #dc3545">@ViewBag.moviesdetail.Phim.TenPhim</h1>
+        <p><b style="color: gold; font-size: 18px">[Suất chiếu: @ViewBag.moviesdetail.MaSuatChieu]</b> <b style="font-size: 17px">Ngày chiếu: @ViewBag.moviesdetail.NgayChieu - Giờ chiếu: @ViewBag.moviesdetail.GioBatDau - @ViewBag.moviesdetail.PhongChieu.TenPhong</b></p>
     </div>
-    <div class="screen" style="width: 620px; margin-bottom: 70px"><h1 style="color: black; font-size: 30px; text-align: center">SCREEN</h1></div>
-    <div class="row" style="margin-bottom: 70px; margin-left: 13px">
-        @foreach (var item in ViewBag.rowA)
-        {
-            <label class="checkbox-label">
-                <input type="checkbox">
-                <span>@item.Day@item.Cot</span>
-            </label>
-        }
-    </div>
-    <div class="row" style="margin-bottom: 70px; margin-left: 13px">
-        @foreach (var item in ViewBag.rowB)
-        {
-            <label class="checkbox-label">
-                <input type="checkbox">
-                <span>@item.Day@item.Cot</span>
-            </label>
-        }
-    </div>
-    <div class="row" style="margin-bottom: 70px; margin-left: 13px">
-        @foreach (var item in ViewBag.rowC)
-        {
-            <label class="checkbox-label">
-                <input type="checkbox">
-                <span>@item.Day@item.Cot</span>
-            </label>
-        }
-    </div>
-    <div class="row" style="margin-bottom: 70px; margin-left: 13px">
-        @foreach (var item in ViewBag.rowD)
-        {
-            <label class="checkbox-label">
-                <input type="checkbox">
-                <span>@item.Day@item.Cot</span>
+    <div class="screen" style="width: 800px; margin-bottom: 70px"><h1 style="color: black; font-size: 30px; text-align: center">SCREEN</h1></div>
+    <div class="seat-container" style="align-items: center; justify-content: center; width: 95vh">
+        <div class="row" style="margin-left: 50px">
 
-            </label>
-        }
+            @using (Html.BeginForm("SeatSelection", "Booking", new { MaSC = ViewBag.moviesdetail.MaSuatChieu, FormMethod.Post }))
+            {
+                for (int i = 0; i < Model.listcheck.Count(); i++)
+                {
+
+                    if (Model.listcheck[i].Status == true)
+                    {
+                        <label class="checkbox-label">
+                            @Html.CheckBoxFor(c => c.listcheck[i].Selected, new { @class = "checkboxseat", data_label = Model.listcheck[i].Name, disabled = "disabled", style = "background-color: #dc3545" })
+                            @Html.HiddenFor(c => c.listcheck[i].Name)
+                            @Html.HiddenFor(c => c.listcheck[i].SeatId)
+                            @Html.HiddenFor(c => c.listcheck[i].Status)
+                            @Html.HiddenFor(c => c.listcheck[i].MaGhe)
+                            @Html.HiddenFor(c => c.listcheck[i].MaSuatChieu)
+                        </label>
+                    }
+                    else
+                    {
+                        <label class="checkbox-label">
+                            @Html.CheckBoxFor(c => c.listcheck[i].Selected, new { @class = "checkboxseat", data_label = Model.listcheck[i].Name })
+                            @Html.HiddenFor(c => c.listcheck[i].Name)
+                            @Html.HiddenFor(c => c.listcheck[i].SeatId)
+                            @Html.HiddenFor(c => c.listcheck[i].Status)
+                            @Html.HiddenFor(c => c.listcheck[i].MaGhe)
+                            @Html.HiddenFor(c => c.listcheck[i].MaSuatChieu)
+                        </label>
+                    }
+                }
+                <button id="btnthanhtoan2" type="submit" class="btn danger" style="border-radius: 40px; display: none">Thanh toán 1</button>
+            }
+        </div>
     </div>
-    <div class="row" style="margin-bottom: 70px; margin-left: 13px">
-        @foreach (var item in ViewBag.rowE)
-        {
-            <label class="checkbox-label">
-                <input type="checkbox">
-                <span>@item.Day@item.Cot</span>
-            </label>
+
+    <script>
+        function thanhToan() {
+            var btnthanhtoan2 = document.getElementById('btnthanhtoan2');
+            btnthanhtoan2.click();
         }
-    </div>
+    </script>
 </body>
 
 <footer class="footer">
     <div class="left-column" style="margin-left: 10px">
         <div class="row">
             <label class="checkbox-label">
-                <input type="checkbox" disabled>
-                <span></span>
+                <input type="checkbox" style="appearance: none; -webkit-appearance: none; width: 50px; height: 50px; border-top-left-radius: 20px; border-top-right-radius: 20px; outline: none; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background-color: #444451" disabled>
             </label>
             <span style="margin: 18px 50px 0 0">Ghế trống</span>
 
             <label class="checkbox-label">
-                <input type="checkbox" checked disabled>
-                <span></span>
+                <input type="checkbox" style=" appearance: none; -webkit-appearance: none; width: 50px; height: 50px; border-top-left-radius: 20px; border-top-right-radius: 20px; outline: none; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background-color: white" disabled>
             </label>
             <span style="margin: 18px 50px 0 0">Ghế đang chọn</span>
 
             <label class="checkbox-label">
-                <input type="checkbox" disabled>
-                <span style="background-color: white"></span>
+                <input type="checkbox" style=" appearance: none; -webkit-appearance: none; width: 50px; height: 50px; border-top-left-radius: 20px; border-top-right-radius: 20px; outline: none; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background-color: #dc3545" disabled>
             </label>
             <span style="margin: 18px 50px 0 0">Ghế đã chọn</span>
         </div>
@@ -107,8 +100,8 @@
     <div class="right-column" style="margin-right: 50px">
         <div class="rounded-div">
             <div class="row">
-                <p style="margin-right: 20px; color: black">Tổng tiền: <b>500.000</b> ghế</p>
-                <button type="button" class="btn danger" style="border-radius: 40px">Thanh toán</button>
+                <p style="margin-right: 20px; color: black"><b>TỔNG TIỀN:</b> <b style="font-size: 20px">xxx</b></p>-->
+                <button type="button" class="btn danger" style="border-radius: 40px" onclick="thanhToan()">Tiếp tục</button>
             </div>
         </div>
     </div>

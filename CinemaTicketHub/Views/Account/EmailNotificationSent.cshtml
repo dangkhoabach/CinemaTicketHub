@@ -12,32 +12,31 @@
 
 </head>
 <body onload="showSwal('success-message')">
+    <script>
+        (function ($) {
+            showSwal = function (type) {
+                'use strict';
+                if (type === 'success-message') {
+                    swal({
+                        title: 'Email xác thực đã được gửi!',
+                        text: 'Vui lòng kiểm tra Email để xác thực tài khoản.',
+                        type: 'success',
+                        button: {
+                            text: "OK",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-primary"
+                        }
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            window.location.href = "/Home/Index";
+                        }
+                    });
+                } else {
+                    swal("Error occured !");
+                }
+            }
+        })(jQuery);
+    </script>
 </body>
 </html>
-
-<script>
-    (function ($) {
-        showSwal = function (type) {
-            'use strict';
-            if (type === 'success-message') {
-                swal({
-                    title: 'Email xác thực đã được gửi!',
-                    text: 'Vui lòng kiểm tra Email để xác thực tài khoản.',
-                    type: 'success',
-                    button: {
-                        text: "OK",
-                        value: true,
-                        visible: true,
-                        className: "btn btn-primary"
-                    }
-                }, function (isConfirm) {
-                    if (isConfirm) {
-                        window.location.href = "/Home/Index";
-                    }
-                });
-            } else {
-                swal("Error occured !");
-            }
-        }
-    })(jQuery);
-</script>

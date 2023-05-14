@@ -46,26 +46,25 @@
         }
         <a href="/Account/Register" class="gotosignup">Bạn chưa có tài khoản?</a>
         <hr />
-            <a href="/Account/ForgotPassword" class="gotosignup">Bạn quên mật khẩu?</a>
+        <a href="/Account/ForgotPassword" class="gotosignup">Bạn quên mật khẩu?</a>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#txtemail1').on('input', function () {
+            var value = $(this).val();
+
+            // Gán giá trị của textbox 1 cho Html.TextBoxFor
+            $('#txtemail2').val(value);
+        });
+
+
+        $('#txtpassword1').on('input', function () {
+            var value = $(this).val();
+
+            // Gán giá trị của textbox 1 cho Html.TextBoxFor
+            $('#txtpassword2').val(value);
+        });
+    </script>
 </body>
 </html>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-    $('#txtemail1').on('input', function () {
-        var value = $(this).val();
-
-        // Gán giá trị của textbox 1 cho Html.TextBoxFor
-        $('#txtemail2').val(value);
-    });
-
-
-    $('#txtpassword1').on('input', function () {
-        var value = $(this).val();
-
-        // Gán giá trị của textbox 1 cho Html.TextBoxFor
-        $('#txtpassword2').val(value);
-    });
-</script>
