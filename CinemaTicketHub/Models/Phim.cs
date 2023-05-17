@@ -20,6 +20,7 @@ namespace CinemaTicketHub.Models
         public string MaPhim { get; set; }
 
         [Required]
+        [StringLength(128)]
         public string TenPhim { get; set; }
 
         [Column(TypeName = "date")]
@@ -32,6 +33,7 @@ namespace CinemaTicketHub.Models
 
         public string HinhAnh { get; set; }
 
+        [StringLength(500)]
         public string MoTa { get; set; }
 
         public string Trailer { get; set; }

@@ -19,6 +19,7 @@ namespace CinemaTicketHub.Models
         public int MaLoai { get; set; }
 
         [Required]
+        [StringLength(128)]
         public string TenLoai { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

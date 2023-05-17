@@ -187,8 +187,10 @@
     <Compile Include="Helper\ConstantHelper.cs" />
     <Compile Include="Helper\SendMail.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BapNuoc.cs" />
     <Compile Include="Models\BirthdayValidation.cs" />
     <Compile Include="Models\CinemaTicketHubModel.cs" />
+    <Compile Include="Models\FoodnDrinkCart.cs" />
     <Compile Include="Models\Ghe.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoaiPhim.cs" />
@@ -253,6 +255,14 @@
     <Content Include="Content\images\authenticate\blankavatar.jpg" />
     <Content Include="Content\images\authenticate\cinemabgpopcorn.jpg" />
     <Content Include="Content\images\authenticate\film2.jpg" />
+    <Content Include="Content\images\foodndrink\Aquafina.png" />
+    <Content Include="Content\images\foodndrink\BapCaramel.png" />
+    <Content Include="Content\images\foodndrink\BapChocolate.png" />
+    <Content Include="Content\images\foodndrink\BapNgot.png" />
+    <Content Include="Content\images\foodndrink\BapPhoMai.png" />
+    <Content Include="Content\images\foodndrink\CocaCola.png" />
+    <Content Include="Content\images\foodndrink\FantaCam.png" />
+    <Content Include="Content\images\foodndrink\Sprite.png" />
     <Content Include="Content\images\navbarbg.png" />
     <Content Include="Content\images\poster_landscape\air.png" />
     <Content Include="Content\images\poster_landscape\amvucchet.png" />
