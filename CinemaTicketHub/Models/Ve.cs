@@ -18,19 +18,11 @@ namespace CinemaTicketHub.Models
 
         [Required]
         [StringLength(128)]
-        public string id { get; set; }
-
-        [Required]
-        [StringLength(10)]
-        public string MaPhim { get; set; }
+        public string Id { get; set; }
 
         public int MaSuatChieu { get; set; }
 
         public double? GiaVe { get; set; }
-
-        public int? MaMon { get; set; }
-
-        public virtual BapNuoc BapNuoc { get; set; }
 
         public virtual SuatChieu SuatChieu { get; set; }
     }

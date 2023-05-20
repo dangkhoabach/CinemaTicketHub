@@ -1,6 +1,13 @@
-﻿@model CinemaTicketHub.Models.SelectSeatDataModel
+﻿@using CinemaTicketHub.Models;
+@model CinemaTicketHub.Models.SelectSeatDataModel
 @{
     Layout = null;
+
+    //Làm sạch giỏ hàng trước khi thêm
+    List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
+    List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
+    lstGhe.Clear();
+    lstMonAn.Clear();
 }
 
 <head>
@@ -100,9 +107,34 @@
     <div class="right-column" style="margin-right: 50px">
         <div class="rounded-div">
             <div class="row">
-                <p style="margin-right: 20px; color: black"><b>TỔNG TIỀN:</b> <b style="font-size: 20px">xxx</b></p>-->
+                <p style="margin-right: 20px; color: black"><b>TỔNG TIỀN:</b> <b id="totalAmount" style="font-size: 20px">0</b></p>
                 <button type="button" class="btn danger" style="border-radius: 40px" onclick="thanhToan()">Tiếp tục</button>
             </div>
         </div>
     </div>
+
+    <script>
+        // Lắng nghe sự kiện thay đổi của checkbox
+        var checkboxes = document.querySelectorAll('.checkboxseat');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', calculateTotal);
+        });
+
+        // Tính tổng tiền khi có sự thay đổi checkbox
+        function calculateTotal() {
+            var total = 0;
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    total++;
+                }
+            });
+            var totalPrice = total * 100000;
+            document.getElementById('totalAmount').textContent = formatNumber(totalPrice);
+        }
+
+        // Định dạng số với dấu phẩy ngăn cách hàng nghìn
+        function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+    </script>
 </footer>
