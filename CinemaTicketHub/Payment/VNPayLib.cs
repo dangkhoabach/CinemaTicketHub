@@ -8,10 +8,10 @@ using System.Web;
 
 namespace CinemaTicketHub
 {
-    public class PayLib
+    public class VNPayLib
     {
-        private SortedList<string, string> _requestData = new SortedList<string, string>(new PayCompare());
-        private SortedList<string, string> _responseData = new SortedList<string, string>(new PayCompare());
+        private SortedList<string, string> _requestData = new SortedList<string, string>(new VNPayCompare());
+        private SortedList<string, string> _responseData = new SortedList<string, string>(new VNPayCompare());
 
         //------------------------REQUEST DATA----------------------------------------
         public void AddRequestData(string key, string value)
@@ -41,7 +41,7 @@ namespace CinemaTicketHub
 
                 signData = signData.Remove(data.Length - 1, 1);
             }
-            string vnp_SecureHash = Util.HmacSHA512(vnp_HashSecret, signData);
+            string vnp_SecureHash = VNPayUtil.HmacSHA512(vnp_HashSecret, signData);
             baseUrl += "vnp_SecureHash=" + vnp_SecureHash;
 
             return baseUrl;
@@ -102,7 +102,7 @@ namespace CinemaTicketHub
         public bool ValidateSignature(string inputHash, string secretKey)
         {
             string rspRaw = GetResponseData();
-            string myChecksum = Util.HmacSHA512(secretKey, rspRaw);
+            string myChecksum = VNPayUtil.HmacSHA512(secretKey, rspRaw);
             return myChecksum.Equals(inputHash, StringComparison.InvariantCultureIgnoreCase);
         }
 

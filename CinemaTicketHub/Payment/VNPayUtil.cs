@@ -7,7 +7,7 @@ using System.Web;
 
 namespace CinemaTicketHub.Payment
 {
-    public class Util
+    public class VNPayUtil
     {
         public static String HmacSHA512(string key, String inputData)
         {

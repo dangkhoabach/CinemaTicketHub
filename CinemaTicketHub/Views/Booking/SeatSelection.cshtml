@@ -6,8 +6,11 @@
     //Làm sạch giỏ hàng trước khi thêm
     List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
     List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
-    lstGhe.Clear();
-    lstMonAn.Clear();
+    if (lstGhe != null || lstMonAn != null)
+    {
+        lstGhe.Clear();
+        lstMonAn.Clear();
+    }
 }
 
 <head>

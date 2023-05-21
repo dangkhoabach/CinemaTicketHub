@@ -123,13 +123,15 @@ namespace CinemaTicketHub.Controllers
         {
             List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
             List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
-            lstGhe.Clear();
-            lstMonAn.Clear();
-
+            if (lstGhe != null || lstMonAn != null)
+            {
+                lstGhe.Clear();
+                lstMonAn.Clear();
+            }
             return RedirectToAction("Details", "Movies", new { MaPhim = maphim });
         }
 
-        public ActionResult Payment()
+        public ActionResult VNPay()
         {
             string url = ConfigurationManager.AppSettings["Url"];
             string returnUrl = ConfigurationManager.AppSettings["ReturnUrl"];
@@ -142,7 +144,7 @@ namespace CinemaTicketHub.Controllers
             double tiengiave = lstGhe.Count * 100000;
             double? total = tienbapnuoc + tiengiave;
 
-            PayLib pay = new PayLib();
+            VNPayLib pay = new VNPayLib();
 
             pay.AddRequestData("vnp_Version", "2.1.0"); //Phiên bản api mà merchant kết nối. Phiên bản hiện tại là 2.1.0
             pay.AddRequestData("vnp_Command", "pay"); //Mã API sử dụng, mã cho giao dịch thanh toán là 'pay'
@@ -151,7 +153,7 @@ namespace CinemaTicketHub.Controllers
             pay.AddRequestData("vnp_BankCode", ""); //Mã Ngân hàng thanh toán (tham khảo: https://sandbox.vnpayment.vn/apis/danh-sach-ngan-hang/), có thể để trống, người dùng có thể chọn trên cổng thanh toán VNPAY
             pay.AddRequestData("vnp_CreateDate", DateTime.Now.ToString("yyyyMMddHHmmss")); //ngày thanh toán theo định dạng yyyyMMddHHmmss
             pay.AddRequestData("vnp_CurrCode", "VND"); //Đơn vị tiền tệ sử dụng thanh toán. Hiện tại chỉ hỗ trợ VND
-            pay.AddRequestData("vnp_IpAddr", Util.GetIpAddress()); //Địa chỉ IP của khách hàng thực hiện giao dịch
+            pay.AddRequestData("vnp_IpAddr", VNPayUtil.GetIpAddress()); //Địa chỉ IP của khách hàng thực hiện giao dịch
             pay.AddRequestData("vnp_Locale", "vn"); //Ngôn ngữ giao diện hiển thị - Tiếng Việt (vn), Tiếng Anh (en)
             pay.AddRequestData("vnp_OrderInfo", "Thanh toan don hang"); //Thông tin mô tả nội dung thanh toán
             pay.AddRequestData("vnp_OrderType", "other"); //topup: Nạp tiền điện thoại - billpayment: Thanh toán hóa đơn - fashion: Thời trang - other: Thanh toán trực tuyến
@@ -163,13 +165,13 @@ namespace CinemaTicketHub.Controllers
             return Redirect(paymentUrl);
         }
 
-        public ActionResult PaymentConfirmed()
+        public ActionResult VNPayConfirmed()
         {
             if (Request.QueryString.Count > 0)
             {
                 string hashSecret = ConfigurationManager.AppSettings["HashSecret"]; //Chuỗi bí mật
                 var vnpayData = Request.QueryString;
-                PayLib pay = new PayLib();
+                VNPayLib pay = new VNPayLib();
 
                 //lấy toàn bộ dữ liệu được trả về
                 foreach (string s in vnpayData)

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace CinemaTicketHub.Payment
 {
-    public class PayCompare : IComparer<string>
+    public class VNPayCompare : IComparer<string>
     {
         public int Compare(string x, string y)
         {

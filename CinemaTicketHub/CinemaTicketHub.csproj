@@ -203,9 +203,9 @@
     <Compile Include="Models\SuatChieu.cs" />
     <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\Ve.cs" />
-    <Compile Include="Payment\PayCompare.cs" />
-    <Compile Include="Payment\PayLib.cs" />
-    <Compile Include="Payment\Util.cs" />
+    <Compile Include="Payment\VNPayCompare.cs" />
+    <Compile Include="Payment\VNPayLib.cs" />
+    <Compile Include="Payment\VNPayUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -465,7 +465,7 @@
     <Content Include="Views\Manage\PersonalInfo.cshtml" />
     <Content Include="Views\Manage\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Booking\Cart.cshtml" />
-    <Content Include="Views\Booking\PaymentConfirmed.cshtml" />
+    <Content Include="Views\Booking\VNPayConfirmed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
