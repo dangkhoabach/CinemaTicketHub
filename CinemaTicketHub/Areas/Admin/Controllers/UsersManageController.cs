@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace CinemaTicketHub.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Master")]
     public class UsersManageController : Controller
     {
         // GET: Admin/UsersManage

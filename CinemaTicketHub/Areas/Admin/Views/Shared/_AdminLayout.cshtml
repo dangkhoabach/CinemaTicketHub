@@ -2,8 +2,12 @@
 @using CinemaTicketHub.Models
 @using Microsoft.AspNet.Identity.EntityFramework;
 
-@{var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-    var user = userManager.FindById(User.Identity.GetUserId()); }
+@{
+    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var user = userManager.FindById(User.Identity.GetUserId());
+    var roles = userManager.GetRoles(user.Id);
+    var userrole = roles.FirstOrDefault();
+}
 
 @{
     Layout = null;
@@ -64,7 +68,7 @@
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0">@user.Name</h6>
-                        <span>Admin</span>
+                        <span>@userrole</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -78,7 +82,10 @@
                     </div>
                     <a href="/Admin/MoviesManage/List" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Phim</a>
                     <a href="/Admin/ShowtimesManage/List" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Suất Chiếu</a>
-                    <a href="/Admin/UsersManage" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Users</a>
+                    @if (User.IsInRole("Master"))
+                    {
+                        <a href="/Admin/UsersManage" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Users</a>
+                    }
                     @*<a href="#" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>*@
                 </div>
             </nav>
