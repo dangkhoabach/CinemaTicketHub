@@ -13,6 +13,7 @@ namespace CinemaTicketHub.Models
         public HoaDon()
         {
             CT_HoaDon = new HashSet<CT_HoaDon>();
+            Ve = new HashSet<Ve>();
         }
 
         [Key]
@@ -28,5 +29,8 @@ namespace CinemaTicketHub.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_HoaDon> CT_HoaDon { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ve> Ve { get; set; }
     }
 }

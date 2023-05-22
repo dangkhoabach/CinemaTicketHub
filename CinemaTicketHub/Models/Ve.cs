@@ -16,13 +16,13 @@ namespace CinemaTicketHub.Models
 
         public DateTime NgayBanVe { get; set; }
 
-        [Required]
-        [StringLength(128)]
-        public string Id { get; set; }
-
         public int MaSuatChieu { get; set; }
 
         public double? GiaVe { get; set; }
+
+        public int MaHoaDon { get; set; }
+
+        public virtual HoaDon HoaDon { get; set; }
 
         public virtual SuatChieu SuatChieu { get; set; }
     }

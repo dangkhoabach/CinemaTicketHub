@@ -25,8 +25,18 @@ namespace CinemaTicketHub.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BapNuoc>()
+                .HasMany(e => e.CT_HoaDon)
+                .WithRequired(e => e.BapNuoc)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<HoaDon>()
                 .HasMany(e => e.CT_HoaDon)
+                .WithRequired(e => e.HoaDon)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<HoaDon>()
+                .HasMany(e => e.Ve)
                 .WithRequired(e => e.HoaDon)
                 .WillCascadeOnDelete(false);
 

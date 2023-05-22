@@ -66,7 +66,7 @@
                     else
                     {
                         <label class="checkbox-label">
-                            @Html.CheckBoxFor(c => c.listcheck[i].Selected, new { @class = "checkboxseat", data_label = Model.listcheck[i].Name })
+                            @Html.CheckBoxFor(c => c.listcheck[i].Selected, new { @class = "checkboxseat", data_label = Model.listcheck[i].Name, onchange = "updateContinueButton()" })
                             @Html.HiddenFor(c => c.listcheck[i].Name)
                             @Html.HiddenFor(c => c.listcheck[i].SeatId)
                             @Html.HiddenFor(c => c.listcheck[i].Status)
@@ -111,7 +111,7 @@
         <div class="rounded-div">
             <div class="row">
                 <p style="margin-right: 20px; color: black"><b>TỔNG TIỀN:</b> <b id="totalAmount" style="font-size: 20px">0</b></p>
-                <button type="button" class="btn danger" style="border-radius: 40px" onclick="thanhToan()">Tiếp tục</button>
+                <button id="continueButton" type="button" class="btn danger" disabled style="border-radius: 40px" onclick="thanhToan()">Tiếp tục</button> @*Nếu không chọn ghế thì không thể tiếp tục thanh toán*@
             </div>
         </div>
     </div>
@@ -138,6 +138,22 @@
         // Định dạng số với dấu phẩy ngăn cách hàng nghìn
         function formatNumber(number) {
             return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        //Kiểm tra nếu không chọn ghế thì không thể tiếp tục thanh toán
+        function updateContinueButton() {
+            var checkboxes = document.getElementsByClassName('checkboxseat');
+            var continueButton = document.getElementById('continueButton');
+
+            var anyCheckboxSelected = false;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    anyCheckboxSelected = true;
+                    break;
+                }
+            }
+
+            continueButton.disabled = !anyCheckboxSelected;
         }
     </script>
 </footer>

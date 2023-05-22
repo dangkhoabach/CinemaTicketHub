@@ -22,28 +22,28 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="/Home/Index">Trang Chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Home/Index"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Trang Chủ</b></a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Phim</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Phim</b></a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                                <li><a class="dropdown-item" href="/Movies/NowShowing">Phim Đang Chiếu</a></li>
-                                <li><a class="dropdown-item" href="/Movies/ComingSoon">Phim Sắp Chiếu</a></li>
+                                <li><a class="dropdown-item" href="/Movies/NowShowing"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Phim Đang Chiếu</b></a></li>
+                                <li><a class="dropdown-item" href="/Movies/ComingSoon"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Phim Sắp Chiếu</b></a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#">Rạp Chiếu</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Rạp Chiếu</b></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Liên Hệ</b></a></li>
                         @if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item"><a class="nav-link" href="/Admin">Admin</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Admin"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Admin</b></a></li>
                         }
                         else
                         {
                             if (User.IsInRole("Master"))
                             {
-                                <li class="nav-item"><a class="nav-link" href="/Admin">Master</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/Admin"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Master</b></a></li>
                             }
                         }
-                        <li class="nav-item dropdown">@Html.Partial("_LoginPartial")</li>
+                        <li class="nav-item dropdown"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">@Html.Partial("_LoginPartial")</b></li>
                     </ul>
                 </div>
             </div>

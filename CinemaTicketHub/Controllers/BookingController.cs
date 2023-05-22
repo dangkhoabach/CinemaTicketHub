@@ -1,12 +1,14 @@
 ﻿using Antlr.Runtime.Tree;
 using CinemaTicketHub.Models;
 using CinemaTicketHub.Payment;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Optimization;
 
 namespace CinemaTicketHub.Controllers
 {
@@ -149,7 +151,7 @@ namespace CinemaTicketHub.Controllers
             pay.AddRequestData("vnp_Version", "2.1.0"); //Phiên bản api mà merchant kết nối. Phiên bản hiện tại là 2.1.0
             pay.AddRequestData("vnp_Command", "pay"); //Mã API sử dụng, mã cho giao dịch thanh toán là 'pay'
             pay.AddRequestData("vnp_TmnCode", tmnCode); //Mã website của merchant trên hệ thống của VNPAY (khi đăng ký tài khoản sẽ có trong mail VNPAY gửi về)
-            pay.AddRequestData("vnp_Amount", (total*100).ToString()); //số tiền cần thanh toán, công thức: số tiền * 100 - ví dụ 10.000 (mười nghìn đồng) --> 1000000
+            pay.AddRequestData("vnp_Amount", (total * 100).ToString()); //số tiền cần thanh toán, công thức: số tiền * 100 - ví dụ 10.000 (mười nghìn đồng) --> 1000000
             pay.AddRequestData("vnp_BankCode", ""); //Mã Ngân hàng thanh toán (tham khảo: https://sandbox.vnpayment.vn/apis/danh-sach-ngan-hang/), có thể để trống, người dùng có thể chọn trên cổng thanh toán VNPAY
             pay.AddRequestData("vnp_CreateDate", DateTime.Now.ToString("yyyyMMddHHmmss")); //ngày thanh toán theo định dạng yyyyMMddHHmmss
             pay.AddRequestData("vnp_CurrCode", "VND"); //Đơn vị tiền tệ sử dụng thanh toán. Hiện tại chỉ hỗ trợ VND
@@ -196,12 +198,50 @@ namespace CinemaTicketHub.Controllers
                         //Thanh toán thành công
                         ViewBag.Message = "Thanh toán thành công hóa đơn " + orderId + " | Mã giao dịch: " + vnpayTranId;
 
+                        HoaDon hoaDon = new HoaDon();
+                        hoaDon.NgayLap = DateTime.Now;
+                        double Total = double.Parse(pay.GetResponseData("vnp_Amount"));
+                        hoaDon.TongTien = Total / 100;
+                        hoaDon.Id = User.Identity.GetUserId();
+                        _dbContext.HoaDon.Add(hoaDon);
+                        _dbContext.SaveChanges();
 
+                        List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
+                        List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
+
+                        foreach (var seat in lstGhe)
+                        {
+                            Ghe ghe = _dbContext.Ghe.Where(x => x.MaGhe == seat.MaGhe).FirstOrDefault();
+                            if(ghe == null)
+                            {
+                                return HttpNotFound();
+                            }    
+                            ghe.TrangThai = true;
+                            _dbContext.SaveChanges();
+                        }
+
+                        foreach (var mon in lstMonAn)
+                        {
+                            CT_HoaDon ctHoaDon = new CT_HoaDon();
+                            ctHoaDon.MaHoaDon = hoaDon.MaHoaDon;
+                            ctHoaDon.MaMon = mon.MaMon;
+                            ctHoaDon.SoLuong = mon.SoLuong;
+                            ctHoaDon.GiaMon = mon.GiaMon;
+                            _dbContext.CT_HoaDon.Add(ctHoaDon);
+                            _dbContext.SaveChanges();
+                        }
+
+                        lstGhe.Clear();
+                        lstMonAn.Clear();
                     }
                     else
                     {
                         //Thanh toán không thành công. Mã lỗi: vnp_ResponseCode
                         ViewBag.Message = "Có lỗi xảy ra trong quá trình xử lý hóa đơn " + orderId + " | Mã giao dịch: " + vnpayTranId + " | Mã lỗi: " + vnp_ResponseCode;
+                        List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
+                        List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
+                        lstGhe.Clear();
+                        lstMonAn.Clear();
                     }
                 }
                 else
