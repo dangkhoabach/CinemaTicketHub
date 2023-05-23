@@ -12,8 +12,9 @@
 
         <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">@user.Name</a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-            <li><a class="dropdown-item" href="/Manage/PersonalInfo"><i class="fa-regular fa-address-card" style="color: #000000;"></i> Tài khoản của tôi</a></li>
-            <li><a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()"><i class="fa-solid fa-right-from-bracket" style="color: #000000;"></i> Đăng xuất</a></li>
+            <li><a class="dropdown-item" href="/Manage/PersonalInfo"><i class="fa-regular fa-address-card" style="color: #000000"></i> Tài khoản của tôi</a></li>
+            <li><a class="dropdown-item" href="/Manage/MyTicket"><i class="fa-solid fa-ticket" style="color: #000000"></i> Vé của tôi</a></li>
+            <li><a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()"><i class="fa-solid fa-right-from-bracket" style="color: #000000"></i> Đăng xuất</a></li>
         </ul>
     }
 }
@@ -21,8 +22,8 @@ else
 {
     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-        <li><a class="dropdown-item" href="@Url.Action("Login", "Account")" id="loginLink"><i class="fa-solid fa-right-to-bracket" style="color: #000000;"></i> Đăng nhập</a></li>
-        <li><a class="dropdown-item" href="@Url.Action("Register", "Account")" id="registerLink"><i class="fa-solid fa-user-plus" style="color: #000000;"></i> Đăng ký</a></li>
+        <li><a class="dropdown-item" href="@Url.Action("Login", "Account")" id="loginLink"><i class="fa-solid fa-right-to-bracket" style="color: #000000"></i> Đăng nhập</a></li>
+        <li><a class="dropdown-item" href="@Url.Action("Register", "Account")" id="registerLink"><i class="fa-solid fa-user-plus" style="color: #000000"></i> Đăng ký</a></li>
     </ul>
 }
 

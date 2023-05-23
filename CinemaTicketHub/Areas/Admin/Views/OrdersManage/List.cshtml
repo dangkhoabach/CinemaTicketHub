@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNet.Identity;
+@using CinemaTicketHub.Models
+@using Microsoft.AspNet.Identity.EntityFramework;
+@model IEnumerable<CinemaTicketHub.Models.HoaDon>
+
+@{
+    ViewBag.Title = "[Admin] Danh sách hóa đơn";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Danh sách hóa đơn</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">
+                Mã Hóa Đơn
+            </th>
+            <th scope="col">
+                Khách Hàng
+            </th>
+            <th scope="col">
+                Ngày Lập
+            </th>
+            <th scope="col">
+                Tổng Tiền
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody class="table-group-divider">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="vertical-align: middle; word-wrap: break-word; max-width: 150px; text-align: center">
+                    @item.MaHoaDon
+                </td>
+                @{
+                    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                    var user = userManager.FindById(item.Id);
+                }
+                <td style="vertical-align: middle; font-weight: bold; color: goldenrod; word-wrap: break-word; max-width: 250px; text-align: center">
+                    @user.Name
+                </td>
+                @{
+                    DateTime? ngayLap = item.NgayLap;
+                    string ngay = ngayLap.HasValue ? ngayLap.Value.ToString("dd/MM/yyyy") : string.Empty;
+                }
+                <td style="vertical-align: middle">
+                    @ngay
+                </td>
+                <td style="vertical-align: middle">
+                    @string.Format("{0:#,0}", item.TongTien)
+                </td>
+                @*                <td style="vertical-align: middle">
+                        <a href="@Url.Action("Details", new { MaHoaDon = item.MaHoaDon })" style="color: #0dcaf0"><i class="fa-solid fa-circle-info"></i></a>
+                    </td>*@
+            </tr>
+        }
+
+    </tbody>
+</table>

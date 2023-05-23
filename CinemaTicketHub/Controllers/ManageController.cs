@@ -390,5 +390,10 @@ namespace CinemaTicketHub.Controllers
         {
             return View();
         }
+
+        public ActionResult MyTicket()
+        {
+            return View();
+        }
     }
 }
