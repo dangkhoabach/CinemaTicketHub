@@ -146,7 +146,14 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
             foreach(var itemghe in ghe)
             {
                 _dbContext.Ghe.Remove(itemghe);
-            }    
+            }
+
+/*            var ve = _dbContext.Ve.Where(x => x.MaSuatChieu == suatchieu.MaSuatChieu).ToList();
+            foreach (var itemve in ve)
+            {
+                itemve.MaGhe = null;
+            }*/
+
             _dbContext.SuatChieu.Remove(item);
             _dbContext.SaveChanges();
             return RedirectToAction("List", "ShowtimesManage");

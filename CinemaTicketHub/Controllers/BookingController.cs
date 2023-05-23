@@ -217,6 +217,14 @@ namespace CinemaTicketHub.Controllers
                                 return HttpNotFound();
                             }    
                             ghe.TrangThai = true;
+
+                            Ve ve = new Ve();
+                            ve.MaGhe = seat.MaGhe;
+                            ve.MaSuatChieu = seat.MaSuatChieu ?? 0;
+                            ve.GiaVe = 100000;
+                            ve.MaHoaDon = hoaDon.MaHoaDon;
+                            _dbContext.Ve.Add(ve);
+
                             _dbContext.SaveChanges();
                         }
 

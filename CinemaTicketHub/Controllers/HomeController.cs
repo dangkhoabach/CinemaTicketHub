@@ -13,10 +13,13 @@ namespace CinemaTicketHub.Controllers
 
         public ActionResult Index()
         {
-            var nowshowing = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).OrderByDescending(o => o.NgayKhoiChieu).Take(3).ToList();
+            ViewBag.Nowshowing = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).OrderByDescending(o => o.NgayKhoiChieu).Take(3).ToList();
+            ViewBag.Comingsoon = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu > DateTime.Now).OrderByDescending(o => o.NgayKhoiChieu).Take(3).ToList();
+
             var allnowshowing = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).OrderByDescending(o => o.NgayKhoiChieu).ToList();
-            ViewBag.randomMovie = allnowshowing.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
-            return View(nowshowing);
+            var randomMovies = allnowshowing.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+
+            return View(randomMovies);
         }
 
         public ActionResult About()
@@ -27,7 +30,7 @@ namespace CinemaTicketHub.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Chờ đợi bạn Huy :)).";
             return View();
         }
     }

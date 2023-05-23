@@ -8,13 +8,13 @@
         <div class="row gx-5 align-items-center justify-content-center">
             <div class="col-lg-8 col-xl-7 col-xxl-6">
                 <div class="my-5 text-center text-xl-start">
-                    <a href="@Url.Action("Details", "Movies", new { MaPhim = ViewBag.randomMovie.MaPhim })" class="fw-bolder mb-2" style="color: gold; text-decoration-line: none"><h2 class="fw-bolder mb-2" style="color: gold">@ViewBag.randomMovie.TenPhim</h2></a>
-                    <p class="lead fw-normal text-white mb-4" style="text-align: justify; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; line-height: 1.5;">"@ViewBag.randomMovie.MoTa</p>
+                    <a href="@Url.Action("Details", "Movies", new { MaPhim = Model.MaPhim })" class="fw-bolder mb-2" style="color: gold; text-decoration-line: none"><h2 class="fw-bolder mb-2" style="color: gold">@Model.TenPhim</h2></a>
+                    <p class="lead fw-normal text-white mb-4" style="text-align: justify; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; line-height: 1.5;">"@Model.MoTa</p>
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                     </div>
                 </div>
             </div>
-            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="@ViewBag.randomMovie.HinhAnh" alt="..." /></div>
+            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="@Model.HinhAnh" alt="..." /></div>
         </div>
     </div>
 </header>
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="row gx-5">
-            @foreach (var item in Model)
+            @foreach (var item in ViewBag.Nowshowing)
             {
                 <div class="col-lg-4 mb-5">
                     <div class="card h-100 shadow border-0">
@@ -53,7 +53,43 @@
                     </div>
                 </div>
             }
-            <button class="btn btn-outline-dark" onclick="window.location.href='/Movies/NowShowing'">TẤT CẢ PHIM</button>
+            <button class="btn btn-outline-dark" onclick="window.location.href='/Movies/NowShowing'">TẤT CẢ PHIM ĐANG CHIẾU</button>
+        </div>
+    </div>
+
+    <div class="container px-5 my-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+                <div class="text-center">
+                    <h2 class="fw-bolder">PHIM SẮP CHIẾU</h2>
+                    <p class="lead fw-normal text-muted mb-5">Các phim sắp chiếu tại các rạp của chúng tôi.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-5">
+            @foreach (var item2 in ViewBag.Comingsoon)
+            {
+                <div class="col-lg-4 mb-5">
+                    <div class="card h-100 shadow border-0">
+                        <img class="card-img-top" src="@item2.HinhAnh" alt="..." />
+                        <div class="card-body p-4">
+                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">@item2.DoiTuong</div>
+                            <a class="text-decoration-none link-dark stretched-link" href="@Url.Action("Details", "Movies", new { MaPhim = item2.MaPhim })"><h5 class="card-title mb-3">@item2.TenPhim</h5></a>
+                            <p class="card-text mb-0" style="text-align: justify; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">@item2.MoTa</p>
+                        </div>
+                        <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                            <div class="d-flex align-items-end justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="small">
+                                        <div class="text-muted">@item2.NgayKhoiChieu.ToShortDateString()</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <button class="btn btn-outline-dark" onclick="window.location.href='/Movies/ComingSoon'">TẤT CẢ PHIM SẮP CHIẾU</button>
         </div>
     </div>
 </section>

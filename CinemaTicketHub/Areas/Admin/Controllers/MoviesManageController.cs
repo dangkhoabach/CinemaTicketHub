@@ -109,17 +109,6 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 ViewBag.TheLoai = _dbContext.LoaiPhim.ToList();
                 if (HinhAnh != null)
                 {
-                    /*var oldImagePath = _dbContext.Phim.Where(x => x.MaPhim == phim.MaPhim).FirstOrDefault().HinhAnh;
-                    string newImagePath = "/Content/images/poster_landscape/" + Path.GetFileName(HinhAnh.FileName);
-
-                    if (System.IO.File.Exists(Server.MapPath(oldImagePath)))
-                    {
-                        System.IO.File.Delete(Server.MapPath(oldImagePath));
-                    }
-
-                    item.HinhAnh = newImagePath;
-                    HinhAnh.SaveAs(Server.MapPath(newImagePath));*/
-
                     var oldImagePath = _dbContext.Phim.Where(x => x.MaPhim == phim.MaPhim).FirstOrDefault().HinhAnh;
                     string fileName = Path.GetFileName(HinhAnh.FileName);
                     string newImagePath = "/Content/images/poster_landscape/" + fileName;

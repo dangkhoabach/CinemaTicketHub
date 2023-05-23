@@ -12,9 +12,7 @@ namespace CinemaTicketHub.Models
         [Key]
         public int MaVe { get; set; }
 
-        public int MaGhe { get; set; }
-
-        public DateTime NgayBanVe { get; set; }
+        public int? MaGhe { get; set; }
 
         public int MaSuatChieu { get; set; }
 
