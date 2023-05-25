@@ -1,4 +1,5 @@
 ﻿using Antlr.Runtime.Tree;
+using CinemaTicketHub.Helper;
 using CinemaTicketHub.Models;
 using CinemaTicketHub.Payment;
 using Microsoft.AspNet.Identity;
@@ -261,8 +262,9 @@ namespace CinemaTicketHub.Controllers
             return View();
         }
 
-        public ActionResult CheckOut()
+        public ActionResult CompletePurchase()
         {
+            /*SendMail.SendEmail("dangkhoabach2002@gmail.com", "Test", "ABCXYZ", "");*/
             return View();
         }
     }
