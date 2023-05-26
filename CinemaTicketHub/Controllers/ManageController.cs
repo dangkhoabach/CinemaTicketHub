@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CinemaTicketHub.Models;
+using System.Collections.Generic;
 
 namespace CinemaTicketHub.Controllers
 {
@@ -15,6 +16,7 @@ namespace CinemaTicketHub.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        ApplicationDbContext _dbContext = new ApplicationDbContext();
 
         public ManageController()
         {
@@ -32,9 +34,9 @@ namespace CinemaTicketHub.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -333,7 +335,7 @@ namespace CinemaTicketHub.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -393,6 +395,44 @@ namespace CinemaTicketHub.Controllers
 
         public ActionResult MyTicket()
         {
+            var userId = User.Identity.GetUserId();
+            var hoadon = _dbContext.HoaDon.Where(x => x.Id == userId).ToList();
+            List<TicketViewModel> list = new List<TicketViewModel>();
+            foreach (var item in hoadon)
+            {
+                List<GheViewModel> lstghe = new List<GheViewModel>();
+                List<BapNuocViewModel> lstbapnuoc = new List<BapNuocViewModel>();
+                TicketViewModel ticket = new TicketViewModel();
+                ticket.Id = item.MaHoaDon;
+                ticket.tongtien = item.TongTien;
+
+                var ve = _dbContext.Ve.Where(x => x.MaHoaDon == item.MaHoaDon).ToList();
+                foreach (var ve2 in ve)
+                {
+                    var suatchieu = _dbContext.SuatChieu.Where(x => x.MaSuatChieu == ve2.MaSuatChieu).FirstOrDefault();
+                    ticket.giobatdau = suatchieu.GioBatDau;
+                    ticket.ngaychieu = suatchieu.NgayChieu;
+                    ticket.tenphim = suatchieu.Phim.TenPhim;
+                    var ghes = _dbContext.Ghe.Where(x => x.MaSuatChieu == ve2.MaSuatChieu && x.MaGhe == ve2.MaGhe).FirstOrDefault();
+                    GheViewModel ghe = new GheViewModel();
+                    ghe.maghe = ghes.MaGhe;
+                    ghe.day = ghes.Day;
+                    ghe.cot = ghes.Cot;
+                    lstghe.Add(ghe);
+                }
+                var ct = _dbContext.CT_HoaDon.Where(x => x.MaHoaDon == item.MaHoaDon).ToList();
+                foreach(var ct2 in ct)
+                {
+                    BapNuocViewModel bapNuoc = new BapNuocViewModel();
+                    bapNuoc.tenmon = ct2.BapNuoc.TenMon;
+                    bapNuoc.soluongmon = ct2.SoLuong;
+                    lstbapnuoc.Add(bapNuoc);
+                }
+                ticket.bapNuoc = lstbapnuoc;
+                ticket.ghe = lstghe;
+                list.Add(ticket);
+            }
+            ViewBag.hoadon = list;
             return View();
         }
     }

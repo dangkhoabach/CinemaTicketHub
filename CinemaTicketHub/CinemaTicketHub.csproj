@@ -195,12 +195,14 @@
     <Compile Include="Helper\SendMail.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BapNuoc.cs" />
+    <Compile Include="Models\BapNuocViewModel.cs" />
     <Compile Include="Models\BirthdayValidation.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CinemaTicketHubModel.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\CT_HoaDon.cs" />
     <Compile Include="Models\Ghe.cs" />
+    <Compile Include="Models\GheViewModel.cs" />
     <Compile Include="Models\HoaDon.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoaiPhim.cs" />
@@ -210,6 +212,7 @@
     <Compile Include="Models\SelectSeatDataModel.cs" />
     <Compile Include="Models\SuatChieu.cs" />
     <Compile Include="Models\sysdiagrams.cs" />
+    <Compile Include="Models\TicketViewModel.cs" />
     <Compile Include="Models\Ve.cs" />
     <Compile Include="Payment\VNPayCompare.cs" />
     <Compile Include="Payment\VNPayLib.cs" />

@@ -2,4 +2,90 @@
     ViewBag.Title = "Vé xem phim của tôi";
 }
 
-<h2>Vé xem phim của tôi</h2>
+<div style="min-height: 83.5vh">
+    <div class="ticketlist" style="margin: 0 200px">
+        <h2 style="text-align: center; margin: 25px 0 40px">Vé xem phim của tôi</h2>
+        <table class="table" style="text-align: center">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Mã Hóa Đơn
+                    </th>
+                    <th scope="col">
+                        Tên Phim
+                    </th>
+                    <th scope="col">
+                        Suất Chiếu
+                    </th>
+                    <th scope="col">
+                        Ghế
+                    </th>
+                    <th scope="col">
+                        Bắp Nước(SL)
+                    </th>
+                    <th scope="col">
+                        Tổng Tiền
+                    </th>
+                    <th scope="col">
+                        QR Code
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody class="table-group-divider">
+                @foreach (var item in ViewBag.hoadon)
+                {
+                    <tr>
+                        <td style="vertical-align: middle">
+                            @item.Id
+                        </td>
+                        <td style="vertical-align: middle">
+                            @item.tenphim
+                        </td>
+                        <td style="vertical-align: middle">
+                            @item.giobatdau.ToString("hh\\:mm") - @item.ngaychieu.ToShortDateString()
+                        </td>
+                        @*Đặt dấu "," giữa các items Ghế*@
+                        @{
+                            var itemsGheNgoi = "";
+                            foreach (var item2 in item.ghe)
+                            {
+                                itemsGheNgoi += item2.day + item2.cot + ", ";
+                            }
+                            // Xóa dấu ',' ở cuối chuỗi
+                            if (itemsGheNgoi.Length > 0)
+                            {
+                                itemsGheNgoi = itemsGheNgoi.Substring(0, itemsGheNgoi.Length - 2);
+                            }
+                        }
+                        <td style="vertical-align: middle">
+                            @itemsGheNgoi
+                        </td>
+                        @*Đặt dấu "," giữa các items Bắp nước*@
+                        @{
+                            var itemsBapNuoc = "";
+                            foreach (var item2 in item.bapNuoc)
+                            {
+                                itemsBapNuoc += @item2.tenmon + " (" + @item2.soluongmon + ")" + ", ";
+                            }
+                            // Xóa dấu ',' ở cuối chuỗi
+                            if (itemsBapNuoc.Length > 0)
+                            {
+                                itemsBapNuoc = itemsBapNuoc.Substring(0, itemsBapNuoc.Length - 2);
+                            }
+                        }
+                        <td style="vertical-align: middle">
+                            @itemsBapNuoc
+                        </td>
+                        <td style="vertical-align: middle">
+                            @string.Format("{0:#,0}", @item.tongtien)
+                        </td>
+                        <td style="vertical-align: middle">
+                            <a href="#"><i class="fa-solid fa-eye" style="color: #005eff"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

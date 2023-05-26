@@ -198,7 +198,6 @@ namespace CinemaTicketHub.Controllers
                     {
                         //Thanh toán thành công
                         ViewBag.Message = "Thanh toán thành công hóa đơn " + orderId + " | Mã giao dịch: " + vnpayTranId;
-
                         HoaDon hoaDon = new HoaDon();
                         hoaDon.NgayLap = DateTime.Now;
                         double Total = double.Parse(pay.GetResponseData("vnp_Amount"));
