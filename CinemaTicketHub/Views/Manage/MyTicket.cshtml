@@ -7,7 +7,7 @@
         <h2 style="text-align: center; margin: 25px 0 40px">Vé xem phim của tôi</h2>
         <table class="table" style="text-align: center">
             <thead>
-                <tr>
+                <tr style="font-size: 18px">
                     <th scope="col">
                         Mã Hóa Đơn
                     </th>
@@ -21,7 +21,7 @@
                         Ghế
                     </th>
                     <th scope="col">
-                        Bắp Nước(SL)
+                        Bắp Nước (SL)
                     </th>
                     <th scope="col">
                         Tổng Tiền
@@ -39,12 +39,21 @@
                         <td style="vertical-align: middle">
                             @item.Id
                         </td>
-                        <td style="vertical-align: middle">
+                        <td style="vertical-align: middle; font-weight: bold">
                             @item.tenphim
                         </td>
-                        <td style="vertical-align: middle">
-                            @item.giobatdau.ToString("hh\\:mm") - @item.ngaychieu.ToShortDateString()
-                        </td>
+                        @if (item.ngaychieu.ToShortDateString() == DateTime.Now.ToShortDateString())
+                        {
+                            <td style="vertical-align: middle; color: red; font-weight: bold">
+                                @item.giobatdau.ToString("hh\\:mm") - @item.ngaychieu.ToShortDateString()
+                            </td>
+                        }
+                        else
+                        {
+                            <td style="vertical-align: middle">
+                                @item.giobatdau.ToString("hh\\:mm") - @item.ngaychieu.ToShortDateString()
+                            </td>
+                        }
                         @*Đặt dấu "," giữa các items Ghế*@
                         @{
                             var itemsGheNgoi = "";
@@ -58,7 +67,7 @@
                                 itemsGheNgoi = itemsGheNgoi.Substring(0, itemsGheNgoi.Length - 2);
                             }
                         }
-                        <td style="vertical-align: middle">
+                        <td style="vertical-align: middle; word-wrap: break-word; max-width: 200px">
                             @itemsGheNgoi
                         </td>
                         @*Đặt dấu "," giữa các items Bắp nước*@
@@ -74,18 +83,72 @@
                                 itemsBapNuoc = itemsBapNuoc.Substring(0, itemsBapNuoc.Length - 2);
                             }
                         }
-                        <td style="vertical-align: middle">
+                        <td style="vertical-align: middle; word-wrap: break-word; max-width: 350px">
                             @itemsBapNuoc
                         </td>
                         <td style="vertical-align: middle">
                             @string.Format("{0:#,0}", @item.tongtien)
                         </td>
-                        <td style="vertical-align: middle">
-                            <a href="#"><i class="fa-solid fa-eye" style="color: #005eff"></i></a>
-                        </td>
+                        @{
+                            var ticketinfo = "[" + item.Id + "]" + item.tenphim + "; " + item.giobatdau.ToString("hh\\:mm") + "-" + item.ngaychieu.ToShortDateString() + "; " + itemsGheNgoi + "; " + itemsBapNuoc;
+
+                            var writer = new ZXing.BarcodeWriter
+                            {
+                                Format = ZXing.BarcodeFormat.QR_CODE,
+                                Options = new ZXing.Common.EncodingOptions
+                                {
+                                    Width = 400,
+                                    Height = 400,
+                                    Margin = 0,
+                                }
+                            };
+
+                            var qrCodeBitmap = writer.Write(ticketinfo);
+
+                            using (var memoryStream = new System.IO.MemoryStream())
+                            {
+                                qrCodeBitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                                var base64QrCode = Convert.ToBase64String(memoryStream.ToArray());
+                                <td style="vertical-align: middle">
+                                    <a href="#" onclick="showQRCode()"><i class="fa-solid fa-eye" style="color: #005eff"></i></a>
+                                    <img id="qrCodeImage" src="data:image/png;base64,@base64QrCode" alt="qrcode" style="display: none">
+                                </td>
+                            }
+                        }
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
+
+@*Xem QR Code*@
+<script>
+    function showQRCode() {
+        var qrCodeImageSrc = document.getElementById("qrCodeImage").src;
+        var overlay = document.createElement("div");
+        overlay.style.position = "fixed";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100%";
+        overlay.style.height = "100%";
+        overlay.style.background = "rgba(0, 0, 0, 0.5)";
+        overlay.style.zIndex = "9999";
+
+        var img = document.createElement("img");
+        img.src = qrCodeImageSrc;
+        img.style.position = "absolute";
+        img.style.top = "50%";
+        img.style.left = "50%";
+        img.style.transform = "translate(-50%, -50%)";
+        img.style.maxWidth = "90%";
+        img.style.maxHeight = "90%";
+
+        overlay.appendChild(img);
+        document.body.appendChild(overlay);
+
+        overlay.onclick = function () {
+            document.body.removeChild(overlay);
+        };
+    }
+</script>

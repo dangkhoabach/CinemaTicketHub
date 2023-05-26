@@ -199,7 +199,6 @@
     <Compile Include="Models\BirthdayValidation.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CinemaTicketHubModel.cs" />
-    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\CT_HoaDon.cs" />
     <Compile Include="Models\Ghe.cs" />
     <Compile Include="Models\GheViewModel.cs" />
@@ -264,6 +263,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\aboutstyle.css" />
     <Content Include="Content\css\authenticatestyle.css" />
     <Content Include="Content\css\mainstyle.css" />
     <Content Include="Content\css\profilestyle.css" />
@@ -455,7 +455,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -482,7 +481,6 @@
     <Content Include="Views\Booking\Cart.cshtml" />
     <Content Include="Views\Booking\VNPayConfirmed.cshtml" />
     <Content Include="Views\Manage\MyTicket.cshtml" />
-    <Content Include="Views\Booking\CompletePurchase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

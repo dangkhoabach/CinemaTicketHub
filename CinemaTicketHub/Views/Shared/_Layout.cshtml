@@ -22,28 +22,27 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="/Home/Index"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Trang Chủ</b></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Home/Index">Trang Chủ</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Phim</b></a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Phim</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                                <li><a class="dropdown-item" href="/Movies/NowShowing"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Phim Đang Chiếu</b></a></li>
-                                <li><a class="dropdown-item" href="/Movies/ComingSoon"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Phim Sắp Chiếu</b></a></li>
+                                <li><a class="dropdown-item" href="/Movies/NowShowing">Phim Đang Chiếu</a></li>
+                                <li><a class="dropdown-item" href="/Movies/ComingSoon">Phim Sắp Chiếu</a></li>
                             </ul>
                         </li>
-                        @*<li class="nav-item"><a class="nav-link" href="#"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Rạp Chiếu</b></a></li>*@
-                        <li class="nav-item"><a class="nav-link" href="/Home/Contact"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Liên Hệ</b></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Home/About">Thông Tin</a></li>
                         @if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item"><a class="nav-link" href="/Admin"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Admin</b></a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Admin">Admin</a></li>
                         }
                         else
                         {
                             if (User.IsInRole("Master"))
                             {
-                                <li class="nav-item"><a class="nav-link" href="/Admin"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">Master</b></a></li>
+                                <li class="nav-item"><a class="nav-link" href="/Admin">Master</a></li>
                             }
                         }
-                        <li class="nav-item dropdown"><b style="text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25)">@Html.Partial("_LoginPartial")</b></li>
+                        <li class="nav-item dropdown">@Html.Partial("_LoginPartial")</li>
                     </ul>
                 </div>
             </div>
@@ -62,7 +61,7 @@
                     <span class="text-white mx-1">&middot;</span>
                     <a class="link-light small" href="#">Terms</a>
                     <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="#">Contact</a>
+                    <a class="link-light small" href="/Home/About">About</a>
                 </div>
             </div>
         </div>
@@ -76,10 +75,9 @@
     <script>
         window.__lc = window.__lc || {};
         window.__lc.license = 15483264;
-        ; (function (n, t, c) { function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n) } var e = { _q: [], _h: null, _v: "2.0", on: function () { i(["on", c.call(arguments)]) }, once: function () { i(["once", c.call(arguments)]) }, off: function () { i(["off", c.call(arguments)]) }, get: function () { if (!e._h) throw new Error("[LiveChatWidget] You can't use getters before load."); return i(["get", c.call(arguments)]) }, call: function () { i(["call", c.call(arguments)]) }, init: function () { var n = t.createElement("script"); n.async = !0, n.type = "text/javascript", n.src = "https://cdn.livechatinc.com/tracking.js", t.head.appendChild(n) } }; !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e }(window, document, [].slice))
+        ; (function (n, t, c) { function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n) } var e = { _q: [], _h: null, _v: "2.0", on: function () { i(["on", c.call(arguments)]) }, once: function () { i(["once", c.call(arguments)]) }, off: function () { i(["off", c.call(arguments)]) }, get: function () { if (!e._h) throw new Error("[CinemaTicketHubChat] You can't use getters before load."); return i(["get", c.call(arguments)]) }, call: function () { i(["call", c.call(arguments)]) }, init: function () { var n = t.createElement("script"); n.async = !0, n.type = "text/javascript", n.src = "https://cdn.livechatinc.com/tracking.js", t.head.appendChild(n) } }; !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e }(window, document, [].slice))
     </script>
-    <noscript><a href="https://www.livechat.com/chat-with/15483264/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+    <noscript><a href="https://www.livechat.com/chat-with/15483264/" rel="nofollow">Liên hệ với chúng tôi!</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">CinemaTicketHubChat</a></noscript>
     <!-- End of LiveChat code -->
-
 </body>
 </html>

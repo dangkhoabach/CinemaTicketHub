@@ -260,11 +260,5 @@ namespace CinemaTicketHub.Controllers
 
             return View();
         }
-
-        public ActionResult CompletePurchase()
-        {
-            /*SendMail.SendEmail("dangkhoabach2002@gmail.com", "Test", "ABCXYZ", "");*/
-            return View();
-        }
     }
 }

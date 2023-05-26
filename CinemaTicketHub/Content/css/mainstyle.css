@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @charset "UTF-8";
 /*!
 * Start Bootstrap - Modern Business v5.0.7 (https://startbootstrap.com/template-overviews/modern-business)
@@ -8161,7 +8162,8 @@ textarea.form-control-lg {
 
 .bg-dark {
     --bs-bg-opacity: 1;
-    background-image: url("/Content/images/navbarbg.png");
+    /*background-image: url("/Content/images/navbarbg.png");*/
+    background-color: #343434 !important;
     background-size: cover;
 }
 

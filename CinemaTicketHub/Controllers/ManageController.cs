@@ -432,6 +432,9 @@ namespace CinemaTicketHub.Controllers
                 ticket.ghe = lstghe;
                 list.Add(ticket);
             }
+
+            list.Sort((x, y) => x.Id.CompareTo(y.Id));
+            list.Reverse();
             ViewBag.hoadon = list;
             return View();
         }

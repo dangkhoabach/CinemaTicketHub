@@ -13,7 +13,6 @@ namespace CinemaTicketHub.Models
         }
 
         public virtual DbSet<BapNuoc> BapNuoc { get; set; }
-        public virtual DbSet<Contact> Contact { get; set; }
         public virtual DbSet<CT_HoaDon> CT_HoaDon { get; set; }
         public virtual DbSet<Ghe> Ghe { get; set; }
         public virtual DbSet<HoaDon> HoaDon { get; set; }
