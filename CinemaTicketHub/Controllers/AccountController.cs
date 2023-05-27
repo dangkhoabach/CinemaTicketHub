@@ -10,7 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CinemaTicketHub.Models;
 using CinemaTicketHub.Helper;
-using CaptchaMvc.HtmlHelpers;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace CinemaTicketHub.Controllers
 {
@@ -68,7 +69,7 @@ namespace CinemaTicketHub.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl, string gRecaptchaResponse)
         {
             if (!ModelState.IsValid)
             {
@@ -82,19 +83,21 @@ namespace CinemaTicketHub.Controllers
             {
                 case SignInStatus.Success:
                     var mdUser = UserManager.FindByEmail(model.Email);
+/*                    var recaptcha_result = ValidateRecaptcha(gRecaptchaResponse);
 
+                    if (!recaptcha_result)
+                    {
+                        AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                        ModelState.AddModelError("", "reCAPTCHA verification failed.");
+                        return View(model);
+                    }
+                    else*/
                     if (!mdUser.EmailConfirmed)
                     {
                         AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                         return View("EmailNotificationSent");
                     }
-                    else
-                        if (!this.IsCaptchaValid(""))
-                    {
-                        AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-                        ViewBag.ErrorCaptcha = "Captcha không hợp lệ!";
-                        return View(model);
-                    }
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -106,6 +109,20 @@ namespace CinemaTicketHub.Controllers
                     return View(model);
             }
         }
+
+        private bool ValidateRecaptcha(string gRecaptchaResponse)
+        {
+            var secretKey = "6LdqGkUmAAAAAFS_cx9fYho4Bsp1A6MYLScdedh9";
+            var client = new WebClient();
+
+            var response = client.DownloadString($"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={gRecaptchaResponse}");
+
+            dynamic recaptchaResult = JsonConvert.DeserializeObject(response);
+
+            return recaptchaResult.success;
+        }
+
+
 
         //
         // GET: /Account/VerifyCode

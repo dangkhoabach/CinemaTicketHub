@@ -1,5 +1,4 @@
 ﻿@using CinemaTicketHub.Models
-@using CaptchaMvc.HtmlHelpers
 @model LoginViewModel
 @{
     Layout = null;
@@ -14,6 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="~/Content/css/authenticatestyle.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/818e023cf2.js" crossorigin="anonymous"></script>
+    @*Google Recaptcha*@
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback" async defer></script>
 </head>
 <body>
     <div class="login-box">
@@ -35,10 +36,9 @@
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "txtpassword2" })
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
             </div>
-            <div class="user-box">
-                @Html.MathCaptcha()
-                <p>@ViewBag.ErrorCaptcha</p>
-            </div>
+
+            <div class="g-recaptcha" data-sitekey="6LdqGkUmAAAAANW1DowPQTNAHIWU4RNCAA2n_KfC"></div>
+
             <a href="#" onclick="document.querySelector('.btn-default').click(); return false;">
                 <span></span>
                 <span></span>
