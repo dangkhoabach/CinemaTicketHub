@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CinemaTicketHub.Models;
 using CinemaTicketHub.Helper;
+using CaptchaMvc.HtmlHelpers;
 
 namespace CinemaTicketHub.Controllers
 {
@@ -23,7 +24,7 @@ namespace CinemaTicketHub.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -35,9 +36,9 @@ namespace CinemaTicketHub.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -88,7 +89,13 @@ namespace CinemaTicketHub.Controllers
                         return View("EmailNotificationSent");
                     }
                     else
-                        return RedirectToLocal(returnUrl);
+                        if (!this.IsCaptchaValid(""))
+                    {
+                        AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                        ViewBag.ErrorCaptcha = "Captcha không hợp lệ!";
+                        return View(model);
+                    }
+                    return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -129,7 +136,7 @@ namespace CinemaTicketHub.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -167,7 +174,7 @@ namespace CinemaTicketHub.Controllers
                     await UserManager.AddToRoleAsync(user.Id, "Member");
 
                     /*await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);*/
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
