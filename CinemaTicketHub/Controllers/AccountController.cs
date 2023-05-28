@@ -12,6 +12,8 @@ using CinemaTicketHub.Models;
 using CinemaTicketHub.Helper;
 using Newtonsoft.Json;
 using System.Net;
+using System.Collections.Generic;
+using System.Net.Http;
 
 namespace CinemaTicketHub.Controllers
 {
@@ -83,15 +85,14 @@ namespace CinemaTicketHub.Controllers
             {
                 case SignInStatus.Success:
                     var mdUser = UserManager.FindByEmail(model.Email);
-/*                    var recaptcha_result = ValidateRecaptcha(gRecaptchaResponse);
-
-                    if (!recaptcha_result)
+                    var recaptchaResult = await VerifyRecaptcha(gRecaptchaResponse);
+                    if (!recaptchaResult)
                     {
                         AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-                        ModelState.AddModelError("", "reCAPTCHA verification failed.");
+                        ModelState.AddModelError("", "Xác thực ReCaptcha không thành công!");
                         return View(model);
                     }
-                    else*/
+
                     if (!mdUser.EmailConfirmed)
                     {
                         AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
@@ -110,16 +111,28 @@ namespace CinemaTicketHub.Controllers
             }
         }
 
-        private bool ValidateRecaptcha(string gRecaptchaResponse)
+        private async Task<bool> VerifyRecaptcha(string response)
         {
             var secretKey = "6LdqGkUmAAAAAFS_cx9fYho4Bsp1A6MYLScdedh9";
-            var client = new WebClient();
+            var client = new HttpClient();
 
-            var response = client.DownloadString($"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={gRecaptchaResponse}");
+            var parameters = new Dictionary<string, string>
+    {
+        { "secret", secretKey },
+        { "response", response }
+    };
 
-            dynamic recaptchaResult = JsonConvert.DeserializeObject(response);
+            var encodedContent = new FormUrlEncodedContent(parameters);
+            var result = await client.PostAsync("https://www.google.com/recaptcha/api/siteverify", encodedContent);
+            var responseJson = await result.Content.ReadAsStringAsync();
+            var captchaResult = JsonConvert.DeserializeObject<RecaptchaResult>(responseJson);
 
-            return recaptchaResult.success;
+            return captchaResult.Success;
+        }
+
+        private class RecaptchaResult
+        {
+            public bool Success { get; set; }
         }
 
 

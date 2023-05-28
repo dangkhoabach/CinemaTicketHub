@@ -13,8 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="~/Content/css/authenticatestyle.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/818e023cf2.js" crossorigin="anonymous"></script>
-    @*Google Recaptcha*@
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback" async defer></script>
+    <!-- Google ReCaptcha -->
+    <script src='https://www.google.com/recaptcha/api.js?hl=vi'></script>
 </head>
 <body>
     <div class="login-box">
@@ -38,6 +38,8 @@
             </div>
 
             <div class="g-recaptcha" data-sitekey="6LdqGkUmAAAAANW1DowPQTNAHIWU4RNCAA2n_KfC"></div>
+            <input type="hidden" name="gRecaptchaResponse" value="@(Request["g-recaptcha-response"])" />
+
 
             <a href="#" onclick="document.querySelector('.btn-default').click(); return false;">
                 <span></span>
