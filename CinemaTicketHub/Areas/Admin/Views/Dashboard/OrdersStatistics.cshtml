@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "OrdersStatistics";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>THỐNG KÊ HÓA ĐƠN</h2>
+
+<section class="content-chart">
+    <div class="bg-secondary rounded h-100 p-4">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <canvas id="bar-chart" width="200" height="700"></canvas>
+    </div>
+</section>
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="~/Areas/Admin/Content/lib/chart/chart.min.js"></script>
+    <script src="~/Areas/Admin/Content/lib/chart/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            var arrDoanhThu = [];
+            var arrDate = [];
+            $.ajax({
+                url: '/Dashboard/GetStatistical',
+                type: 'GET',
+                data: {},
+                success: function (rs) {
+                    $.each(rs.Data, function (i, item) {
+                        var strDate = moment(item.Date).format('DD/MM/yyyy');
+                        arrDate.push(strDate);
+                        arrDoanhThu.push(item.DoanhThu);
+                    });
+                    var barChartData = {
+                        labels: arrDate,
+                        datasets: [
+                            {
+                                label: 'Danh thu tổng quan',
+                                backgroundColor: '#ac171a',
+                                borderColor: 'rgba(210, 214, 222, 1)',
+                                pointRadius: false,
+                                pointColor: 'rgba(210, 214, 222, 1)',
+                                pointStrokeColor: '#c1c7d1',
+                                pointHighlightFill: '#fff',
+                                pointHighlightStroke: 'rgba(220,220,220,1)',
+                                data: arrDoanhThu
+                            },
+                        ]
+                    }
+                    //-------------
+                    //- BAR CHART -
+                    //-------------
+                    var barChartCanvas = document.getElementById('bar-chart').getContext('2d');
+                    /*var barChartData = $.extend(true, {}, barChartData)
+                    var temp0 = barChartData.datasets[0]
+                    barChartData.datasets[0] = temp0*/
+
+                    var barChartOptions = {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        datasetFill: false
+                    }
+                    new Chart(barChartCanvas, {
+                        type: 'bar',
+                        data: barChartData,
+                        options: barChartOptions
+                    });
+                    load_data(rs.Data);
+                }
+            });
+        });
+        function load_data(data) {
+            var strHtml = "";
+            $.each(data, function (i, item) {
+                var strDate = moment(item.Date).format('DD/MM/yyyy');
+                strHtml += "<tr>";
+                strHtml += "<td>" + (i + 1) + "</td>";
+                strHtml += "<td>" + strDate + "</td>";
+                strHtml += "<td>" + item.DoanhThu + "</td>";
+                strHtml += "</tr>";
+            });
+            $('#load_data').html(strHtml);
+        }
+    </script>
+}

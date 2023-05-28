@@ -72,17 +72,16 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="/Admin/Dashboard" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="#" class="dropdown-item">Buttons</a>
-                            <a href="#" class="dropdown-item">Typography</a>
-                            <a href="#" class="dropdown-item">Other Elements</a>
+                            <a href="/Admin/Dashboard/OrdersStatistics" class="dropdown-item">Doanh Thu Tổng Quan</a>
+                            <a href="/Admin/Dashboard/TicketsStatistics" class="dropdown-item">Doanh Thu Vé</a>
                         </div>
                     </div>
                     <a href="/Admin/MoviesManage/List" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Phim</a>
                     <a href="/Admin/ShowtimesManage/List" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Suất Chiếu</a>
-                    <a href="/Admin/OrdersManage/List" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Hóa đơn</a>
+                    <a href="/Admin/OrdersManage/List" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Hóa Đơn</a>
                     @if (User.IsInRole("Master"))
                     {
                         <a href="/Admin/UsersManage" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Users</a>
@@ -157,6 +156,7 @@
     <!-- Back to Top -->
     @*<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>*@
 
+    @RenderSection("scripts", required: false)
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -164,11 +164,10 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    @*<script src="lib/tempusdominus/js/moment.min.js"></script>*@
+    @*   <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>*@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://kit.fontawesome.com/818e023cf2.js" crossorigin="anonymous"></script>
-
     <!-- Template Javascript -->
     <script src="~/Areas/Admin/Content/js/main.js"></script>
 </body>

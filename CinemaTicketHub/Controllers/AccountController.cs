@@ -113,7 +113,7 @@ namespace CinemaTicketHub.Controllers
 
         private async Task<bool> VerifyRecaptcha(string response)
         {
-            var secretKey = "6LdqGkUmAAAAAFS_cx9fYho4Bsp1A6MYLScdedh9";
+            var secretKey = "6LfV_EcmAAAAAB1YgwKZ8JX1AMIzEMberax6an6i";
             var client = new HttpClient();
 
             var parameters = new Dictionary<string, string>
