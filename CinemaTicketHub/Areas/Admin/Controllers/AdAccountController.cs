@@ -16,7 +16,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("OrdersStatistics", "Dashboard");
         }
 
         private IAuthenticationManager AuthenticationManager
