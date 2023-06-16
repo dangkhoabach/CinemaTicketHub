@@ -486,6 +486,7 @@
     <Content Include="Views\Booking\VNPayConfirmed.cshtml" />
     <Content Include="Views\Manage\MyTicket.cshtml" />
     <Content Include="Views\Booking\MomoConfirmed.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
