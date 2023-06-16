@@ -143,6 +143,7 @@ namespace CinemaTicketHub.Controllers
             string tmnCode = ConfigurationManager.AppSettings["TmnCode"];
             string hashSecret = ConfigurationManager.AppSettings["HashSecret"];
 
+            //Lấy tổng tiền trong giỏ hàng
             List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
             List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
             double? tienbapnuoc = lstMonAn.Sum(x => x.ThanhTien);
@@ -271,10 +272,11 @@ namespace CinemaTicketHub.Controllers
             string partnerCode = "MOMOOJOI20210710";
             string accessKey = "iPXneGmrJH0G8FOP";
             string serectkey = "sFcbSGRSJjwGxwhhcEktCHWYUuTuPNDB";
-            string orderInfo = "Momo_Test";
+            string orderInfo = "ThanhToan_Momo";
             string returnUrl = "https://localhost:44351/Booking/MomoConfirmed";
-            string notifyurl = "https://localhost:44351/Booking/MomoSavePayment"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
+            string notifyurl = "https://localhost:44351/Booking/MomoSavePayment";
 
+            //Lấy tổng tiền trong giỏ hàng
             List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
             List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
             double? tienbapnuoc = lstMonAn.Sum(x => x.ThanhTien);
@@ -337,6 +339,66 @@ namespace CinemaTicketHub.Controllers
             string rErrorCode = result.errorCode; // = 0: thanh toán thành công
             ViewBag.MomoStatus = rErrorCode;
             ViewBag.Message = rMessage + " - " + rOrderId;
+
+            if(rErrorCode == "0")
+            {
+                //Thanh toán thành công
+                HoaDon hoaDon = new HoaDon();
+                hoaDon.NgayLap = DateTime.Now;
+
+                //Lấy tổng tiền trong giỏ hàng
+                List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
+                List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
+                double? tienbapnuoc = lstMonAn.Sum(x => x.ThanhTien);
+                double tiengiave = lstGhe.Count * 100000;
+                double? total = tienbapnuoc + tiengiave;
+
+                hoaDon.TongTien = total;
+                hoaDon.Id = User.Identity.GetUserId();
+                _dbContext.HoaDon.Add(hoaDon);
+                _dbContext.SaveChanges();
+
+                foreach (var seat in lstGhe)
+                {
+                    Ghe ghe = _dbContext.Ghe.Where(x => x.MaGhe == seat.MaGhe).FirstOrDefault();
+                    if (ghe == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    ghe.TrangThai = true;
+
+                    Ve ve = new Ve();
+                    ve.MaGhe = seat.MaGhe;
+                    ve.MaSuatChieu = seat.MaSuatChieu ?? 0;
+                    ve.GiaVe = 100000;
+                    ve.MaHoaDon = hoaDon.MaHoaDon;
+                    _dbContext.Ve.Add(ve);
+
+                    _dbContext.SaveChanges();
+                }
+
+                foreach (var mon in lstMonAn)
+                {
+                    CT_HoaDon ctHoaDon = new CT_HoaDon();
+                    ctHoaDon.MaHoaDon = hoaDon.MaHoaDon;
+                    ctHoaDon.MaMon = mon.MaMon;
+                    ctHoaDon.SoLuong = mon.SoLuong;
+                    ctHoaDon.GiaMon = mon.GiaMon;
+                    _dbContext.CT_HoaDon.Add(ctHoaDon);
+                    _dbContext.SaveChanges();
+                }
+
+                lstGhe.Clear();
+                lstMonAn.Clear();
+            }
+            else
+            {
+                //Thanh toán không thành công
+                List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
+                List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
+                lstGhe.Clear();
+                lstMonAn.Clear();
+            }    
             return View();
         }
 
