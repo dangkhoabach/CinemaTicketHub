@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CinemaTicketHub.Payment
 {
-    public class Result
+    public class MomoResult
     {
         public string partnerCode { get; set; }
         public string accessKey { get; set; }

@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "Thanh toán";
     Layout = null;
 }
 <!DOCTYPE html>
 <html>
 <head>
+    <title>[Thanh toán VNPay] Cinema Ticket Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
@@ -15,10 +15,14 @@
             showSwal = function (type) {
                 'use strict';
                 if (type === 'success-message') {
+                    var status = '@ViewBag.VNPayStatus';
+                    var swalType = status === 'error' ? 'error' : 'success';
+                    var swalTitle = status === 'error' ? 'Thanh toán VNPay thất bại!' : 'Thanh toán VNPay thành công!';
+                    var swalReturn = status === 'error' ? '/Movies/NowShowing' : '/Manage/MyTicket';
                     swal({
-                        title: 'Thanh toán',
+                        title: swalTitle,
                         text: '@Html.Raw(ViewBag.Message)',
-                        type: 'success',
+                        type: swalType,
                         button: {
                             text: "OK",
                             value: true,
@@ -27,7 +31,7 @@
                         }
                     }, function (isConfirm) {
                         if (isConfirm) {
-                            window.location.href = "/Manage/MyTicket";
+                            window.location.href = swalReturn;
                         }
                     });
                 } else {
@@ -37,4 +41,5 @@
         })(jQuery);
     </script>
 </body>
+
 </html>

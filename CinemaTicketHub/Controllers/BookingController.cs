@@ -248,6 +248,7 @@ namespace CinemaTicketHub.Controllers
                     {
                         //Thanh toán không thành công. Mã lỗi: vnp_ResponseCode
                         ViewBag.Message = "Có lỗi xảy ra trong quá trình xử lý hóa đơn " + orderId + " | Mã giao dịch: " + vnpayTranId + " | Mã lỗi: " + vnp_ResponseCode;
+                        ViewBag.VNPayStatus = "error";
                         List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
                         List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
                         lstGhe.Clear();
@@ -271,8 +272,8 @@ namespace CinemaTicketHub.Controllers
             string accessKey = "iPXneGmrJH0G8FOP";
             string serectkey = "sFcbSGRSJjwGxwhhcEktCHWYUuTuPNDB";
             string orderInfo = "Momo_Test";
-            string returnUrl = "https://localhost:44351/Booking/ConfirmPaymentClient";
-            string notifyurl = "https://localhost:44351/Booking/SavePayment"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
+            string returnUrl = "https://localhost:44351/Booking/MomoConfirmed";
+            string notifyurl = "https://localhost:44351/Booking/MomoSavePayment"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
 
             List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
             List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
@@ -318,7 +319,7 @@ namespace CinemaTicketHub.Controllers
 
             };
 
-            string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
+            string responseFromMomo = MomoPaymentRequest.sendPaymentRequest(endpoint, message.ToString());
 
             JObject jmessage = JObject.Parse(responseFromMomo);
 
@@ -328,17 +329,19 @@ namespace CinemaTicketHub.Controllers
         //Khi thanh toán xong ở cổng thanh toán Momo, Momo sẽ trả về một số thông tin, trong đó có errorCode để check thông tin thanh toán
         //errorCode = 0 : thanh toán thành công (Request.QueryString["errorCode"])
         //Tham khảo bảng mã lỗi tại: https://developers.momo.vn/#/docs/aio/?id=b%e1%ba%a3ng-m%c3%a3-l%e1%bb%97i
-        public ActionResult ConfirmPaymentClient(Payment.Result result)
+        public ActionResult MomoConfirmed(Payment.MomoResult result)
         {
             //lấy kết quả Momo trả về và hiển thị thông báo cho người dùng (có thể lấy dữ liệu ở đây cập nhật xuống db)
             string rMessage = result.message;
             string rOrderId = result.orderId;
             string rErrorCode = result.errorCode; // = 0: thanh toán thành công
+            ViewBag.MomoStatus = rErrorCode;
+            ViewBag.Message = rMessage + " - " + rOrderId;
             return View();
         }
 
         [HttpPost]
-        public void SavePayment()
+        public void MomoSavePayment()
         {
             //cập nhật dữ liệu vào db
             String a = "";

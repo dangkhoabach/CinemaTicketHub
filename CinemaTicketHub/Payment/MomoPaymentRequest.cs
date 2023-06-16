@@ -8,9 +8,9 @@ using System.Web;
 
 namespace CinemaTicketHub.Payment
 {
-    class PaymentRequest
+    class MomoPaymentRequest
     {
-        public PaymentRequest()
+        public MomoPaymentRequest()
         {
         }
         public static string sendPaymentRequest(string endpoint, string postJsonString)

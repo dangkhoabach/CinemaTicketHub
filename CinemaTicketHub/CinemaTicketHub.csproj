@@ -214,8 +214,8 @@
     <Compile Include="Models\TicketViewModel.cs" />
     <Compile Include="Models\Ve.cs" />
     <Compile Include="Payment\MoMoSecurity.cs" />
-    <Compile Include="Payment\PaymentRequest.cs" />
-    <Compile Include="Payment\Result.cs" />
+    <Compile Include="Payment\MomoPaymentRequest.cs" />
+    <Compile Include="Payment\MomoResult.cs" />
     <Compile Include="Payment\VNPayCompare.cs" />
     <Compile Include="Payment\VNPayLib.cs" />
     <Compile Include="Payment\VNPayUtil.cs" />
@@ -432,7 +432,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\OrdersManage\List.cshtml" />
-    <Content Include="Areas\Admin\Views\OrdersManage\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\OrdersStatistics.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\TicketsStatistics.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
@@ -486,7 +485,7 @@
     <Content Include="Views\Booking\Cart.cshtml" />
     <Content Include="Views\Booking\VNPayConfirmed.cshtml" />
     <Content Include="Views\Manage\MyTicket.cshtml" />
-    <Content Include="Views\Booking\ConfirmPaymentClient.cshtml" />
+    <Content Include="Views\Booking\MomoConfirmed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

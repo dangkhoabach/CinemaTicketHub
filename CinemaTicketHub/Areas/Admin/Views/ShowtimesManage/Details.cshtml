@@ -1,9 +1,12 @@
 ﻿@model CinemaTicketHub.Models.SuatChieu
 
 @{
-    ViewBag.Title = "[Admin] Thông tin chi tiết suất chiếu";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+
+<head>
+    <title>[Chi tiết suất chiếu] Cinema Ticket Hub</title>
+</head>
 
 @using (Html.BeginForm("Edit", "ShowtimesManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {

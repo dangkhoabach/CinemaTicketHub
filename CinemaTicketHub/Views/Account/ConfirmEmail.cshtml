@@ -1,27 +1,11 @@
-﻿@*@{
-        ViewBag.Title = "Confirm Email";
-    }
-
-    <h2>@ViewBag.Title.</h2>
-    <div>
-        <p>
-            Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-        </p>
-    </div>
-*@
-
-
-
-
-
-@{
-    ViewBag.Title = "Email xác thực đã được gửi";
+﻿@{
     Layout = null;
 }
 
 <!DOCTYPE html>
 <html>
 <head>
+    <title>[Xác thực tài khoản] Cinema Ticket Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
