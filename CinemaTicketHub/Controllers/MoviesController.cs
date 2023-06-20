@@ -1,6 +1,7 @@
 ﻿using CinemaTicketHub.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -29,10 +30,21 @@ namespace CinemaTicketHub.Controllers
             return View(comingsoon);
         }
 
-        public ActionResult Details(string MaPhim)
+        public ActionResult Details(string MaPhim, DateTime? selectedDate)
         {
             Phim phim = _dbContext.Phim.Find(MaPhim);
-            ViewBag.SuatChieu = _dbContext.SuatChieu.Where(m => m.MaPhim == MaPhim).ToList();
+
+            if (selectedDate.HasValue)
+            {
+                DateTime selectedDateTruncated = selectedDate.Value.Date;
+
+                ViewBag.SuatChieu = _dbContext.SuatChieu.Where(m => m.MaPhim == MaPhim && DbFunctions.TruncateTime(m.NgayChieu) == selectedDateTruncated).ToList();
+            }
+            else
+            {
+                ViewBag.SuatChieu = _dbContext.SuatChieu.Where(m => m.MaPhim == MaPhim && DbFunctions.TruncateTime(m.NgayChieu) == DateTime.Today).ToList();
+            }
+
             return View(phim);
         }
     }

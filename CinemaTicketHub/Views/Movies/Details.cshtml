@@ -6,7 +6,43 @@
 
 <head>
     <title>[Chi tiết phim] Cinema Ticket Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <style>
+        .btn-booking {
+            padding: 10px 25px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;
+            border-radius: 10px;
+            display: block;
+            border: 0px;
+            box-shadow: 0px 0px 14px -7px #f09819;
+            background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%);
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            text-decoration: none;
+        }
+
+            .btn-booking:hover {
+                background-position: right center;
+                /* change the direction of the change here */
+                color: #fff;
+                text-decoration: none;
+            }
+
+            .btn-booking:active {
+                transform: scale(0.95);
+            }
+    </style>
 </head>
+
 <div style="min-height: 86.2vh">
     <section class="py-5 bg-light" id="scroll-target">
         <h2 class="fw-bolder" style="text-align: center">Thông tin chi tiết phim</h2>
@@ -17,31 +53,37 @@
                 </div>
                 <div class="col-lg-6">
                     <h2 class="fw-bolder">@Model.TenPhim</h2>
-                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">@Model.DoiTuong</div>
-                    <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Ngày khởi chiếu: @Model.NgayKhoiChieu.ToShortDateString()</p>
-                    @if (Model.ThoiLuong != null)
-                    {
-                        <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Thời lượng: @Model.ThoiLuong phút</p>
-                    }
-                    else
-                    {
-                        <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Thời lượng: Chưa xác định</p>
-                    }
-                    <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Ngôn ngữ: @Model.NgonNgu</p>
 
-                    <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Các suất chiếu hôm nay:</p>
-                    <ul>
-                        @foreach (var item in ViewBag.SuatChieu)
-                        {
-                            if (item.NgayChieu == DateTime.Today)
+                    <div class="row">
+
+                        <div class="col-8">
+                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">@Model.DoiTuong</div>
+                            <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Ngày khởi chiếu: @Model.NgayKhoiChieu.ToShortDateString()</p>
+                            @if (Model.ThoiLuong != null)
                             {
-                                <li style="display: inline-block; margin: 20px 20px 10px 0"><a href="@Url.Action("SeatSelection", "Booking", new { MaSuatChieu = item.MaSuatChieu })" class="btn btn-outline-danger" style="font-weight: bold">@item.GioBatDau.ToString("hh\\:mm")</a></li>
+                                <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Thời lượng: @Model.ThoiLuong phút</p>
                             }
-                        }
-                    </ul>
-                    <hr />
-                    <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">@Model.MoTa</p>
-                </div>
+                            else
+                            {
+                                <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Thời lượng: Chưa xác định</p>
+                            }
+                            <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">Ngôn ngữ: @Model.NgonNgu</p>
+                        </div>
+                        <div class="col-4" style="display: flex; justify-content: right; align-items: end">
+                            <input type="button" id="datepicker" value="Chọn ngày chiếu" class="form-control" style="width: 160px; margin-left: 10px">
+@*                            <button id="setTodayBtn" class="btn btn-primary" style="margin-left: 10px">Hôm nay</button>*@
+                        </div>
+                        </div>
+                        <hr />
+                        <ul>
+                            @foreach (var item in ViewBag.SuatChieu)
+                            {
+                                <li style="display: inline-block; margin-right: 20px"><a href="@Url.Action("SeatSelection", "Booking", new { MaSuatChieu = item.MaSuatChieu })" class="btn-booking" style="font-weight: bold">@item.GioBatDau.ToString("hh\\:mm")</a></li>
+                            }
+                        </ul>
+                        <hr />
+                        <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">@Model.MoTa</p>
+                    </div>
             </div>
         </div>
         <div class="fw-bolder" style="text-align: center">
@@ -49,3 +91,30 @@
         </div>
     </section>
 </div>
+
+<script>
+$(document).ready(function() {
+    $('#datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true
+    });
+
+    $('#datepicker').on('change', function() {
+        var selectedDate = $(this).val();
+        var maPhim = '@Model.MaPhim';
+
+        // Chuyển hướng trang đến action "Details" với các tham số MaPhim và selectedDate
+        window.location.href = '@Url.Action("Details", "Movies")?MaPhim=' + maPhim + '&selectedDate=' + selectedDate;
+    });
+
+@*        // Bắt sự kiện khi nút "Hôm nay" được nhấp vào
+    $('#setTodayBtn').click(function() {
+        var today = new Date();
+        var formattedDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var maPhim = '@Model.MaPhim';
+
+        // Chuyển hướng trang đến action "Details" với các tham số MaPhim và ngày hôm nay
+        window.location.href = '@Url.Action("Details", "Movies")?MaPhim=' + maPhim + '&selectedDate=' + formattedDate;
+    });*@
+});
+</script>
