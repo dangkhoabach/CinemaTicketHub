@@ -71,19 +71,26 @@
                         </div>
                         <div class="col-4" style="display: flex; justify-content: right; align-items: end">
                             <input type="button" id="datepicker" value="Chọn ngày chiếu" class="form-control" style="width: 160px; margin-left: 10px">
-@*                            <button id="setTodayBtn" class="btn btn-primary" style="margin-left: 10px">Hôm nay</button>*@
+                            @*                            <button id="setTodayBtn" class="btn btn-primary" style="margin-left: 10px">Hôm nay</button>*@
                         </div>
-                        </div>
-                        <hr />
-                        <ul>
-                            @foreach (var item in ViewBag.SuatChieu)
+                    </div>
+                    <hr />
+                    <ul>
+                        @if (ViewBag.SuatChieu != null && ViewBag.SuatChieu.Count > 0)
+                        {
+                            foreach (var item in ViewBag.SuatChieu)
                             {
                                 <li style="display: inline-block; margin-right: 20px"><a href="@Url.Action("SeatSelection", "Booking", new { MaSuatChieu = item.MaSuatChieu })" class="btn-booking" style="font-weight: bold">@item.GioBatDau.ToString("hh\\:mm")</a></li>
                             }
-                        </ul>
-                        <hr />
-                        <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">@Model.MoTa</p>
-                    </div>
+                        }
+                        else
+                        {
+                            <li style="list-style: none; text-align: center; margin-left: -32px"><h5>Chưa có suất chiếu cho phim này</h5></li>
+                        }
+                    </ul>
+                    <hr />
+                    <p class="lead fw-normal text-muted mb-0" style="font-size: large; text-align: justify">@Model.MoTa</p>
+                </div>
             </div>
         </div>
         <div class="fw-bolder" style="text-align: center">
