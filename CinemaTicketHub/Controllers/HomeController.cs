@@ -13,8 +13,8 @@ namespace CinemaTicketHub.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Nowshowing = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).OrderByDescending(o => o.NgayKhoiChieu).Take(3).ToList();
-            ViewBag.Comingsoon = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu > DateTime.Now).OrderByDescending(o => o.NgayKhoiChieu).Take(3).ToList();
+            ViewBag.Nowshowing = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).OrderByDescending(o => o.NgayKhoiChieu).Take(8).ToList();
+            ViewBag.Comingsoon = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu > DateTime.Now).OrderByDescending(o => o.NgayKhoiChieu).Take(8).ToList();
 
             var allnowshowing = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).OrderByDescending(o => o.NgayKhoiChieu).ToList();
             var randomMovies = allnowshowing.OrderBy(x => Guid.NewGuid()).FirstOrDefault();

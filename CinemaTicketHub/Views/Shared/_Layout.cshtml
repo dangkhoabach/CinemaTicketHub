@@ -1,82 +1,129 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="~/Content/assets/favicon.ico" />
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="~/Content/css/mainstyle.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/Content/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/Content/assets/css/templatemo-cyborg-gaming.css">
+    <link rel="stylesheet" href="~/Content/assets/css/owl.css">
+    <link rel="stylesheet" href="~/Content/assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 </head>
+
 <body>
-    <main class="flex-shrink-0">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-5">
-                <a class="navbar-brand" href="/Home/Index">Cinema Ticket Hub</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="/Home/Index">Trang Chủ</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Phim</a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                                <li><a class="dropdown-item" href="/Movies/NowShowing">Phim Đang Chiếu</a></li>
-                                <li><a class="dropdown-item" href="/Movies/ComingSoon">Phim Sắp Chiếu</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="/Home/About">Thông Tin</a></li>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item"><a class="nav-link" href="/Admin">Admin</a></li>
-                        }
-                        else
-                        {
-                            if (User.IsInRole("Master"))
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="/Home/Index" class="logo">
+                            <img src="~/Content/assets/images/logo.png" alt="">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Search Start ***** -->
+                        <!--<div class="search-input">
+                            <form id="search" action="#">
+                                <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                                <i class="fa fa-search"></i>
+                            </form>
+                        </div>-->
+                        <!-- ***** Search End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="/Home/Index" class="active">Trang chủ</a></li>
+                            <li><a href="#">Phim</a></li>
+                            <li><a href="/Home/About">Thông tin</a></li>
+
+                            @if (User.IsInRole("Admin"))
                             {
-                                <li class="nav-item"><a class="nav-link" href="/Admin">Master</a></li>
+                                <li><a href="/Admin">Admin</a></li>
                             }
-                        }
-                        <li class="nav-item dropdown">@Html.Partial("_LoginPartial")</li>
-                    </ul>
+                            else
+                            {
+                                if (User.IsInRole("Master"))
+                                {
+                                    <li><a href="/Admin">Master</a></li>
+                                }
+                            }
+
+
+                        <li>@Html.Partial("_LoginPartial")</li>
+
+
+                            @*<li><a href="#">Cá nhân <img src="~/Content/assets/images/profile-header.jpg" alt=""></a></li>*@
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
                 </div>
             </div>
-        </nav>
-    </main>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
 
-    @RenderBody()
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-content">
 
-    <!-- Footer-->
-    <footer class="bg-dark py-4 mt-auto">
-        <div class="container px-5">
-            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Cinema Ticket Hub 2023</div></div>
-                <div class="col-auto">
-                    <a class="link-light small" href="#">Privacy</a>
-                    <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="#">Terms</a>
-                    <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="/Home/About">About</a>
+                    @RenderBody()
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                        Copyright © 2023 <a href="#">Cinema Ticket Hub</a>
+
+                        <br>Design by <a href="https://www.facebook.com/dangkhoabach.1609" target="_blank" title="free CSS templates">dangkhoabach</a>
+                    </p>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="~/Content/js/scripts.js"></script>
 
-    <!-- Start of LiveChat (www.livechat.com) code -->
-    <script>
-        window.__lc = window.__lc || {};
-        window.__lc.license = 15545556;
-        ; (function (n, t, c) { function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n) } var e = { _q: [], _h: null, _v: "2.0", on: function () { i(["on", c.call(arguments)]) }, once: function () { i(["once", c.call(arguments)]) }, off: function () { i(["off", c.call(arguments)]) }, get: function () { if (!e._h) throw new Error("[LiveChatWidget] You can't use getters before load."); return i(["get", c.call(arguments)]) }, call: function () { i(["call", c.call(arguments)]) }, init: function () { var n = t.createElement("script"); n.async = !0, n.type = "text/javascript", n.src = "https://cdn.livechatinc.com/tracking.js", t.head.appendChild(n) } }; !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e }(window, document, [].slice))
-    </script>
-    <noscript><a href="https://www.livechat.com/chat-with/15545556/" rel="nofollow">Chat với chúng tôi</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
-    <!-- End of LiveChat code -->
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="~/Content/assets/js/isotope.min.js"></script>
+    <script src="~/Content/assets/js/owl-carousel.js"></script>
+    <script src="~/Content/assets/js/tabs.js"></script>
+    <script src="~/Content/assets/js/popup.js"></script>
+    <script src="~/Content/assets/js/custom.js"></script>
+
 </body>
+
 </html>
