@@ -548,7 +548,7 @@
     <Content Include="Views\Movies\ComingSoon.cshtml" />
     <Content Include="Views\Booking\SeatSelection.cshtml" />
     <Content Include="Views\Account\EmailNotificationSent.cshtml" />
-    <Content Include="Views\Manage\PersonalInfo.cshtml" />
+    <Content Include="Views\Manage\UserProfile.cshtml" />
     <Content Include="Views\Manage\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Booking\Cart.cshtml" />
     <Content Include="Views\Booking\VNPayConfirmed.cshtml" />

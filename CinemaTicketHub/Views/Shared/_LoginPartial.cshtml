@@ -11,7 +11,7 @@
         @Html.AntiForgeryToken()
 
 
-        <a href="/Manage/PersonalInfo">@user.Name <img src="@user.Avatar" alt=""></a>
+        <a href="/Manage/UserProfile">@user.Name <img src="@user.Avatar" alt=""></a>
 
 
         @*        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">@user.Name</a>
@@ -24,14 +24,7 @@
 }
 else
 {
-
     <a href="@Url.Action("Login", "Account")" id="loginLink">Đăng Nhập/Đăng Ký <img src="~/Content/assets/images/profile-header.jpg" alt=""></a>
-@*
-    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản</a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-        <li><a class="dropdown-item" href="@Url.Action("Login", "Account")" id="loginLink"><i class="fa-solid fa-right-to-bracket" style="color: #000000"></i> Đăng nhập</a></li>
-        <li><a class="dropdown-item" href="@Url.Action("Register", "Account")" id="registerLink"><i class="fa-solid fa-user-plus" style="color: #000000"></i> Đăng ký</a></li>
-    </ul>*@
 }
 
 <script src="https://kit.fontawesome.com/818e023cf2.js" crossorigin="anonymous"></script>

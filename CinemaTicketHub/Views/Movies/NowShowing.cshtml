@@ -50,7 +50,15 @@
                                 <a href="@Url.Action("Details", "Movies", new { MaPhim = item.MaPhim })"><img src="@item.HinhAnh" alt=""></a>
                                 <h4 style="text-align: justify; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;">@item.TenPhim<br><span>@item.MoTa</span></h4>
                                 <ul>
-                                    <li><i class="fa fa-star"></i> C13</li>
+                                    @if (item.DoiTuong == null)
+                                    {
+                                        <li><i class="fa fa-eye"></i> Chưa xác định</li>
+                                    }
+                                    else
+                                    {
+                                        <li><i class="fa fa-eye"></i> @item.DoiTuong</li>
+                                    }
+
                                     <li><i class="fa fa-download"></i> @item.NgayKhoiChieu.ToShortDateString()</li>
                                 </ul>
                             </div>

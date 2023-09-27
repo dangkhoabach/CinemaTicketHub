@@ -1,0 +1,117 @@
+﻿@using Microsoft.AspNet.Identity;
+@using CinemaTicketHub.Models
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@{
+    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var user = userManager.FindById(User.Identity.GetUserId());
+    var roles = userManager.GetRoles(user.Id);
+    var userrole = roles.FirstOrDefault();
+}
+
+
+@{
+    ViewBag.Title = "Phim đang chiếu";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>[Cá Nhân] Cinema Ticket Hub</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/Content/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/Content/assets/css/templatemo-cyborg-gaming.css">
+    <link rel="stylesheet" href="~/Content/assets/css/owl.css">
+    <link rel="stylesheet" href="~/Content/assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+</head>
+
+<body>
+
+    <!-- ***** Banner Start ***** -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-profile ">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <img src="@user.Avatar" alt="" style="border-radius: 23px;">
+                    </div>
+                    <div class="col-lg-4 align-self-center">
+                        <div class="main-info header-text">
+                            <span>VIP</span>
+                            <h4>@user.Name</h4>
+                            <p>You Haven't Gone Live yet. Go Live By Touching The Button Below.</p>
+                            <div class="main-border-button">
+                                <a href="/Manage/ChangePassword">Đổi Mật Khẩu</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 align-self-center">
+                        <ul>
+                            <li>Email <span>@user.Email</span></li>
+                            <li>Số điện thoại <span>@user.PhoneNumber</span></li>
+                            <li>Ngày sinh <span>@user.Birthday.ToShortDateString()</span></li>
+                            <li>Role <span>@userrole</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Banner End ***** -->
+    <!-- ***** My Ticket Start ***** -->
+    <div class="gaming-library">
+        <div class="col-lg-12">
+            <div class="heading-section">
+                <h4><em>Vé</em> của bạn</h4>
+            </div>
+            @foreach (var item in ViewBag.hoadon)
+            {
+                <div class="item">
+                    <ul>
+                        <li><img src="~/Content/assets/images/game-01.jpg" alt="" class="templatemo-item"></li>
+                        <li><h4>@item.tenphim</h4>@*<span>Sandbox</span>*@</li>
+                        <li><h4>@item.ngaychieu.ToShortDateString()</h4><span>@item.giobatdau.ToString("hh\\:mm")</span></li>
+
+                        @{
+                            var itemsGheNgoi = "";
+                            int demghe;
+                            foreach (var item2 in item.ghe)
+                            {
+                                itemsGheNgoi += item2.day + item2.cot;
+                            }
+                            demghe = (itemsGheNgoi.Count()) / 2;
+
+                        }
+                        <li><h4>@demghe ghế</h4>@*<span>634 H 22 Mins</span>*@</li>
+
+                        <li><h4>Thanh toán Momo</h4><span>@string.Format("{0:#,0}", @item.tongtien)</span></li>
+                        <li><div class="main-border-button border-no-active"><a href="#">Chi tiết</a></div></li>
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- ***** My Ticket End ***** -->
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="~/Content/assets/js/isotope.min.js"></script>
+    <script src="~/Content/assets/js/owl-carousel.js"></script>
+    <script src="~/Content/assets/js/tabs.js"></script>
+    <script src="~/Content/assets/js/popup.js"></script>
+    <script src="~/Content/assets/js/custom.js"></script>
+</body>
+</html>
