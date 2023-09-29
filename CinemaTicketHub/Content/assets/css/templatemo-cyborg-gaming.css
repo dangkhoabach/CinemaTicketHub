@@ -1737,7 +1737,8 @@ body {
 .textboxnew {
     /*background-color: #27292a;*/
     background-color: #1f2122;
-    height: 46px;
+    height: 50px;
+    width: 400px;
     border-radius: 23px;
     border: none;
     color: white;

@@ -67,81 +67,77 @@
     <div class="game-details">
         <div class="row">
             <div class="col-lg-12">
-                <h2 style="margin: 0 0 20px 0">@Model.TenPhim</h2>
+                <h3 style="margin: 0 0 20px 0; text-align: center">@Model.TenPhim</h3>
             </div>
-
             <!-- ***** Banner Start ***** -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="main-profile ">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <iframe width="710" height="400" style="border-radius: 23px" src="@Model.Trailer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            </div>
-                            <div class="col-lg-4 align-self-center">
-                                <ul>
-                                    @if (Model.NgayKhoiChieu != null)
-                                    {
-                                        <li>Ngày khởi chiếu <span>@Model.NgayKhoiChieu.ToShortDateString()</span></li>
-                                    }
-                                    else
-                                    {
-                                        <li>Ngày khởi chiếu <span>Chưa xác định</span></li>
-                                    }
+            <div class="col-lg-12">
+                <div class="main-profile ">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <iframe width="730" height="410" style="border-radius: 23px" src="@Model.Trailer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-lg-4 align-self-center">
+                            <ul>
+                                @if (Model.NgayKhoiChieu != null)
+                                {
+                                    <li>Ngày khởi chiếu <span>@Model.NgayKhoiChieu.ToShortDateString()</span></li>
+                                }
+                                else
+                                {
+                                    <li>Ngày khởi chiếu <span>Chưa xác định</span></li>
+                                }
 
-                                    @if (Model.ThoiLuong != null)
-                                    {
-                                        <li>Thời lượng <span>@Model.ThoiLuong phút</span></li>
-                                    }
-                                    else
-                                    {
-                                        <li>Thời lượng <span>Chưa xác định</span></li>
-                                    }
+                                @if (Model.ThoiLuong != null)
+                                {
+                                    <li>Thời lượng <span>@Model.ThoiLuong phút</span></li>
+                                }
+                                else
+                                {
+                                    <li>Thời lượng <span>Chưa xác định</span></li>
+                                }
 
-                                    @if (Model.NgonNgu != null)
-                                    {
-                                        <li>Ngôn ngữ <span>@Model.NgonNgu</span></li>
-                                    }
-                                    else
-                                    {
-                                        <li>Ngôn ngữ <span>Chưa xác định</span></li>
-                                    }
+                                @if (Model.NgonNgu != null)
+                                {
+                                    <li>Ngôn ngữ <span>@Model.NgonNgu</span></li>
+                                }
+                                else
+                                {
+                                    <li>Ngôn ngữ <span>Chưa xác định</span></li>
+                                }
 
-                                    @if (Model.DoiTuong != null)
+                                @if (Model.DoiTuong != null)
+                                {
+                                    <li>Đối tượng <span>@Model.DoiTuong</span></li>
+                                }
+                                else
+                                {
+                                    <li>Đối tượng <span>Chưa xác định</span></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-lg-12" style="margin: 15px 0 30px">
+                            <p>@Model.MoTa</p>
+                        </div>
+                        <div class="col-lg-10">
+                            <ul style="padding: 20px 30px; height: 82px">
+                                @if (ViewBag.SuatChieu != null && ViewBag.SuatChieu.Count > 0)
+                                {
+                                    foreach (var item in ViewBag.SuatChieu)
                                     {
-                                        <li>Đối tượng <span>@Model.DoiTuong</span></li>
+                                        <li style="height: 41px; max-width: 85px; border: none; padding: 0; display: inline-block; margin-right: 15px">
+                                            <a class="btn-booking" style="font-weight: bold" href="@Url.Action("SeatSelection", "Booking", new { MaSuatChieu = item.MaSuatChieu })">@item.GioBatDau.ToString("hh\\:mm")</a>
+                                        </li>
                                     }
-                                    else
-                                    {
-                                        <li>Đối tượng <span>Chưa xác định</span></li>
-                                    }
-                                </ul>
-                            </div>
-                            <div class="col-lg-12" style="margin: 15px 0 30px">
-                                <p>@Model.MoTa</p>
-                            </div>
-                            <div class="col-lg-10">
-                                <ul style="padding: 20px 30px; height: 82px">
-                                    @if (ViewBag.SuatChieu != null && ViewBag.SuatChieu.Count > 0)
-                                    {
-                                        foreach (var item in ViewBag.SuatChieu)
-                                        {
-                                            <li style="height: 41px; max-width: 85px; border: none; padding: 0; display: inline-block; margin-right: 15px">
-                                                <a class="btn-booking" style="font-weight: bold" href="@Url.Action("SeatSelection", "Booking", new { MaSuatChieu = item.MaSuatChieu })">@item.GioBatDau.ToString("hh\\:mm")</a>
-                                            </li>
-                                        }
-                                    }
-                                    else
-                                    {
-                                        <li style="list-style: none; text-align: center; margin-left: -32px"><p>Hôm nay chưa có suất chiếu dành cho phim này</p></li>
-                                    }
-                                </ul>
-                            </div>
-                            <div class="col-lg-2 align-self-center">
-                                <input type="button" id="datepicker" value="Chọn ngày chiếu" class="btn btn-outline-light">
-                                @*<button id="setTodayBtn" class="btn btn-primary" style="text-align: right">Hôm nay</button>*@
-                            </div>
-
+                                }
+                                else
+                                {
+                                    <li style="list-style: none; text-align: center; margin-left: -32px"><p>Hôm nay chưa có suất chiếu dành cho phim này</p></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-lg-2 align-self-center">
+                            <input type="button" id="datepicker" value="Chọn ngày chiếu" class="btn btn-outline-light">
+                            @*<button id="setTodayBtn" class="btn btn-primary" style="text-align: right">Hôm nay</button>*@
                         </div>
                     </div>
                 </div>
