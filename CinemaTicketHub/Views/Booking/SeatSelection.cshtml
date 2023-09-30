@@ -42,8 +42,8 @@
 
 <body>
     <div class="header">
-        <h1 style="color: #dc3545">@ViewBag.moviesdetail.Phim.TenPhim</h1>
-        <p><b style="color: gold; font-size: 18px">[Suất chiếu: @ViewBag.moviesdetail.MaSuatChieu]</b> <b style="font-size: 17px">Ngày chiếu: @ViewBag.moviesdetail.NgayChieu.ToShortDateString() - Giờ chiếu: @ViewBag.moviesdetail.GioBatDau.ToString("hh\\:mm") - @ViewBag.moviesdetail.PhongChieu.TenPhong</b></p>
+        <h1 style="color: #ffff00">@ViewBag.moviesdetail.Phim.TenPhim</h1>
+        <p><b style="color: #ec6090; font-size: 18px">[Suất chiếu: @ViewBag.moviesdetail.MaSuatChieu]</b> <b style="font-size: 17px">Ngày chiếu: @ViewBag.moviesdetail.NgayChieu.ToShortDateString() - Giờ chiếu: @ViewBag.moviesdetail.GioBatDau.ToString("hh\\:mm") - @ViewBag.moviesdetail.PhongChieu.TenPhong</b></p>
     </div>
     <div class="screen" style="width: 800px; margin-bottom: 70px"><h1 style="color: black; font-size: 30px; text-align: center">SCREEN</h1></div>
     <div class="seat-container" style="align-items: center; justify-content: center; width: 95vh">
@@ -57,7 +57,7 @@
                     if (Model.listcheck[i].Status == true)
                     {
                         <label class="checkbox-label">
-                            @Html.CheckBoxFor(c => c.listcheck[i].Selected, new { @class = "checkboxseat", data_label = Model.listcheck[i].Name, disabled = "disabled", style = "background-color: #dc3545" })
+                            @Html.CheckBoxFor(c => c.listcheck[i].Selected, new { @class = "checkboxseat", data_label = Model.listcheck[i].Name, disabled = "disabled", style = "background-color: #ec6090" })
                             @Html.HiddenFor(c => c.listcheck[i].Name)
                             @Html.HiddenFor(c => c.listcheck[i].SeatId)
                             @Html.HiddenFor(c => c.listcheck[i].Status)
@@ -94,7 +94,7 @@
     <div class="left-column" style="margin-left: 10px">
         <div class="row">
             <label class="checkbox-label">
-                <input type="checkbox" style="appearance: none; -webkit-appearance: none; width: 50px; height: 50px; border-top-left-radius: 20px; border-top-right-radius: 20px; outline: none; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background-color: #444451" disabled>
+                <input type="checkbox" style="appearance: none; -webkit-appearance: none; width: 50px; height: 50px; border-top-left-radius: 20px; border-top-right-radius: 20px; outline: none; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background-color: #666666" disabled>
             </label>
             <span style="margin: 18px 50px 0 0">Ghế trống</span>
 
@@ -104,7 +104,7 @@
             <span style="margin: 18px 50px 0 0">Ghế đang chọn</span>
 
             <label class="checkbox-label">
-                <input type="checkbox" style=" appearance: none; -webkit-appearance: none; width: 50px; height: 50px; border-top-left-radius: 20px; border-top-right-radius: 20px; outline: none; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background-color: #dc3545" disabled>
+                <input type="checkbox" style=" appearance: none; -webkit-appearance: none; width: 50px; height: 50px; border-top-left-radius: 20px; border-top-right-radius: 20px; outline: none; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background-color: #ec6090" disabled>
             </label>
             <span style="margin: 18px 50px 0 0">Ghế đã chọn</span>
         </div>

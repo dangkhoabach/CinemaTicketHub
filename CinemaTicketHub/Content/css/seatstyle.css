@@ -1,7 +1,7 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 body {
-    background-color: #242333;
+    background-color: #1f2122;
     display: flex;
     flex-direction: column;
     color: white;
@@ -59,12 +59,12 @@ body {
 
 /* Red */
 .danger {
-    border-color: #dc3545;
-    color: #dc3545
+    border-color: #ec6090;
+    color: #ec6090
 }
 
     .danger:hover {
-        background: #dc3545;
+        background: #ec6090;
         color: white;
     }
 
@@ -72,7 +72,7 @@ body {
 .checkbox-label {
     display: inline-flex;
     align-items: center;
-    margin-right: 20px;
+    margin: 0 11px;
 }
 
 .checkboxseat {
@@ -87,7 +87,7 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    background-color: #444451;
+    background-color: #666666;
 }
 
     .checkboxseat:hover {
