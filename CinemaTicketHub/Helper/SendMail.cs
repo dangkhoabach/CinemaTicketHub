@@ -13,18 +13,22 @@ namespace CinemaTicketHub.Helper
         {
             try
             {
-                MailMessage msg = new MailMessage(ConstantHelper.emailSender, to, subject, body);
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress(ConstantHelper.emailSender);
+                msg.To.Add(to);
+                msg.Subject = subject;
+                msg.Body = body;
+                msg.IsBodyHtml = true; // Đặt email body dưới dạng HTML
+
                 using (var client = new SmtpClient(ConstantHelper.hostEmail, ConstantHelper.portEmail))
                 {
                     client.EnableSsl = true;
 
-
-                    if(!string.IsNullOrEmpty(attachFile))
+                    if (!string.IsNullOrEmpty(attachFile))
                     {
                         Attachment attachment = new Attachment(attachFile);
                         msg.Attachments.Add(attachment);
                     }
-
 
                     NetworkCredential credential = new NetworkCredential(ConstantHelper.emailSender, ConstantHelper.passwordSender);
                     client.UseDefaultCredentials = false;
@@ -38,5 +42,6 @@ namespace CinemaTicketHub.Helper
             }
             return true;
         }
+
     }
 }

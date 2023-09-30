@@ -211,7 +211,10 @@ namespace CinemaTicketHub.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     /*await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");*/
 
-                    SendMail.SendEmail(user.Email, "Xác thực tài khoản Cinema Ticket HUB", "Vui lòng ấn vào đường dẫn sau để xác thực tài khoản " + callbackUrl + "", "");
+                    // Gửi email với button "Xác thực tài khoản"
+                    string emailContent = $"<br/><br/>" + $"<a href=\"{callbackUrl}\" style=\"padding: 15px 25px; font-weight: bold; font-size: 16px; text-align: center; text-transform: uppercase; transition: 0.5s; background-size: 200% auto; color: white; border-radius: 10px; display: inline-block; border: 0px; box-shadow: 0px 0px 14px -7px #f09819; background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%); cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; text-decoration: none;\">Đặt lại mật khẩu</a>";
+
+                    SendMail.SendEmail(user.Email, "Xác thực tài khoản Cinema Ticket HUB", "Vui lòng ấn vào nút bên dưới để xác thực tài khoản!" + emailContent + "", "");
 
                     return View("EmailNotificationSent");
                 }
@@ -265,7 +268,10 @@ namespace CinemaTicketHub.Controllers
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                 // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                SendMail.SendEmail(user.Email, "Đặt lại mật khẩu Cinema Ticket HUB", "Vui lòng ấn vào đường dẫn sau để đặt lại mật khẩu mới " + callbackUrl + "", "");
+                // Gửi email với button "Đặt lại mật khẩu"
+                string emailContent = $"<br/><br/>" + $"<a href=\"{callbackUrl}\" style=\"padding: 15px 25px; font-weight: bold; font-size: 16px; text-align: center; text-transform: uppercase; transition: 0.5s; background-size: 200% auto; color: white; border-radius: 10px; display: inline-block; border: 0px; box-shadow: 0px 0px 14px -7px #f09819; background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%); cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; text-decoration: none;\">Đặt lại mật khẩu</a>";
+
+                SendMail.SendEmail(user.Email, "Đặt lại mật khẩu Cinema Ticket HUB", "Vui lòng ấn vào nút bên dưới để đặt lại mật khẩu mới!" + emailContent + "", "");
 
                 return View("ForgotPasswordConfirmation");
             }

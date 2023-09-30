@@ -328,6 +328,7 @@
     <Content Include="Content\images\authenticate\blankavatar.jpg" />
     <Content Include="Content\images\authenticate\cinemabgpopcorn.jpg" />
     <Content Include="Content\images\authenticate\film2.jpg" />
+    <Content Include="Content\images\authenticate\popcorn2.jpg" />
     <Content Include="Content\images\foodndrink\Aquafina.png" />
     <Content Include="Content\images\foodndrink\BapCaramel.png" />
     <Content Include="Content\images\foodndrink\BapChocolate.png" />

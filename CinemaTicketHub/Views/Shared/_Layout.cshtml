@@ -55,7 +55,8 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="/Home/Index" class="active">Trang chủ</a></li>
-                            <li><a href="/Movies/NowShowing">Phim</a></li>
+                            <li><a href="/Movies/NowShowing">Phim Đang Chiếu</a></li>
+                            <li><a href="/Movies/ComingSoon">Phim Sắp Chiếu</a></li>
                             <li><a href="/Home/About">Thông tin</a></li>
 
                             @if (User.IsInRole("Admin"))
@@ -71,7 +72,7 @@
                             }
 
 
-                        <li>@Html.Partial("_LoginPartial")</li>
+                            <li>@Html.Partial("_LoginPartial")</li>
 
 
                             @*<li><a href="#">Cá nhân <img src="~/Content/assets/images/profile-header.jpg" alt=""></a></li>*@
@@ -104,7 +105,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <p>
-                        Copyright © 2023 <a href="#">Cinema Ticket Hub</a>
+                        Copyright © 2023 <a href="/Home/About">Cinema Ticket Hub</a>
 
                         <br>Design by <a href="https://www.facebook.com/dangkhoabach.1609" target="_blank" title="free CSS templates">dangkhoabach</a>
                     </p>
