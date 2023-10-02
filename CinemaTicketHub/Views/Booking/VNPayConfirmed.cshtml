@@ -19,7 +19,7 @@
                     var status = '@ViewBag.VNPayStatus';
                     var swalType = status === 'error' ? 'error' : 'success';
                     var swalTitle = status === 'error' ? 'Thanh toán VNPay thất bại!' : 'Thanh toán VNPay thành công!';
-                    var swalReturn = status === 'error' ? '/Movies/NowShowing' : '/Manage/MyTicket';
+                    var swalReturn = status === 'error' ? '/Movies/NowShowing' : '/Manage/UserProfile';
                     swal({
                         title: swalTitle,
                         text: '@Html.Raw(ViewBag.Message)',

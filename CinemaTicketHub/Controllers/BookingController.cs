@@ -206,6 +206,7 @@ namespace CinemaTicketHub.Controllers
                         double Total = double.Parse(pay.GetResponseData("vnp_Amount"));
                         hoaDon.TongTien = Total / 100;
                         hoaDon.Id = User.Identity.GetUserId();
+                        hoaDon.Payment = "Thanh toán VNPay";
                         _dbContext.HoaDon.Add(hoaDon);
                         _dbContext.SaveChanges();
 
@@ -355,6 +356,7 @@ namespace CinemaTicketHub.Controllers
 
                 hoaDon.TongTien = total;
                 hoaDon.Id = User.Identity.GetUserId();
+                hoaDon.Payment = "Thanh toán Momo";
                 _dbContext.HoaDon.Add(hoaDon);
                 _dbContext.SaveChanges();
 

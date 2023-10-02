@@ -400,6 +400,7 @@ namespace CinemaTicketHub.Controllers
                 TicketViewModel ticket = new TicketViewModel();
                 ticket.Id = item.MaHoaDon;
                 ticket.tongtien = item.TongTien;
+                ticket.payment = item.Payment;
 
                 var ve = _dbContext.Ve.Where(x => x.MaHoaDon == item.MaHoaDon).ToList();
                 foreach (var ve2 in ve)
@@ -408,6 +409,7 @@ namespace CinemaTicketHub.Controllers
                     ticket.giobatdau = suatchieu.GioBatDau;
                     ticket.ngaychieu = suatchieu.NgayChieu;
                     ticket.tenphim = suatchieu.Phim.TenPhim;
+                    ticket.phongchieu = suatchieu.PhongChieu.TenPhong;
                     var ghes = _dbContext.Ghe.Where(x => x.MaSuatChieu == ve2.MaSuatChieu && x.MaGhe == ve2.MaGhe).FirstOrDefault();
                     GheViewModel ghe = new GheViewModel();
                     ghe.maghe = ghes.MaGhe;
@@ -417,52 +419,6 @@ namespace CinemaTicketHub.Controllers
                 }
                 var ct = _dbContext.CT_HoaDon.Where(x => x.MaHoaDon == item.MaHoaDon).ToList();
                 foreach (var ct2 in ct)
-                {
-                    BapNuocViewModel bapNuoc = new BapNuocViewModel();
-                    bapNuoc.tenmon = ct2.BapNuoc.TenMon;
-                    bapNuoc.soluongmon = ct2.SoLuong;
-                    lstbapnuoc.Add(bapNuoc);
-                }
-                ticket.bapNuoc = lstbapnuoc;
-                ticket.ghe = lstghe;
-                list.Add(ticket);
-            }
-
-            list.Sort((x, y) => x.Id.CompareTo(y.Id));
-            list.Reverse();
-            ViewBag.hoadon = list;
-            return View();
-        }
-
-        public ActionResult MyTicket()
-        {
-            var userId = User.Identity.GetUserId();
-            var hoadon = _dbContext.HoaDon.Where(x => x.Id == userId).ToList();
-            List<TicketViewModel> list = new List<TicketViewModel>();
-            foreach (var item in hoadon)
-            {
-                List<GheViewModel> lstghe = new List<GheViewModel>();
-                List<BapNuocViewModel> lstbapnuoc = new List<BapNuocViewModel>();
-                TicketViewModel ticket = new TicketViewModel();
-                ticket.Id = item.MaHoaDon;
-                ticket.tongtien = item.TongTien;
-
-                var ve = _dbContext.Ve.Where(x => x.MaHoaDon == item.MaHoaDon).ToList();
-                foreach (var ve2 in ve)
-                {
-                    var suatchieu = _dbContext.SuatChieu.Where(x => x.MaSuatChieu == ve2.MaSuatChieu).FirstOrDefault();
-                    ticket.giobatdau = suatchieu.GioBatDau;
-                    ticket.ngaychieu = suatchieu.NgayChieu;
-                    ticket.tenphim = suatchieu.Phim.TenPhim;
-                    var ghes = _dbContext.Ghe.Where(x => x.MaSuatChieu == ve2.MaSuatChieu && x.MaGhe == ve2.MaGhe).FirstOrDefault();
-                    GheViewModel ghe = new GheViewModel();
-                    ghe.maghe = ghes.MaGhe;
-                    ghe.day = ghes.Day;
-                    ghe.cot = ghes.Cot;
-                    lstghe.Add(ghe);
-                }
-                var ct = _dbContext.CT_HoaDon.Where(x => x.MaHoaDon == item.MaHoaDon).ToList();
-                foreach(var ct2 in ct)
                 {
                     BapNuocViewModel bapNuoc = new BapNuocViewModel();
                     bapNuoc.tenmon = ct2.BapNuoc.TenMon;

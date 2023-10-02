@@ -907,12 +907,24 @@ Gaming Library Style
 
 .gaming-library .item ul li {
   display: inline-block;
-  width: 17%;
+  width: 15%;
+  text-align: center;
 }
 
-.gaming-library .item ul li:first-child {
-  width: 110px;
+/*.gaming-library .item ul li:first-child {
+width: 110px;
 }
+
+.gaming-library .item ul li:nth-child(2) {
+  width: 20%;
+  text-align: justify;
+}*/
+
+.gaming-library .item ul li:first-child {
+  width: 20%;
+  text-align: justify;
+}
+
 
 .gaming-library .item ul li:last-child {
   width: 15%;

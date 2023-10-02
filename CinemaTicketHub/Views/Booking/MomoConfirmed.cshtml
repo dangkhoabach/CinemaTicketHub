@@ -19,7 +19,7 @@
                     var status = '@ViewBag.MomoStatus';
                     var swalType = status === '0' ? 'success' : 'error';
                     var swalTitle = status === '0' ? 'Thanh toán Momo thành công!' : 'Thanh toán Momo thất bại!';
-                    var swalReturn = status === '0' ? '/Manage/MyTicket' : '/Movies/NowShowing';
+                    var swalReturn = status === '0' ? '/Manage/UserProfile' : '/Movies/NowShowing';
                     swal({
                         title: swalTitle,
                         text: '@Html.Raw(ViewBag.Message)',

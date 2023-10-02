@@ -49,7 +49,7 @@
                         <div class="main-info header-text">
                             <span>VIP</span>
                             <h4>@user.Name</h4>
-                            <p>You Haven't Gone Live yet. Go Live By Touching The Button Below.</p>
+                            <p>Giới thiệu bản thân!</p>
                             <div class="main-border-button">
                                 <a href="#" style="margin-right: 20px">Sửa thông tin</a>
                                 <a href="/Manage/ChangePassword">Đổi Mật Khẩu</a>
@@ -73,32 +73,72 @@
     <div class="gaming-library">
         <div class="col-lg-12">
             <div class="heading-section">
-                <h4><em>Vé</em> của bạn</h4>
+                <h4 style="margin-bottom: 0"><em>Vé</em> của bạn</h4>
+                <p style="margin-bottom: 30px">Bạn chỉ có thể xem các vé đã mua trong tháng hiện tại.</p>
             </div>
             @foreach (var item in ViewBag.hoadon)
             {
-                <div class="item">
-                    <ul>
-                        <li><img src="~/Content/assets/images/game-01.jpg" alt="" class="templatemo-item"></li>
-                        <li><h4>@item.tenphim</h4>@*<span>Sandbox</span>*@</li>
-                        <li><h4>@item.ngaychieu.ToShortDateString()</h4><span>@item.giobatdau.ToString("hh\\:mm")</span></li>
+                if (item.ngaychieu.Month == DateTime.Now.Month)
+                {
+                    <div class="item">
+                        <ul>
+@**@                        @*<li><img src="~/Content/assets/images/game-01.jpg" alt="" class="templatemo-item"></li>*@
+                            <li><h4>@item.tenphim</h4><span>@item.ngaychieu.ToShortDateString() - @item.giobatdau.ToString("hh\\:mm")</span></li>
+                            <li><h4>Phòng chiếu</h4><span>@item.phongchieu</span></li>
 
-                        @{
-                            var itemsGheNgoi = "";
-                            int demghe;
-                            foreach (var item2 in item.ghe)
-                            {
-                                itemsGheNgoi += item2.day + item2.cot;
+                            @{
+                                var itemsGheNgoi = "";
+                                int demghe;
+                                foreach (var item2 in item.ghe)
+                                {
+                                    itemsGheNgoi += item2.day + item2.cot;
+                                }
+                                demghe = (itemsGheNgoi.Count()) / 2;
+
+                                // Đặt dấu "," giữa các items ghế
+                                var itemsGheNgoi2 = "";
+                                foreach (var item2 in item.ghe)
+                                {
+                                    itemsGheNgoi2 += item2.day + item2.cot + ", ";
+                                }
+                                // Xóa dấu ',' ở cuối chuỗi
+                                if (itemsGheNgoi2.Length > 0)
+                                {
+                                    itemsGheNgoi2 = itemsGheNgoi2.Substring(0, itemsGheNgoi2.Length - 2);
+                                }
                             }
-                            demghe = (itemsGheNgoi.Count()) / 2;
+                            <li><h4>@demghe ghế</h4><span>@itemsGheNgoi2</span></li>
 
-                        }
-                        <li><h4>@demghe ghế</h4>@*<span>634 H 22 Mins</span>*@</li>
+                            @{
+                                // Đặt dấu "," giữa các items bắp nước
+                                var itemsBapNuoc = "";
+                                foreach (var item2 in item.bapNuoc)
+                                {
+                                    itemsBapNuoc += @item2.tenmon + " (" + @item2.soluongmon + ")" + ", ";
+                                }
+                                // Xóa dấu ',' ở cuối chuỗi
+                                if (itemsBapNuoc.Length > 0)
+                                {
+                                    itemsBapNuoc = itemsBapNuoc.Substring(0, itemsBapNuoc.Length - 2);
+                                }
+                            }
 
-                        <li><h4>Thanh toán Momo</h4><span>@string.Format("{0:#,0}", @item.tongtien)</span></li>
-                        <li><div class="main-border-button border-no-active"><a href="#">Chi tiết</a></div></li>
-                    </ul>
-                </div>
+
+                            @*Kiểm tra khách hàng có mua bắp nước không*@
+                            @if (itemsBapNuoc == "" || itemsBapNuoc == null)
+                            {
+                                <li><h4>Bắp nước</h4><span>Không có</span></li>
+                            }
+                            else
+                            {
+                                <li><h4>Bắp nước</h4><span>@itemsBapNuoc</span></li>
+                            }
+
+                            <li><h4>@item.payment</h4><span>@string.Format("{0:#,0}", @item.tongtien)</span></li>
+                            <li><div class="main-border-button border-no-active"><a href="#">QR Code</a></div></li>
+                        </ul>
+                    </div>
+                }
             }
         </div>
     </div>
