@@ -14,8 +14,10 @@ namespace CinemaTicketHub.Models
 
         public virtual DbSet<BapNuoc> BapNuoc { get; set; }
         public virtual DbSet<CT_HoaDon> CT_HoaDon { get; set; }
+        public virtual DbSet<CT_KhuyenMai> CT_KhuyenMai { get; set; }
         public virtual DbSet<Ghe> Ghe { get; set; }
         public virtual DbSet<HoaDon> HoaDon { get; set; }
+        public virtual DbSet<KhuyenMai> KhuyenMai { get; set; }
         public virtual DbSet<LoaiPhim> LoaiPhim { get; set; }
         public virtual DbSet<Phim> Phim { get; set; }
         public virtual DbSet<PhongChieu> PhongChieu { get; set; }
@@ -38,6 +40,11 @@ namespace CinemaTicketHub.Models
             modelBuilder.Entity<HoaDon>()
                 .HasMany(e => e.Ve)
                 .WithRequired(e => e.HoaDon)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<KhuyenMai>()
+                .HasMany(e => e.CT_KhuyenMai)
+                .WithRequired(e => e.KhuyenMai)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<LoaiPhim>()

@@ -1,0 +1,50 @@
+﻿@model CinemaTicketHub.Models.KhuyenMai
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <title>[Khuyến Mãi] Cinema Ticket Hub</title>
+</head>
+
+<h2>Khuyến Mãi</h2>
+<hr />
+<div class="row">
+    <div class="col-7">
+        @using (Html.BeginForm("PromotionGenerate", "PromotionsManage", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Tên khuyến mãi</label>
+                @Html.EditorFor(model => model.TenKM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenKM, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">ID khuyến mãi (3-5 ký tự)</label>
+                @Html.EditorFor(model => model.IdKM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IdKM, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Phần trăm giảm</label>
+                @Html.EditorFor(model => model.PhanTram, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhanTram, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Số lượng mã</label>
+                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Thời hạn khuyến mãi</label>
+                @Html.EditorFor(model => model.ThoiHan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ThoiHan, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                <input type="submit" value="Thêm khuyến mãi" class="btn btn-outline-danger" />
+            </div>
+        }
+    </div>
+</div>
