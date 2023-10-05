@@ -19,15 +19,6 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
             return View();
         }
 
-        // Hàm tạo chuỗi ngẫu nhiên
-        private string Generatepromotionscode(int length)
-        {
-            /*const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";*/
-            const string chars = "0123456789";
-            Random random = new Random();
-            return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
 
         public ActionResult Generate()
         {
@@ -42,15 +33,16 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 _dbContext.KhuyenMai.Add(khuyenmai);
                 _dbContext.SaveChanges();
 
+                Random random = new Random();
                 for (int i = 1; i <= khuyenmai.SoLuong; i++)
                 {
                     CT_KhuyenMai ctKhuyenMai = new CT_KhuyenMai();
                     ctKhuyenMai.IdKM = khuyenmai.IdKM;
                     ctKhuyenMai.TrangThai = true;
 
-                    // Tạo chuỗi ngẫu nhiên với độ dài 10 ký tự
-                    string promotionscode = Generatepromotionscode(10);
-                    ctKhuyenMai.MaKM = promotionscode;
+                    // Tạo chuỗi ngẫu nhiên gồm 10 số
+                    string randomString = random.Next(1000000000, 2000000000).ToString();
+                    ctKhuyenMai.MaKM = randomString;
 
                     _dbContext.CT_KhuyenMai.Add(ctKhuyenMai);
                     _dbContext.SaveChanges();
