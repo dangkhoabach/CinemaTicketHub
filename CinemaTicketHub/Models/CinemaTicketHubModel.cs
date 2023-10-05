@@ -37,11 +37,6 @@ namespace CinemaTicketHub.Models
                 .WithRequired(e => e.HoaDon)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<HoaDon>()
-                .HasMany(e => e.Ve)
-                .WithRequired(e => e.HoaDon)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<KhuyenMai>()
                 .HasMany(e => e.CT_KhuyenMai)
                 .WithRequired(e => e.KhuyenMai)
@@ -69,11 +64,6 @@ namespace CinemaTicketHub.Models
             modelBuilder.Entity<SuatChieu>()
                 .Property(e => e.GioKetThuc)
                 .HasPrecision(0);
-
-            modelBuilder.Entity<SuatChieu>()
-                .HasMany(e => e.Ve)
-                .WithRequired(e => e.SuatChieu)
-                .WillCascadeOnDelete(false);
         }
     }
 }

@@ -17,7 +17,8 @@ namespace CinemaTicketHub.Models
         }
 
         [Key]
-        public int MaHoaDon { get; set; }
+        [StringLength(255)]
+        public string MaHoaDon { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? NgayLap { get; set; }

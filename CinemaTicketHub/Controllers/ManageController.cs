@@ -398,7 +398,7 @@ namespace CinemaTicketHub.Controllers
                 List<GheViewModel> lstghe = new List<GheViewModel>();
                 List<BapNuocViewModel> lstbapnuoc = new List<BapNuocViewModel>();
                 TicketViewModel ticket = new TicketViewModel();
-                ticket.Id = item.MaHoaDon;
+                ticket.mahoadon = item.MaHoaDon;
                 ticket.tongtien = item.TongTien;
                 ticket.payment = item.Payment;
 
@@ -430,7 +430,7 @@ namespace CinemaTicketHub.Controllers
                 list.Add(ticket);
             }
 
-            list.Sort((x, y) => x.Id.CompareTo(y.Id));
+            list.Sort((x, y) => x.mahoadon.CompareTo(y.mahoadon));
             list.Reverse();
             ViewBag.hoadon = list;
             return View();

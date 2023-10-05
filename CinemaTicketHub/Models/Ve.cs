@@ -14,11 +14,12 @@ namespace CinemaTicketHub.Models
 
         public int? MaGhe { get; set; }
 
-        public int MaSuatChieu { get; set; }
+        public int? MaSuatChieu { get; set; }
 
         public double? GiaVe { get; set; }
 
-        public int MaHoaDon { get; set; }
+        [StringLength(255)]
+        public string MaHoaDon { get; set; }
 
         public virtual HoaDon HoaDon { get; set; }
 

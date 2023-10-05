@@ -7,8 +7,7 @@ namespace CinemaTicketHub.Models
 {
     public class TicketViewModel
     {
-        //mã hóa đơn
-        public int Id { get; set; }
+        public string mahoadon { get; set; }
         public string tenphim { get; set; }
         public string phongchieu { get; set; }
         public TimeSpan? giobatdau { get; set; }

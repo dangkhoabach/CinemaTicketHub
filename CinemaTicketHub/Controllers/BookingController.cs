@@ -200,8 +200,9 @@ namespace CinemaTicketHub.Controllers
                     if (vnp_ResponseCode == "00")
                     {
                         //Thanh toán thành công
-                        ViewBag.Message = "Thanh toán thành công hóa đơn " + orderId + " | Mã giao dịch: " + vnpayTranId;
+                        ViewBag.Message = "Thanh toán thành công hóa đơn: " + orderId;
                         HoaDon hoaDon = new HoaDon();
+                        hoaDon.MaHoaDon = orderId.ToString();
                         hoaDon.NgayLap = DateTime.Now;
                         double Total = double.Parse(pay.GetResponseData("vnp_Amount"));
                         hoaDon.TongTien = Total / 100;
@@ -339,7 +340,7 @@ namespace CinemaTicketHub.Controllers
             string rOrderId = result.orderId;
             string rErrorCode = result.errorCode; // = 0: thanh toán thành công
             ViewBag.MomoStatus = rErrorCode;
-            ViewBag.Message = rMessage + " - " + rOrderId;
+            ViewBag.Message = "Thanh toán thành công hóa đơn: " + rOrderId;
 
             if(rErrorCode == "0")
             {
@@ -354,6 +355,7 @@ namespace CinemaTicketHub.Controllers
                 double tiengiave = lstGhe.Count * 100000;
                 double? total = tienbapnuoc + tiengiave;
 
+                hoaDon.MaHoaDon = result.orderId;
                 hoaDon.TongTien = total;
                 hoaDon.Id = User.Identity.GetUserId();
                 hoaDon.Payment = "Thanh toán Momo";

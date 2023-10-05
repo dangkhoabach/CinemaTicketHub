@@ -10,8 +10,8 @@ namespace CinemaTicketHub.Models
     {
         [Key]
         [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int MaHoaDon { get; set; }
+        [StringLength(255)]
+        public string MaHoaDon { get; set; }
 
         public int? SoLuong { get; set; }
 
