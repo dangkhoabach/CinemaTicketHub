@@ -68,6 +68,24 @@ namespace CinemaTicketHub.Controllers
             return lst;
         }
 
+        [HttpPost]
+        public JsonResult PromotionCheck(string promocode)
+        {
+            // Kiểm tra xem promocode có tồn tại trong cơ sở dữ liệu không
+            var exists = _dbContext.CT_KhuyenMai.Any(x => x.MaKM == promocode && x.TrangThai == true && x.KhuyenMai.ThoiHan >= DateTime.Now);
+
+            if (exists)
+            {
+                TempData["Promocode"] = promocode;
+                return Json(new { success = true, message = "Mã khuyến mãi đã được áp dụng." });
+            }
+            else
+            {
+                TempData["Promocode"] = null;
+                return Json(new { success = false, message = "Mã khuyến mãi không hợp lệ hoặc đã hết hạn." });
+            }
+        }
+
         public ActionResult Cart(int masc)
         {
             List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
@@ -130,6 +148,7 @@ namespace CinemaTicketHub.Controllers
             List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
             if (lstGhe != null || lstMonAn != null)
             {
+                TempData["Promocode"] = null;
                 lstGhe.Clear();
                 lstMonAn.Clear();
             }
@@ -138,6 +157,19 @@ namespace CinemaTicketHub.Controllers
 
         public ActionResult VNPay()
         {
+            //Xử lý khuyến mãi
+            string promocode = TempData["Promocode"] as string;
+            int? phantramgiam;
+            if (promocode != null)
+            {
+                var promotion = _dbContext.CT_KhuyenMai.Where(x => x.MaKM == promocode).FirstOrDefault();
+                phantramgiam = promotion.KhuyenMai.PhanTram;
+            }
+            else
+            {
+                phantramgiam = 0;
+            }
+
             string url = ConfigurationManager.AppSettings["Url"];
             string returnUrl = ConfigurationManager.AppSettings["ReturnUrl"];
             string tmnCode = ConfigurationManager.AppSettings["TmnCode"];
@@ -149,13 +181,14 @@ namespace CinemaTicketHub.Controllers
             double? tienbapnuoc = lstMonAn.Sum(x => x.ThanhTien);
             double tiengiave = lstGhe.Count * 100000;
             double? total = tienbapnuoc + tiengiave;
+            double? finalprice = total - total / 100 * phantramgiam;
 
             VNPayLib pay = new VNPayLib();
 
             pay.AddRequestData("vnp_Version", "2.1.0"); //Phiên bản api mà merchant kết nối. Phiên bản hiện tại là 2.1.0
             pay.AddRequestData("vnp_Command", "pay"); //Mã API sử dụng, mã cho giao dịch thanh toán là 'pay'
             pay.AddRequestData("vnp_TmnCode", tmnCode); //Mã website của merchant trên hệ thống của VNPAY (khi đăng ký tài khoản sẽ có trong mail VNPAY gửi về)
-            pay.AddRequestData("vnp_Amount", (total * 100).ToString()); //số tiền cần thanh toán, công thức: số tiền * 100 - ví dụ 10.000 (mười nghìn đồng) --> 1000000
+            pay.AddRequestData("vnp_Amount", (finalprice * 100).ToString()); //số tiền cần thanh toán, công thức: số tiền * 100 - ví dụ 10.000 (mười nghìn đồng) --> 1000000
             pay.AddRequestData("vnp_BankCode", ""); //Mã Ngân hàng thanh toán (tham khảo: https://sandbox.vnpayment.vn/apis/danh-sach-ngan-hang/), có thể để trống, người dùng có thể chọn trên cổng thanh toán VNPAY
             pay.AddRequestData("vnp_CreateDate", DateTime.Now.ToString("yyyyMMddHHmmss")); //ngày thanh toán theo định dạng yyyyMMddHHmmss
             pay.AddRequestData("vnp_CurrCode", "VND"); //Đơn vị tiền tệ sử dụng thanh toán. Hiện tại chỉ hỗ trợ VND
@@ -200,14 +233,14 @@ namespace CinemaTicketHub.Controllers
                     if (vnp_ResponseCode == "00")
                     {
                         //Thanh toán thành công
-                        ViewBag.Message = "Thanh toán thành công hóa đơn: " + orderId;
+                        ViewBag.Message = "Hóa đơn: " + orderId;
                         HoaDon hoaDon = new HoaDon();
                         hoaDon.MaHoaDon = orderId.ToString();
                         hoaDon.NgayLap = DateTime.Now;
                         double Total = double.Parse(pay.GetResponseData("vnp_Amount"));
                         hoaDon.TongTien = Total / 100;
                         hoaDon.Id = User.Identity.GetUserId();
-                        hoaDon.Payment = "Thanh toán VNPay";
+                        hoaDon.Payment = "VNPay";
                         _dbContext.HoaDon.Add(hoaDon);
                         _dbContext.SaveChanges();
 
@@ -243,7 +276,7 @@ namespace CinemaTicketHub.Controllers
                             _dbContext.CT_HoaDon.Add(ctHoaDon);
                             _dbContext.SaveChanges();
                         }
-
+                        TempData["Promocode"] = null;
                         lstGhe.Clear();
                         lstMonAn.Clear();
                     }
@@ -254,6 +287,7 @@ namespace CinemaTicketHub.Controllers
                         ViewBag.VNPayStatus = "error";
                         List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
                         List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
+                        TempData["Promocode"] = null;
                         lstGhe.Clear();
                         lstMonAn.Clear();
                     }
@@ -269,6 +303,19 @@ namespace CinemaTicketHub.Controllers
 
         public ActionResult Momo()
         {
+            //Xử lý khuyến mãi
+            string promocode = TempData["Promocode"] as string;
+            int? phantramgiam;
+            if (promocode != null)
+            {
+                var promotion = _dbContext.CT_KhuyenMai.Where(x => x.MaKM == promocode).FirstOrDefault();
+                phantramgiam = promotion.KhuyenMai.PhanTram;
+            }
+            else
+            {
+                phantramgiam = 0;
+            }
+
             //request params need to request to MoMo system
             string endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
             string partnerCode = "MOMOOJOI20210710";
@@ -284,8 +331,9 @@ namespace CinemaTicketHub.Controllers
             double? tienbapnuoc = lstMonAn.Sum(x => x.ThanhTien);
             double tiengiave = lstGhe.Count * 100000;
             double? total = tienbapnuoc + tiengiave;
+            double? finalprice = total - total / 100 * phantramgiam;
 
-            string amount = total.ToString();
+            string amount = finalprice.ToString();
             string orderid = DateTime.Now.Ticks.ToString(); //mã đơn hàng
             string requestId = DateTime.Now.Ticks.ToString();
             string extraData = "";
@@ -340,7 +388,7 @@ namespace CinemaTicketHub.Controllers
             string rOrderId = result.orderId;
             string rErrorCode = result.errorCode; // = 0: thanh toán thành công
             ViewBag.MomoStatus = rErrorCode;
-            ViewBag.Message = "Thanh toán thành công hóa đơn: " + rOrderId;
+            ViewBag.Message = "Hóa đơn: " + rOrderId;
 
             if(rErrorCode == "0")
             {
@@ -358,7 +406,7 @@ namespace CinemaTicketHub.Controllers
                 hoaDon.MaHoaDon = result.orderId;
                 hoaDon.TongTien = total;
                 hoaDon.Id = User.Identity.GetUserId();
-                hoaDon.Payment = "Thanh toán Momo";
+                hoaDon.Payment = "Momo";
                 _dbContext.HoaDon.Add(hoaDon);
                 _dbContext.SaveChanges();
 
@@ -391,7 +439,7 @@ namespace CinemaTicketHub.Controllers
                     _dbContext.CT_HoaDon.Add(ctHoaDon);
                     _dbContext.SaveChanges();
                 }
-
+                TempData["Promocode"] = null;
                 lstGhe.Clear();
                 lstMonAn.Clear();
             }
@@ -400,6 +448,7 @@ namespace CinemaTicketHub.Controllers
                 //Thanh toán không thành công
                 List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
                 List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
+                TempData["Promocode"] = null;
                 lstGhe.Clear();
                 lstMonAn.Clear();
             }    

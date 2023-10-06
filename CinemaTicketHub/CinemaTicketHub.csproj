@@ -494,7 +494,7 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\Admin\Views\OrdersManage\List.cshtml" />
+    <Content Include="Areas\Admin\Views\OrdersManage\Bills.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\OrdersStatistics.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\TicketsStatistics.cshtml" />
     <Content Include="Content\assets\webfonts\fa-brands-400.ttf" />

@@ -28,6 +28,9 @@
             <th scope="col">
                 Tổng Tiền
             </th>
+            <th scope="col">
+                Phương Thức Thanh Toán
+            </th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -56,9 +59,12 @@
                 <td style="vertical-align: middle">
                     @string.Format("{0:#,0}", item.TongTien)
                 </td>
+                <td style="vertical-align: middle">
+                    @item.Payment
+                </td>
                 @*                <td style="vertical-align: middle">
-                        <a href="@Url.Action("Details", new { MaHoaDon = item.MaHoaDon })" style="color: #0dcaf0"><i class="fa-solid fa-circle-info"></i></a>
-                    </td>*@
+            <a href="@Url.Action("Details", new { MaHoaDon = item.MaHoaDon })" style="color: #0dcaf0"><i class="fa-solid fa-circle-info"></i></a>
+        </td>*@
             </tr>
         }
 

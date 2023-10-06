@@ -18,7 +18,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult List()
+        public ActionResult Bills()
         {
             var lstHoadon = _dbContext.HoaDon.OrderByDescending(o => o.NgayLap).ThenBy(t => t.Id).ToList();
             return View(lstHoadon);

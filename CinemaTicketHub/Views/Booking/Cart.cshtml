@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="~/Content/assets/css/owl.css">
     <link rel="stylesheet" href="~/Content/assets/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- Thêm link đến thư viện SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+
 </head>
 
 <body>
@@ -67,7 +71,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="top-downloaded" style="style=" max-height: 515px;"">
+                            <div class="top-downloaded" style="max-height: 515px">
                                 <div class="heading-section">
                                     <h4 style="margin-bottom: 10px"><em>Thông Tin</em> Vé</h4>
                                 </div>
@@ -93,35 +97,61 @@
                             </div>
                         </div>
 
-                        <!-- ***** Payment Start ***** -->
-                        <div class="live-stream">
-                            <div class="col-lg-12">
-                                <div class="heading-section">
-                                    <h4><em>Phương Thức</em> Thanh Toán</h4>
+
+                        <div class="col-lg-5">
+                            <!-- ***** Promotions Start ***** -->
+                            <div class="live-stream">
+
+                                <div class="col-lg-12">
+                                    <div class="heading-section">
+                                        <h4><em>Khuyến Mãi</em></h4>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="top-streamers" style="padding: 0 30px">
-                                    <ul>
-                                        <li>
-                                            <input type="radio" name="paymentMethod" value="VNPay" style="margin-right: 15px" />
-                                            <img src="~/Content/images/vnpay_logo.png" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                                            <h6>Thanh toán VNPay</h6>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name="paymentMethod" value="Momo" style="margin-right: 15px" />
-                                            <img src="~/Content/images/momo_logo.png" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                                            <h6>Thanh toán Momo</h6>
-                                        </li>
-                                    </ul>
+                                <div class="col-lg-12">
+                                    <div class="top-streamers" style="padding: 0 30px">
+                                        <input type="text" name="" class="textboxpromotions" required="" placeholder="Mã khuyến mãi">
+                                    </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <div class="main-button">
+                                        <a href="#" id="promocheck">Áp Dụng</a>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="col-lg-12">
-                                <h4 style="text-align: center; margin-bottom: 20px"><b>TỔNG TIỀN: @string.Format("{0:#,0}", @ViewBag.TongTien)</b></h4>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="main-button">
-                                    <a href="#" onclick="handleButtonClick()">Thanh Toán</a>
+                        </div>
+                        <div class="col-lg-7">
+                            <!-- ***** Promotions End ***** -->
+                            <!-- ***** Payment Start ***** -->
+                            <div class="live-stream">
+                                <div class="col-lg-12">
+                                    <div class="heading-section">
+                                        <h4><em>Phương Thức</em> Thanh Toán</h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="top-streamers" style="padding: 0 30px">
+                                        <ul>
+                                            <li>
+                                                <input type="radio" name="paymentMethod" value="VNPay" style="margin-right: 15px" />
+                                                <img src="~/Content/images/vnpay_logo.png" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
+                                                <h6>Thanh toán VNPay</h6>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="paymentMethod" value="Momo" style="margin-right: 15px" />
+                                                <img src="~/Content/images/momo_logo.png" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
+                                                <h6>Thanh toán Momo</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <h4 style="text-align: center; margin-bottom: 20px"><b>TỔNG TIỀN: @string.Format("{0:#,0}", ViewBag.TongTien)</b></h4>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="main-button">
+                                        <a href="#" onclick="handleButtonClick()">Thanh Toán</a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -129,67 +159,109 @@
                         <!-- ***** Payment End ***** -->
                         <!-- ***** Popcorn and Drink End ***** -->
                         @*<div style="text-align: center">
-                            <a href="@Url.Action("Reselect", "Booking", new { maphim = @ViewBag.moviesdetail.MaPhim})" style="text-decoration: none; color: red; font-size: 20px"><b><i class="fa-solid fa-arrow-left" style="color: red"></i> QUAY LẠI</b></a>
-                        </div>*@
+                                <a href="@Url.Action("Reselect", "Booking", new { maphim = @ViewBag.moviesdetail.MaPhim})" style="text-decoration: none; color: red; font-size: 20px"><b><i class="fa-solid fa-arrow-left" style="color: red"></i> QUAY LẠI</b></a>
+                            </div>*@
 
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>
-                            Copyright © 2023 <a href="/Home/About">Cinema Ticket Hub</a>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                        Copyright © 2023 <a href="/Home/About">Cinema Ticket Hub</a>
 
-                            <br>Design by <a href="https://www.facebook.com/dangkhoabach.1609" target="_blank" title="free CSS templates">dangkhoabach</a>
-                        </p>
-                    </div>
+                        <br>Design by <a href="https://www.facebook.com/dangkhoabach.1609" target="_blank" title="free CSS templates">dangkhoabach</a>
+                    </p>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
 
-        <!-- Scripts -->
-        <!-- Bootstrap core JavaScript -->
-        <script src="~/Content/vendor/jquery/jquery.min.js"></script>
-        <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-        <script src="~/Content/assets/js/isotope.min.js"></script>
-        <script src="~/Content/assets/js/owl-carousel.js"></script>
-        <script src="~/Content/assets/js/tabs.js"></script>
-        <script src="~/Content/assets/js/popup.js"></script>
-        <script src="~/Content/assets/js/custom.js"></script>
+    <script src="~/Content/assets/js/isotope.min.js"></script>
+    <script src="~/Content/assets/js/owl-carousel.js"></script>
+    <script src="~/Content/assets/js/tabs.js"></script>
+    <script src="~/Content/assets/js/popup.js"></script>
+    <script src="~/Content/assets/js/custom.js"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/Content/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/js/scripts.js"></script>
 
-        <script>
-            function handleButtonClick() {
-                var radios = document.getElementsByName('paymentMethod');
-                var selectedValue;
+    <script>
+        function handleButtonClick() {
+            var radios = document.getElementsByName('paymentMethod');
+            var selectedValue;
 
-                // Lặp qua các radio và lấy giá trị của radio được chọn
-                for (var i = 0; i < radios.length; i++) {
-                    if (radios[i].checked) {
-                        selectedValue = radios[i].value;
-                        break;
-                    }
-                }
-
-                // Kiểm tra giá trị của radio và thực hiện hành động tương ứng
-                if (selectedValue === 'VNPay') {
-                    window.location.href = '/Booking/VNPay';
-                } else if (selectedValue === 'Momo') {
-                    window.location.href = '/Booking/Momo';
-                } else {
-                    // Hiển thị cảnh báo nếu không có radio nào được chọn
-                    alert("Vui lòng chọn Phương thức thanh toán");
+            // Lặp qua các radio và lấy giá trị của radio được chọn
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    selectedValue = radios[i].value;
+                    break;
                 }
             }
-        </script>
+
+            // Kiểm tra giá trị của radio và thực hiện hành động tương ứng
+            if (selectedValue === 'VNPay') {
+                window.location.href = '/Booking/VNPay';
+            } else if (selectedValue === 'Momo') {
+                window.location.href = '/Booking/Momo';
+            } else {
+                // Hiển thị cảnh báo nếu không có radio nào được chọn
+                alert("Vui lòng chọn Phương thức thanh toán");
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        $(document).ready(function () {
+            $("#promocheck").click(function (e) {
+                e.preventDefault(); // Ngừng chuyển hướng trình duyệt khi nhấp vào liên kết
+
+                var promocode = $(".textboxpromotions").val(); // Lấy giá trị từ input
+
+                $.ajax({
+                    type: "POST", // Phương thức gửi dữ liệu
+                    url: "/Booking/PromotionCheck", // Đường dẫn đến controller và action xử lý dữ liệu
+                    data: { promocode: promocode }, // Dữ liệu bạn muốn gửi đến controller
+                    success: function (result) {
+                        // Hiển thị thông báo dựa trên kết quả trả về
+                        if (result.success) {
+                            // Nếu kết quả thành công, hiển thị thông báo thành công
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Thành công!',
+                                text: result.message
+                            });
+                        } else {
+                            // Nếu kết quả không thành công, hiển thị thông báo lỗi
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Lỗi!',
+                                text: result.message
+                            });
+                        }
+                    },
+                    error: function (error) {
+                        // Xử lý lỗi nếu có
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
