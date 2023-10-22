@@ -8,6 +8,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CinemaTicketHub.Models;
 using System.Collections.Generic;
+using System.Drawing;
+using ZXing;
 
 namespace CinemaTicketHub.Controllers
 {
@@ -435,5 +437,88 @@ namespace CinemaTicketHub.Controllers
             ViewBag.hoadon = list;
             return View();
         }
+
+        public ActionResult Ticket(string mahoadon)
+        {
+            var hoadon = _dbContext.HoaDon.FirstOrDefault(x => x.MaHoaDon == mahoadon);
+
+            if (hoadon != null)
+            {
+                List<GheViewModel> lstghe = new List<GheViewModel>();
+                List<BapNuocViewModel> lstbapnuoc = new List<BapNuocViewModel>();
+                TicketViewModel ticket = new TicketViewModel();
+                ticket.mahoadon = hoadon.MaHoaDon;
+                ticket.tongtien = hoadon.TongTien;
+                ticket.payment = hoadon.Payment;
+
+                var ve = _dbContext.Ve.Where(x => x.MaHoaDon == hoadon.MaHoaDon).ToList();
+                foreach (var ve2 in ve)
+                {
+                    var suatchieu = _dbContext.SuatChieu.FirstOrDefault(x => x.MaSuatChieu == ve2.MaSuatChieu);
+                    if (suatchieu != null)
+                    {
+                        ticket.giobatdau = suatchieu.GioBatDau;
+                        ticket.gioketthuc = suatchieu.GioKetThuc;
+                        ticket.ngaychieu = suatchieu.NgayChieu;
+                        ticket.tenphim = suatchieu.Phim.TenPhim;
+                        ticket.hinhanh = suatchieu.Phim.HinhAnh;
+                        ticket.phongchieu = suatchieu.PhongChieu.TenPhong;
+                        var ghes = _dbContext.Ghe.FirstOrDefault(x => x.MaSuatChieu == ve2.MaSuatChieu && x.MaGhe == ve2.MaGhe);
+                        if (ghes != null)
+                        {
+                            GheViewModel ghe = new GheViewModel();
+                            ghe.maghe = ghes.MaGhe;
+                            ghe.day = ghes.Day;
+                            ghe.cot = ghes.Cot;
+                            lstghe.Add(ghe);
+                        }
+                    }
+                }
+
+                var ct = _dbContext.CT_HoaDon.Where(x => x.MaHoaDon == hoadon.MaHoaDon).ToList();
+                foreach (var ct2 in ct)
+                {
+                    BapNuocViewModel bapNuoc = new BapNuocViewModel();
+                    bapNuoc.tenmon = ct2.BapNuoc.TenMon;
+                    bapNuoc.soluongmon = ct2.SoLuong;
+                    lstbapnuoc.Add(bapNuoc);
+                }
+
+                ticket.bapNuoc = lstbapnuoc;
+                ticket.ghe = lstghe;
+
+                ViewBag.hoadon = ticket;
+            }
+            else
+            {
+                ViewBag.hoadon = null;
+            }
+
+            return View();
+        }
+
+        public ActionResult GenerateQRCode(string content)
+        {
+            BarcodeWriter barcodeWriter = new BarcodeWriter();
+            barcodeWriter.Format = BarcodeFormat.QR_CODE;
+
+            // Cấu hình các thông số cho QR code (ví dụ: margin, width, height)
+            ZXing.Common.EncodingOptions options = new ZXing.Common.EncodingOptions();
+            options.Margin = 1; // Đặt margin thành 0 để giảm viền trắng
+            options.Width = 200; // Đặt chiều rộng của QR code
+            options.Height = 200; // Đặt chiều cao của QR code
+
+            barcodeWriter.Options = options;
+
+            Bitmap barcodeBitmap = barcodeWriter.Write(content);
+
+            // Chuyển đổi Bitmap thành byte array để hiển thị trong trang Razor CSHTML
+            ImageConverter converter = new ImageConverter();
+            byte[] imageBytes = (byte[])converter.ConvertTo(barcodeBitmap, typeof(byte[]));
+
+            // Trả về hình ảnh dưới dạng File hình ảnh
+            return File(imageBytes, "image/png");
+        }
+
     }
 }

@@ -82,7 +82,7 @@
                 {
                     <div class="item">
                         <ul>
-@**@                        @*<li><img src="~/Content/assets/images/game-01.jpg" alt="" class="templatemo-item"></li>*@
+                            @**@                        @*<li><img src="~/Content/assets/images/game-01.jpg" alt="" class="templatemo-item"></li>*@
                             <li><h4>@item.tenphim</h4><span>@item.ngaychieu.ToShortDateString() - @item.giobatdau.ToString("hh\\:mm")</span></li>
                             <li><h4>Phòng chiếu</h4><span>@item.phongchieu</span></li>
 
@@ -135,7 +135,7 @@
                             }
 
                             <li><h4>@item.payment</h4><span>@string.Format("{0:#,0}", @item.tongtien)</span></li>
-                            <li><div class="main-border-button border-no-active"><a href="#">QR Code</a></div></li>
+                            <li><div class="main-border-button border-no-active"><a href="#" data-mahoadon="@item.mahoadon">Chi Tiết</a></div></li>
                         </ul>
                     </div>
                 }
@@ -153,5 +153,23 @@
     <script src="~/Content/assets/js/tabs.js"></script>
     <script src="~/Content/assets/js/popup.js"></script>
     <script src="~/Content/assets/js/custom.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+    // Bắt sự kiện click trên thẻ <a> trong thẻ <div> có class "main-border-button"
+    $('.main-border-button a').on('click', function(e) {
+        // Ngăn chặn hành vi mặc định của thẻ <a> (ngăn chặn chuyển hướng)
+        e.preventDefault();
+
+        // Lấy giá trị của item mahoadon từ thuộc tính data-mahoadon của thẻ <a>
+        var mahoadon = $(this).data('mahoadon');
+
+        // Chuyển hướng đến trang Manage/Ticket và truyền giá trị mahoadon
+        window.open('/Manage/Ticket?mahoadon=' + mahoadon, '_blank');
+    });
+});
+    </script>
 </body>
 </html>

@@ -1,0 +1,99 @@
+﻿
+@{
+    Layout = null;
+}
+
+@{
+    var ngayTrongTuan = new Dictionary<DayOfWeek, string>
+{
+    { DayOfWeek.Sunday, "Chủ Nhật" },
+    { DayOfWeek.Monday, "Thứ Hai" },
+    { DayOfWeek.Tuesday, "Thứ Ba" },
+    { DayOfWeek.Wednesday, "Thứ Tư" },
+    { DayOfWeek.Thursday, "Thứ Năm" },
+    { DayOfWeek.Friday, "Thứ Sáu" },
+    { DayOfWeek.Saturday, "Thứ Bảy" }
+};
+}
+
+<title>[Vé] Cinema Ticket Hub</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<link rel="stylesheet" href="~/Content/css/ticketstyle.css">
+
+<div class="ticket">
+    <div class="left">
+        <div class="image" style="background-image: url('@ViewBag.hoadon.hinhanh')">
+            <p class="admit-one">
+                <span>HUTECH</span>
+                <span>HUTECH</span>
+                <span>HUTECH</span>
+            </p>
+            <div class="ticket-number">
+                <p style="text-shadow: 0 0 10px rgba(255, 255, 255, 1)">
+                    #@ViewBag.hoadon.mahoadon
+                </p>
+            </div>
+        </div>
+        <div class="ticket-info">
+            <p class="date">
+                <span>@ngayTrongTuan[ViewBag.hoadon.ngaychieu.DayOfWeek]</span>
+                <span class="june-29">@ViewBag.hoadon.ngaychieu.Day tháng @ViewBag.hoadon.ngaychieu.Month</span>
+                <span>@ViewBag.hoadon.ngaychieu.Year</span>
+            </p>
+            <div class="show-name">
+                <h4>@ViewBag.hoadon.tenphim</h4>
+                <h2></h2>
+            </div>
+            <div class="time">
+                <p>@ViewBag.hoadon.giobatdau.ToString("hh\\:mm") <span>ĐẾN</span> @ViewBag.hoadon.gioketthuc.ToString("hh\\:mm")</p>
+
+                @{
+                    var itemsGheNgoi = "";
+                    foreach (var item2 in ViewBag.hoadon.ghe)
+                    {
+                        itemsGheNgoi += item2.day + item2.cot;
+                    }
+
+                    // Đặt dấu "," giữa các items ghế
+                    var itemsGheNgoi2 = "";
+                    foreach (var item2 in ViewBag.hoadon.ghe)
+                    {
+                        itemsGheNgoi2 += item2.day + item2.cot + ", ";
+                    }
+                    // Xóa dấu ',' ở cuối chuỗi
+                    if (itemsGheNgoi2.Length > 0)
+                    {
+                        itemsGheNgoi2 = itemsGheNgoi2.Substring(0, itemsGheNgoi2.Length - 2);
+                    }
+                }
+            <p><span>[@ViewBag.hoadon.phongchieu]</span> @itemsGheNgoi2</p>
+            </div>
+            <p class="location">
+                <span>Cinema Ticket Hub</span>
+                <span class="separator"><i class="far fa-smile"></i></span><span>Hutech University</span>
+            </p>
+        </div>
+    </div>
+    <div class="right">
+        <p class="admit-one">
+            <span>HUTECH</span>
+            <span>HUTECH</span>
+            <span>HUTECH</span>
+        </p>
+        <div class="right-info-container">
+            @*<div class="show-name">
+                <h1>@ViewBag.hoadon.tenphim</h1>
+            </div>*@
+            <div class="time">
+                <p>@ViewBag.hoadon.giobatdau.ToString("hh\\:mm") <span>ĐẾN</span> @ViewBag.hoadon.gioketthuc.ToString("hh\\:mm")</p>
+                <p><span>[@ViewBag.hoadon.phongchieu]</span> @itemsGheNgoi2</p>
+            </div>
+            <div class="barcode">
+                <img src="@Url.Action("GenerateQRCode", "Manage", new { content = @ViewBag.hoadon.mahoadon })" alt="QR code">
+            </div>
+            <p class="ticket-number">
+                #@ViewBag.hoadon.mahoadon
+            </p>
+        </div>
+    </div>
+</div>

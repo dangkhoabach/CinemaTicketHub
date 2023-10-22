@@ -3,6 +3,7 @@ using CinemaTicketHub.Helper;
 using CinemaTicketHub.Models;
 using CinemaTicketHub.Payment;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -276,6 +277,14 @@ namespace CinemaTicketHub.Controllers
                             _dbContext.CT_HoaDon.Add(ctHoaDon);
                             _dbContext.SaveChanges();
                         }
+
+                        // Gửi email với button "Xem chi tiết vé"
+                        var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                        var user = userManager.FindById(User.Identity.GetUserId());
+                        string callbackUrl = "https://localhost:44351/Manage/Ticket?mahoadon=" + orderId;
+                        string emailContent = $"<br/><br/>" + $"<a href=\"{callbackUrl}\" style=\"padding: 15px 25px; font-weight: bold; font-size: 16px; text-align: center; text-transform: uppercase; transition: 0.5s; background-size: 200% auto; color: white; border-radius: 10px; display: inline-block; border: 0px; box-shadow: 0px 0px 14px -7px #f09819; background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%); cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; text-decoration: none;\">Xem chi tiết vé</a>";
+                        SendMail.SendEmail(user.Email, "Thanh toán thành công - Cinema Ticket Hub", "Vui lòng ấn vào nút bên dưới để xem chi tiết vé!" + emailContent + "", "");
+
                         TempData["Promocode"] = null;
                         lstGhe.Clear();
                         lstMonAn.Clear();
@@ -439,6 +448,14 @@ namespace CinemaTicketHub.Controllers
                     _dbContext.CT_HoaDon.Add(ctHoaDon);
                     _dbContext.SaveChanges();
                 }
+
+                // Gửi email với button "Xem chi tiết vé"
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var user = userManager.FindById(User.Identity.GetUserId());
+                string callbackUrl = "https://localhost:44351/Manage/Ticket?mahoadon=" + result.orderId;
+                string emailContent = $"<br/><br/>" + $"<a href=\"{callbackUrl}\" style=\"padding: 15px 25px; font-weight: bold; font-size: 16px; text-align: center; text-transform: uppercase; transition: 0.5s; background-size: 200% auto; color: white; border-radius: 10px; display: inline-block; border: 0px; box-shadow: 0px 0px 14px -7px #f09819; background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%); cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; text-decoration: none;\">Xem chi tiết vé</a>";
+                SendMail.SendEmail(user.Email, "Thanh toán thành công - Cinema Ticket Hub", "Vui lòng ấn vào nút bên dưới để xem chi tiết vé!" + emailContent + "", "");
+
                 TempData["Promocode"] = null;
                 lstGhe.Clear();
                 lstMonAn.Clear();
