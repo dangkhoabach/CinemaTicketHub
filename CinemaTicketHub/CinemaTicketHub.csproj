@@ -171,6 +171,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\LanguageManager.cs" />
+    <Compile Include="Api\Movie.cs" />
+    <Compile Include="Api\MovieDetail.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -584,6 +587,9 @@
     <Content Include="Views\Booking\MomoConfirmed.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Manage\Ticket.cshtml" />
+    <Content Include="Views\Movies\NowShowing2.cshtml" />
+    <Content Include="Views\Movies\Upcoming2.cshtml" />
+    <Content Include="Views\Movies\Detail2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

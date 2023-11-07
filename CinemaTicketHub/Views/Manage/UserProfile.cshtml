@@ -135,7 +135,7 @@
                             }
 
                             <li><h4>@item.payment</h4><span>@string.Format("{0:#,0}", @item.tongtien)</span></li>
-                            <li><div class="main-border-button border-no-active"><a href="#" data-mahoadon="@item.mahoadon">Chi Tiết</a></div></li>
+                            <li><div class="main-border-button border-no-active"><a href="#" id="ticketdetail" data-mahoadon="@item.mahoadon">Chi Tiết</a></div></li>
                         </ul>
                     </div>
                 }
@@ -159,7 +159,7 @@
     <script>
         $(document).ready(function() {
     // Bắt sự kiện click trên thẻ <a> trong thẻ <div> có class "main-border-button"
-    $('.main-border-button a').on('click', function(e) {
+            $('#ticketdetail').on('click', function(e) {
         // Ngăn chặn hành vi mặc định của thẻ <a> (ngăn chặn chuyển hướng)
         e.preventDefault();
 
