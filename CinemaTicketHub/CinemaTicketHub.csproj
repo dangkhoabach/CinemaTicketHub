@@ -575,9 +575,6 @@
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Movies\NowShowing.cshtml" />
-    <Content Include="Views\Movies\Details.cshtml" />
-    <Content Include="Views\Movies\ComingSoon.cshtml" />
     <Content Include="Views\Booking\SeatSelection.cshtml" />
     <Content Include="Views\Account\EmailNotificationSent.cshtml" />
     <Content Include="Views\Manage\UserProfile.cshtml" />
@@ -587,9 +584,9 @@
     <Content Include="Views\Booking\MomoConfirmed.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Manage\Ticket.cshtml" />
-    <Content Include="Views\Movies\NowShowing2.cshtml" />
-    <Content Include="Views\Movies\Upcoming2.cshtml" />
-    <Content Include="Views\Movies\Detail2.cshtml" />
+    <Content Include="Views\Movies\NowShowing.cshtml" />
+    <Content Include="Views\Movies\Upcoming.cshtml" />
+    <Content Include="Views\Movies\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

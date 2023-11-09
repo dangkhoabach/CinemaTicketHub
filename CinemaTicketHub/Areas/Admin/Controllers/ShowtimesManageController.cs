@@ -1,10 +1,13 @@
 ﻿using CinemaTicketHub.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,6 +17,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
     public class ShowtimesManageController : Controller
     {
         ApplicationDbContext _dbContext = new ApplicationDbContext();
+        string apiKey = "e46908dd5435f6f94058053e73bd2acd";
 
         // GET: Admin/ShowtimesManage
         public ActionResult Index()
@@ -26,9 +30,40 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
             return View(_dbContext.SuatChieu.OrderByDescending(o => o.NgayChieu).ThenBy(t => t.GioBatDau).ToList());
         }
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            ViewBag.Phim = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).OrderBy(o => o.TenPhim).ToList();
+            string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={apiKey}&language=vi-VN&region=VN";
+
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    dynamic data = JsonConvert.DeserializeObject(jsonResult);
+
+                    List<Phim> phimList = new List<Phim>();
+                    foreach (var phim in data.results)
+                    {
+                        Phim phimItem = new Phim
+                        {
+                            MaPhim = phim.id,
+                            TenPhim = phim.title,
+                        };
+                        phimList.Add(phimItem);
+                    }
+
+
+                    ViewBag.Phim = phimList;
+                }
+                else
+                {
+                    // Xử lý khi gặp lỗi khi gọi API
+                    ViewBag.Error = "Không thể lấy danh sách phim từ API.";
+                }
+            }
+
             ViewBag.PhongChieu = _dbContext.PhongChieu.OrderBy(o => o.TenPhong).ToList();
             return View();
         }
@@ -40,7 +75,6 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    ViewBag.Phim = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).ToList();
                     ViewBag.PhongChieu = _dbContext.PhongChieu.ToList();
                     return View("Create", suatchieu);
                 }
@@ -98,16 +132,48 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
             return RedirectToAction("List", "ShowtimesManage");
         }
 
-        public ActionResult Details(int MaSuatChieu)
+        public async Task<ActionResult> Details(int MaSuatChieu)
         {
             SuatChieu suatchieu = _dbContext.SuatChieu.Find(MaSuatChieu);
-            ViewBag.Phim = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).ToList();
+
+            string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={apiKey}&language=vi-VN&region=VN";
+
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    dynamic data = JsonConvert.DeserializeObject(jsonResult);
+
+                    List<Phim> phimList = new List<Phim>();
+                    foreach (var phim in data.results)
+                    {
+                        Phim phimItem = new Phim
+                        {
+                            MaPhim = phim.id,
+                            TenPhim = phim.title,
+                        };
+                        phimList.Add(phimItem);
+                    }
+
+
+                    ViewBag.Phim = phimList;
+                }
+                else
+                {
+                    // Xử lý khi gặp lỗi khi gọi API
+                    ViewBag.Error = "Không thể lấy danh sách phim từ API.";
+                }
+            }
+
             ViewBag.PhongChieu = _dbContext.PhongChieu.ToList();
             return View(suatchieu);
         }
 
         [HttpPost]
-        public ActionResult Edit(SuatChieu suatchieu)
+        public async Task<ActionResult> Edit(SuatChieu suatchieu)
         {
             var item = _dbContext.SuatChieu.Find(suatchieu.MaSuatChieu);
             try
@@ -116,7 +182,39 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 {
                     return HttpNotFound();
                 }
-                ViewBag.Phim = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).ToList();
+
+                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={apiKey}&language=vi-VN&region=VN";
+
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string jsonResult = await response.Content.ReadAsStringAsync();
+                        dynamic data = JsonConvert.DeserializeObject(jsonResult);
+
+                        List<Phim> phimList = new List<Phim>();
+                        foreach (var phim in data.results)
+                        {
+                            Phim phimItem = new Phim
+                            {
+                                MaPhim = phim.id,
+                                TenPhim = phim.title,
+                            };
+                            phimList.Add(phimItem);
+                        }
+
+
+                        ViewBag.Phim = phimList;
+                    }
+                    else
+                    {
+                        // Xử lý khi gặp lỗi khi gọi API
+                        ViewBag.Error = "Không thể lấy danh sách phim từ API.";
+                    }
+                }
+
                 ViewBag.PhongChieu = _dbContext.PhongChieu.ToList();
 
                 item.NgayChieu = suatchieu.NgayChieu;

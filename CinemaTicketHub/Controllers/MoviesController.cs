@@ -27,38 +27,7 @@ namespace CinemaTicketHub.Controllers
             return View();
         }
 
-        public ActionResult NowShowing()
-        {
-            var nowshowing = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu < DateTime.Now).OrderByDescending(o => o.NgayKhoiChieu).ToList();
-            return View(nowshowing);
-        }
-
-        public ActionResult ComingSoon()
-        {
-            var comingsoon = _dbContext.Phim.Where(p => p.TrangThai == true && p.NgayKhoiChieu > DateTime.Now).OrderBy(o => o.NgayKhoiChieu).ToList();
-            return View(comingsoon);
-        }
-
-        public ActionResult Details(string MaPhim, DateTime? selectedDate)
-        {
-            Phim phim = _dbContext.Phim.Find(MaPhim);
-
-            if (selectedDate.HasValue)
-            {
-                DateTime selectedDateTruncated = selectedDate.Value.Date;
-
-                ViewBag.SuatChieu = _dbContext.SuatChieu.Where(m => m.MaPhim == MaPhim && DbFunctions.TruncateTime(m.NgayChieu) == selectedDateTruncated).ToList();
-            }
-            else
-            {
-                ViewBag.SuatChieu = _dbContext.SuatChieu.Where(m => m.MaPhim == MaPhim && DbFunctions.TruncateTime(m.NgayChieu) == DateTime.Today).ToList();
-            }
-
-            return View(phim);
-        }
-
-        //Test Calling API
-        public async Task<ActionResult> NowShowing2()
+        public async Task<ActionResult> NowShowing()
         {
             using (HttpClient client = new HttpClient())
             {
@@ -103,7 +72,7 @@ namespace CinemaTicketHub.Controllers
             }
         }
 
-        public async Task<ActionResult> Upcoming2()
+        public async Task<ActionResult> Upcoming()
         {
             using (HttpClient client = new HttpClient())
             {
@@ -148,7 +117,7 @@ namespace CinemaTicketHub.Controllers
             }
         }
 
-        public async Task<ActionResult> Detail2(int id, DateTime? selectedDate)
+        public async Task<ActionResult> Detail(int id, DateTime? selectedDate)
         {
             string apiUrl = $"https://api.themoviedb.org/3/movie/{id}?api_key={apiKey}&language=vi-VN";
 
@@ -188,11 +157,11 @@ namespace CinemaTicketHub.Controllers
                     {
                         DateTime selectedDateTruncated = selectedDate.Value.Date;
 
-                        ViewBag.SuatChieu = _dbContext.SuatChieu.Where(m => m.MaPhim == id.ToString() && DbFunctions.TruncateTime(m.NgayChieu) == selectedDateTruncated).ToList();
+                        ViewBag.SuatChieu = _dbContext.SuatChieu.Where(m => m.MaPhim == id && DbFunctions.TruncateTime(m.NgayChieu) == selectedDateTruncated).ToList();
                     }
                     else
                     {
-                        ViewBag.SuatChieu = _dbContext.SuatChieu.Where(m => m.MaPhim == id.ToString() && DbFunctions.TruncateTime(m.NgayChieu) == DateTime.Today).ToList();
+                        ViewBag.SuatChieu = _dbContext.SuatChieu.Where(m => m.MaPhim == id && DbFunctions.TruncateTime(m.NgayChieu) == DateTime.Today).ToList();
                     }
 
                     return View(movieDetail);

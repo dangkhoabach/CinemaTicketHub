@@ -33,7 +33,7 @@
         <div class="row">
             <div class="header-text">
                 <h4 style="text-align: center; margin: 0"><em>Phim</em> Sắp Chiếu</h4>
-                <h6 style="text-align: center; margin: 0">Coming Soon</h6>
+                <h6 style="text-align: center; margin: 0">Upcoming</h6>
             </div>
         </div>
     </div>
@@ -47,20 +47,20 @@
                     {
                         <div class="col-lg-3 col-sm-6">
                             <div class="item">
-                                <a href="@Url.Action("Details", "Movies", new { id = movie.MovieID })"><img style="height: 300px; width: 230px" src="@movie.PosterPath" alt=""></a>
+                                <a href="@Url.Action("Detail", "Movies", new { id = movie.MovieID })"><img style="height: 300px; width: 230px" src="@movie.PosterPath" alt=""></a>
                                 <h4>@movie.Title</h4>
                                 <hr style="margin: 0" />
                                 <ul>
-                                    <li><i class="fa fa-eye"></i> @movie.Language</li>
+                                    <li><i class="fa fa-language"></i> @movie.Language</li>
 
-                                    <li><i class="fa fa-download"></i> @movie.ReleaseDate</li>
+                                    <li><i class="fa fa-calendar-days"></i> @movie.ReleaseDate</li>
                                 </ul>
                             </div>
                         </div>
                     }
                     <div class="col-lg-12">
                         <div class="main-button" style="text-align: right">
-                            <a href="/Movies/ComingSoon">Phim Sắp Chiếu</a>
+                            <a href="/Movies/NowShowing">Phim Đang Chiếu</a>
                         </div>
                     </div>
                 </div>

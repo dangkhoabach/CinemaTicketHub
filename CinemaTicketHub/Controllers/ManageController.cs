@@ -410,7 +410,7 @@ namespace CinemaTicketHub.Controllers
                     var suatchieu = _dbContext.SuatChieu.Where(x => x.MaSuatChieu == ve2.MaSuatChieu).FirstOrDefault();
                     ticket.giobatdau = suatchieu.GioBatDau;
                     ticket.ngaychieu = suatchieu.NgayChieu;
-                    ticket.tenphim = suatchieu.Phim.TenPhim;
+                    /*ticket.tenphim = suatchieu.Phim.TenPhim;*/
                     ticket.phongchieu = suatchieu.PhongChieu.TenPhong;
                     var ghes = _dbContext.Ghe.Where(x => x.MaSuatChieu == ve2.MaSuatChieu && x.MaGhe == ve2.MaGhe).FirstOrDefault();
                     GheViewModel ghe = new GheViewModel();
@@ -460,8 +460,8 @@ namespace CinemaTicketHub.Controllers
                         ticket.giobatdau = suatchieu.GioBatDau;
                         ticket.gioketthuc = suatchieu.GioKetThuc;
                         ticket.ngaychieu = suatchieu.NgayChieu;
-                        ticket.tenphim = suatchieu.Phim.TenPhim;
-                        ticket.hinhanh = suatchieu.Phim.HinhAnh;
+                        /*ticket.tenphim = suatchieu.Phim.TenPhim;
+                        ticket.hinhanh = suatchieu.Phim.HinhAnh;*/
                         ticket.phongchieu = suatchieu.PhongChieu.TenPhong;
                         var ghes = _dbContext.Ghe.FirstOrDefault(x => x.MaSuatChieu == ve2.MaSuatChieu && x.MaGhe == ve2.MaGhe);
                         if (ghes != null)

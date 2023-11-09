@@ -26,16 +26,12 @@ namespace CinemaTicketHub.Models
         [Column(TypeName = "date")]
         public DateTime? NgayChieu { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string MaPhim { get; set; }
+        public int MaPhim { get; set; }
 
         public int MaPhong { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ghe> Ghe { get; set; }
-
-        public virtual Phim Phim { get; set; }
 
         public virtual PhongChieu PhongChieu { get; set; }
 

@@ -47,11 +47,6 @@ namespace CinemaTicketHub.Models
                 .WithRequired(e => e.LoaiPhim)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Phim>()
-                .HasMany(e => e.SuatChieu)
-                .WithRequired(e => e.Phim)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<PhongChieu>()
                 .HasMany(e => e.SuatChieu)
                 .WithRequired(e => e.PhongChieu)

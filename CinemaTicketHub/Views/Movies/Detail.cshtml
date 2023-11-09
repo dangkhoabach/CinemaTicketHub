@@ -180,7 +180,7 @@ $(document).ready(function() {
         var movieID = '@Model.MovieID';
 
         // Chuyển hướng trang đến action "Details" với các tham số MaPhim và selectedDate
-        window.location.href = '@Url.Action("Detail2", "Movies")?id=' + movieID + '&selectedDate=' + selectedDate;
+        window.location.href = '@Url.Action("Detail", "Movies")?id=' + movieID + '&selectedDate=' + selectedDate;
     });
 
         // Bắt sự kiện khi nút "Hôm nay" được nhấp vào
@@ -190,7 +190,7 @@ $(document).ready(function() {
         var movieID = '@Model.MovieID';
 
         // Chuyển hướng trang đến action "Details" với các tham số MaPhim và ngày hôm nay
-        window.location.href = '@Url.Action("Detail2", "Movies")?id=' + movieID + '&selectedDate=' + formattedDate;
+        window.location.href = '@Url.Action("Detail", "Movies")?id=' + movieID + '&selectedDate=' + formattedDate;
     });
 });
     </script>

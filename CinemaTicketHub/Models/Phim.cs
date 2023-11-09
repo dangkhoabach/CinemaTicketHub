@@ -9,12 +9,6 @@ namespace CinemaTicketHub.Models
     [Table("Phim")]
     public partial class Phim
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Phim()
-        {
-            SuatChieu = new HashSet<SuatChieu>();
-        }
-
         [Key]
         [StringLength(10)]
         public string MaPhim { get; set; }
@@ -46,8 +40,5 @@ namespace CinemaTicketHub.Models
         public string NgonNgu { get; set; }
 
         public virtual LoaiPhim LoaiPhim { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SuatChieu> SuatChieu { get; set; }
     }
 }

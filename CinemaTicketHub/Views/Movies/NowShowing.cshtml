@@ -1,4 +1,4 @@
-﻿
+﻿@model List<CinemaTicketHub.Api.Movie>
 @{
     ViewBag.Title = "Phim đang chiếu";
 }
@@ -30,43 +30,36 @@
     <!-- ***** Banner Start ***** -->
     <div class="main-banner" style="min-height: unset; padding: unset">
         <div class="row">
-                <div class="header-text">
-                    <h4 style="text-align: center; margin: 0"><em>Phim</em> Đang Chiếu</h4>
-                    <h6 style="text-align: center; margin: 0">Now Showing</h6>
-                </div>
+            <div class="header-text">
+                <h4 style="text-align: center; margin: 0"><em>Phim</em> Đang Chiếu</h4>
+                <h6 style="text-align: center; margin: 0">Now Showing</h6>
+            </div>
         </div>
     </div>
     <!-- ***** Banner End ***** -->
-
     <!-- ***** Nowshowing Start ***** -->
     <div class="most-popular">
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
-                    @foreach (var item in Model)
+                    @foreach (var movie in Model)
                     {
                         <div class="col-lg-3 col-sm-6">
                             <div class="item">
-                                <a href="@Url.Action("Details", "Movies", new { MaPhim = item.MaPhim })"><img src="@item.HinhAnh" alt=""></a>
-                                <h4 style="text-align: justify; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;">@item.TenPhim<br><span>@item.MoTa</span></h4>
+                                <a href="@Url.Action("Detail", "Movies", new { id = movie.MovieID })"><img style="height: 300px; width: 230px" src="@movie.PosterPath" alt=""></a>
+                                <h4>@movie.Title</h4>
+                                <hr style="margin: 0" />
                                 <ul>
-                                    @if (item.DoiTuong == null)
-                                    {
-                                        <li><i class="fa fa-eye"></i> Chưa xác định</li>
-                                    }
-                                    else
-                                    {
-                                        <li><i class="fa fa-eye"></i> @item.DoiTuong</li>
-                                    }
+                                    <li><i class="fa fa-language"></i> @movie.Language</li>
 
-                                    <li><i class="fa fa-download"></i> @item.NgayKhoiChieu.ToShortDateString()</li>
+                                    <li><i class="fa fa-calendar-days"></i> @movie.ReleaseDate</li>
                                 </ul>
                             </div>
                         </div>
                     }
                     <div class="col-lg-12">
                         <div class="main-button" style="text-align: right">
-                            <a href="/Movies/ComingSoon">Phim Sắp Chiếu</a>
+                            <a href="/Movies/Upcoming">Phim Sắp Chiếu</a>
                         </div>
                     </div>
                 </div>
@@ -74,7 +67,6 @@
         </div>
     </div>
     <!-- ***** Nowshowing End ***** -->
-
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>
