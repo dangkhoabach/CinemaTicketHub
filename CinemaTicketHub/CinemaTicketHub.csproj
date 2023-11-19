@@ -224,6 +224,7 @@
     <Compile Include="Areas\Admin\Controllers\PromotionsManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShowtimesManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShowtimesAPIController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TicketAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersManageController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
