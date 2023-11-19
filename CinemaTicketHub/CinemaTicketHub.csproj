@@ -217,8 +217,10 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdAccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\InvoiceAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\MoviesManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrdersManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionsAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\PromotionsManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShowtimesManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShowtimesAPIController.cs" />

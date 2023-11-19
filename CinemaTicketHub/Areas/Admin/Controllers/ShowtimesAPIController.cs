@@ -10,26 +10,6 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
 {
     public class ShowtimesAPIController : ApiController
     {
-        /*public static List<Test> testlist = new List<Test>
-        {
-            new Test {Id = 1, Title = "ABC", Description = "áddasdassad"},
-            new Test {Id = 2, Title = "XYZ", Description = "dsfsdfdsfsdf"},
-            new Test {Id = 3, Title = "WAD", Description = "tghfhfghgfh"},
-            new Test {Id = 4, Title = "QWE", Description = "yutyuytutyu"},
-            new Test {Id = 5, Title = "JKL", Description = "bnvbnvbnvbn"}
-        };
-
-        public List<Test> Get()
-        {
-            return testlist;
-        }
-
-        public Test Get(int Id)
-        {
-            return testlist.FirstOrDefault(e => e.Id == Id);
-        }*/
-
-
         private readonly ApplicationDbContext _dbContext;
 
         public ShowtimesAPIController()
@@ -37,37 +17,94 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
             _dbContext = new ApplicationDbContext();
         }
 
-        // Phương thức GET để lấy dữ liệu từ bảng SuatChieu
-        public IHttpActionResult GetSuatChieuData()
+        public IHttpActionResult Get()
         {
             try
             {
-                // Lấy danh sách các SuatChieu từ DbContext
                 List<SuatChieu> suatChieuList = _dbContext.SuatChieu.ToList();
 
                 if (suatChieuList.Count == 0)
                 {
-                    // Trả về 204 No Content nếu không có dữ liệu
                     return StatusCode(System.Net.HttpStatusCode.NoContent);
                 }
 
-                // Chỉ lấy các trường cần thiết và tạo danh sách DTO
                 var suatChieuDTOList = suatChieuList.Select(sc => new
                 {
                     sc.MaSuatChieu,
                     sc.GioBatDau,
                     sc.GioKetThuc,
-                    sc.NgayChieu,
+                    NgayChieu = sc.NgayChieu?.ToString("dd-MM-yyyy"),
                     sc.MaPhim,
                     sc.MaPhong
                 }).ToList();
 
-                // Trả về danh sách SuatChieuDTO
                 return Ok(suatChieuDTOList);
             }
             catch (Exception ex)
             {
-                // Xử lý các ngoại lệ nếu có
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/ShowtimesAPI/GetByID/{id}")]
+        public IHttpActionResult GetByID(int id)
+        {
+            try
+            {
+                SuatChieu suatChieu = _dbContext.SuatChieu.FirstOrDefault(sc => sc.MaSuatChieu == id);
+
+                if (suatChieu == null)
+                {
+                    return NotFound();
+                }
+
+                var suatChieuDTO = new
+                {
+                    suatChieu.MaSuatChieu,
+                    suatChieu.GioBatDau,
+                    suatChieu.GioKetThuc,
+                    NgayChieu = suatChieu.NgayChieu?.ToString("dd-MM-yyyy"),
+                    suatChieu.MaPhim,
+                    suatChieu.MaPhong
+                };
+
+                return Ok(suatChieuDTO);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpDelete]
+        [Route("api/ShowtimesAPI/Delete/{id}")]
+        public IHttpActionResult Delete(int id)
+        {
+            try
+            {
+                SuatChieu suatChieu = _dbContext.SuatChieu.Find(id);
+
+                if (suatChieu == null)
+                {
+                    return NotFound();
+                }
+
+                //Xóa ghế theo suất chiếu
+                var gheList = _dbContext.Ghe.Where(x => x.MaSuatChieu == id).ToList();
+
+                foreach (var ghe in gheList)
+                {
+                    _dbContext.Ghe.Remove(ghe);
+                }
+
+                _dbContext.SuatChieu.Remove(suatChieu);
+                _dbContext.SaveChanges();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
                 return InternalServerError(ex);
             }
         }
