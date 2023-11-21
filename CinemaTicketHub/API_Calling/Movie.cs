@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace CinemaTicketHub.Api
+namespace CinemaTicketHub.API_Calling
 {
     public class Movie
     {

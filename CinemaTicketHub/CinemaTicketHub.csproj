@@ -58,6 +58,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin.Cors, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.4.2.2\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -96,6 +99,9 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -204,9 +210,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\LanguageManager.cs" />
-    <Compile Include="Api\Movie.cs" />
-    <Compile Include="Api\MovieDetail.cs" />
+    <Compile Include="API_Calling\LanguageManager.cs" />
+    <Compile Include="API_Calling\Movie.cs" />
+    <Compile Include="API_Calling\MovieDetail.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -216,12 +222,17 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdAccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AddonsAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GenresAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\InvoiceAPIController.cs" />
+    <Compile Include="Areas\Admin\Controllers\InvoiceDetailAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\MoviesManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrdersManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\PromotionsAPIController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionsDetailAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\PromotionsManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoomAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShowtimesManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShowtimesAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketAPIController.cs" />
