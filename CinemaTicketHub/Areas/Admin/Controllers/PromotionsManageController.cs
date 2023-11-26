@@ -30,6 +30,15 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
         {
             try
             {
+                if (khuyenmai.SoTienGiam == null)
+                {
+                    khuyenmai.SoTienGiam = 0;
+                }
+                else if (khuyenmai.PhanTram == null)
+                {
+                    khuyenmai.PhanTram = 0;
+                }
+
                 _dbContext.KhuyenMai.Add(khuyenmai);
                 _dbContext.SaveChanges();
 

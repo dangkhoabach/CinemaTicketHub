@@ -520,5 +520,9 @@ namespace CinemaTicketHub.Controllers
             return File(imageBytes, "image/png");
         }
 
+        public ActionResult MemberRewards()
+        {
+            return View();
+        }
     }
 }

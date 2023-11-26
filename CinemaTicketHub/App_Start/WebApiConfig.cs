@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace CinemaTicketHub.App_Start
 {
@@ -15,6 +16,9 @@ namespace CinemaTicketHub.App_Start
 
             // Cấu hình định tuyến cho Web API
             config.MapHttpAttributeRoutes();
+
+            var enableCorsAttribute = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(enableCorsAttribute);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -5,9 +5,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace CinemaTicketHub.Areas.Admin.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class TicketAPIController : ApiController
     {
         private readonly ApplicationDbContext _dbContext;

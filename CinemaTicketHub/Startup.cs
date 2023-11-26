@@ -10,10 +10,10 @@ namespace CinemaTicketHub
         {
             ConfigureAuth(app);
 
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+/*            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
             app.Use((context, next) =>
-            {
+            {   
                 if (!context.Response.Headers.ContainsKey("Access-Control-Allow-Origin"))
                 {
                     context.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
@@ -31,7 +31,7 @@ namespace CinemaTicketHub
 
                 return next.Invoke();
             });
-
+*/
         }
     }
 }

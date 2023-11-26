@@ -29,6 +29,8 @@ namespace CinemaTicketHub.Models
 
         public int? PhanTram { get; set; }
 
+        public double? SoTienGiam { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_KhuyenMai> CT_KhuyenMai { get; set; }
     }

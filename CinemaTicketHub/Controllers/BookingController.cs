@@ -161,14 +161,17 @@ namespace CinemaTicketHub.Controllers
             //Xử lý khuyến mãi
             string promocode = TempData["Promocode"] as string;
             int? phantramgiam;
+            double? sotiengiam;
             if (promocode != null)
             {
                 var promotion = _dbContext.CT_KhuyenMai.Where(x => x.MaKM == promocode).FirstOrDefault();
                 phantramgiam = promotion.KhuyenMai.PhanTram;
+                sotiengiam = promotion.KhuyenMai.SoTienGiam;
             }
             else
             {
                 phantramgiam = 0;
+                sotiengiam = 0;
             }
 
             string url = ConfigurationManager.AppSettings["Url"];
@@ -182,7 +185,7 @@ namespace CinemaTicketHub.Controllers
             double? tienbapnuoc = lstMonAn.Sum(x => x.ThanhTien);
             double tiengiave = lstGhe.Count * 100000;
             double? total = tienbapnuoc + tiengiave;
-            double? finalprice = total - total / 100 * phantramgiam;
+            double? finalprice = total - sotiengiam - total / 100 * phantramgiam;
 
             VNPayLib pay = new VNPayLib();
 
@@ -278,9 +281,17 @@ namespace CinemaTicketHub.Controllers
                             _dbContext.SaveChanges();
                         }
 
-                        // Gửi email với button "Xem chi tiết vé"
+                        //Cộng điểm tích lũy (100k = 1 điểm)
                         var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
                         var user = userManager.FindById(User.Identity.GetUserId());
+                        if (user != null)
+                        {
+                            user.Point += (int)Math.Floor((double)Total / 10000000);
+
+                            userManager.Update(user);
+                        }
+
+                        // Gửi email với button "Xem chi tiết vé"
                         string callbackUrl = "https://localhost:44351/Manage/Ticket?mahoadon=" + orderId;
                         string emailContent = $"<br/><br/>" + $"<a href=\"{callbackUrl}\" style=\"padding: 15px 25px; font-weight: bold; font-size: 16px; text-align: center; text-transform: uppercase; transition: 0.5s; background-size: 200% auto; color: white; border-radius: 10px; display: inline-block; border: 0px; box-shadow: 0px 0px 14px -7px #f09819; background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%); cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; text-decoration: none;\">Xem chi tiết vé</a>";
                         SendMail.SendEmail(user.Email, "Thanh toán thành công - Cinema Ticket Hub", "Vui lòng ấn vào nút bên dưới để xem chi tiết vé!" + emailContent + "", "");
@@ -315,14 +326,17 @@ namespace CinemaTicketHub.Controllers
             //Xử lý khuyến mãi
             string promocode = TempData["Promocode"] as string;
             int? phantramgiam;
+            double? sotiengiam;
             if (promocode != null)
             {
                 var promotion = _dbContext.CT_KhuyenMai.Where(x => x.MaKM == promocode).FirstOrDefault();
                 phantramgiam = promotion.KhuyenMai.PhanTram;
+                sotiengiam = promotion.KhuyenMai.SoTienGiam;
             }
             else
             {
                 phantramgiam = 0;
+                sotiengiam = 0;
             }
 
             //request params need to request to MoMo system
@@ -340,7 +354,7 @@ namespace CinemaTicketHub.Controllers
             double? tienbapnuoc = lstMonAn.Sum(x => x.ThanhTien);
             double tiengiave = lstGhe.Count * 100000;
             double? total = tienbapnuoc + tiengiave;
-            double? finalprice = total - total / 100 * phantramgiam;
+            double? finalprice = total - sotiengiam - total / 100 * phantramgiam;
 
             string amount = finalprice.ToString();
             string orderid = DateTime.Now.Ticks.ToString(); //mã đơn hàng
@@ -449,9 +463,17 @@ namespace CinemaTicketHub.Controllers
                     _dbContext.SaveChanges();
                 }
 
-                // Gửi email với button "Xem chi tiết vé"
+                //Cộng điểm tích lũy (100k = 1 điểm)
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
                 var user = userManager.FindById(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    user.Point += (int)Math.Floor((double)total / 100000);
+
+                    userManager.Update(user);
+                }
+
+                // Gửi email với button "Xem chi tiết vé"
                 string callbackUrl = "https://localhost:44351/Manage/Ticket?mahoadon=" + result.orderId;
                 string emailContent = $"<br/><br/>" + $"<a href=\"{callbackUrl}\" style=\"padding: 15px 25px; font-weight: bold; font-size: 16px; text-align: center; text-transform: uppercase; transition: 0.5s; background-size: 200% auto; color: white; border-radius: 10px; display: inline-block; border: 0px; box-shadow: 0px 0px 14px -7px #f09819; background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%); cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; text-decoration: none;\">Xem chi tiết vé</a>";
                 SendMail.SendEmail(user.Email, "Thanh toán thành công - Cinema Ticket Hub", "Vui lòng ấn vào nút bên dưới để xem chi tiết vé!" + emailContent + "", "");
