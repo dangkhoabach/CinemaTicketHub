@@ -10,6 +10,7 @@ using CinemaTicketHub.Models;
 using System.Collections.Generic;
 using System.Drawing;
 using ZXing;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CinemaTicketHub.Controllers
 {
@@ -520,9 +521,69 @@ namespace CinemaTicketHub.Controllers
             return File(imageBytes, "image/png");
         }
 
-        public ActionResult MemberRewards()
+        public ActionResult PromotionsWallet(string error)
         {
+            if (!string.IsNullOrEmpty(error))
+            {
+                ViewBag.Error = error;
+            }
+
+            ViewBag.PromoWallet = _dbContext.ViKhuyenMai.ToList();
             return View();
         }
-    }
+
+        [HttpPost]
+        public ActionResult SavePromotion(ViKhuyenMai vikhuyenmai)
+        {
+            var userId = User.Identity.GetUserId();
+
+            try
+            {
+                var isMaKmValid = _dbContext.CT_KhuyenMai.Any(km => km.MaKM == vikhuyenmai.MaKM.Substring(3));
+
+                if (!isMaKmValid)
+                {
+                    return RedirectToAction("PromotionsWallet", "Manage", new { error = "Mã khuyến mãi không hợp lệ!" });
+
+                }
+                else
+                {
+                    string idkm = vikhuyenmai.MaKM.Substring(0, 3);
+                    var khuyenMai = _dbContext.KhuyenMai.FirstOrDefault(km => km.IdKM.StartsWith(idkm));
+
+                    if (khuyenMai != null && DateTime.Today <= khuyenMai.ThoiHan)
+                    {
+                        vikhuyenmai.IdKM = vikhuyenmai.MaKM.Substring(0, 3);
+                        vikhuyenmai.MaKM = vikhuyenmai.MaKM.Substring(3);
+                        vikhuyenmai.id = userId;
+                        _dbContext.ViKhuyenMai.Add(vikhuyenmai);
+                        _dbContext.SaveChanges();
+                    }
+                    else
+                    {
+                        return RedirectToAction("PromotionsWallet", "Manage", new { error = "Mã khuyến mãi đã hết hạn sử dụng!" });
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return RedirectToAction("PromotionsWallet", "Manage");
+        }
+
+        public ActionResult DeletePromotion(ViKhuyenMai vikhuyenmai)
+        {
+            var item = _dbContext.ViKhuyenMai.SingleOrDefault(x => x.MaKM == vikhuyenmai.MaKM);
+
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+
+            _dbContext.ViKhuyenMai.Remove(item);
+            _dbContext.SaveChanges();
+            return RedirectToAction("PromotionsWallet", "Manage");
+        }
+    }   
 }

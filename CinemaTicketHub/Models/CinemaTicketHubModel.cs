@@ -24,12 +24,18 @@ namespace CinemaTicketHub.Models
         public virtual DbSet<SuatChieu> SuatChieu { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Ve> Ve { get; set; }
+        public virtual DbSet<ViKhuyenMai> ViKhuyenMai { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BapNuoc>()
                 .HasMany(e => e.CT_HoaDon)
                 .WithRequired(e => e.BapNuoc)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CT_KhuyenMai>()
+                .HasMany(e => e.ViKhuyenMai)
+                .WithRequired(e => e.CT_KhuyenMai)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<HoaDon>()

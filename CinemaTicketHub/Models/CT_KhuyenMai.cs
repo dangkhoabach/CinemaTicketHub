@@ -8,8 +8,14 @@ namespace CinemaTicketHub.Models
 
     public partial class CT_KhuyenMai
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CT_KhuyenMai()
+        {
+            ViKhuyenMai = new HashSet<ViKhuyenMai>();
+        }
+
         [Required]
-        [StringLength(5)]
+        [StringLength(3)]
         public string IdKM { get; set; }
 
         [Key]
@@ -19,5 +25,8 @@ namespace CinemaTicketHub.Models
         public bool? TrangThai { get; set; }
 
         public virtual KhuyenMai KhuyenMai { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ViKhuyenMai> ViKhuyenMai { get; set; }
     }
 }
