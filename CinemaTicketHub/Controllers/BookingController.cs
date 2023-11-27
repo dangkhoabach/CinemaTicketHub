@@ -72,8 +72,7 @@ namespace CinemaTicketHub.Controllers
         [HttpPost]
         public JsonResult PromotionCheck(string promocode)
         {
-            // Kiểm tra xem promocode có tồn tại trong cơ sở dữ liệu không
-            var exists = _dbContext.CT_KhuyenMai.Any(x => x.MaKM == promocode && x.TrangThai == true && x.KhuyenMai.ThoiHan >= DateTime.Now);
+            var exists = _dbContext.CT_KhuyenMai.Any(x => x.MaKM == promocode.Substring(3) && x.TrangThai == true && x.KhuyenMai.ThoiHan >= DateTime.Now && x.IdKM == promocode.Substring(0, 3));
 
             if (exists)
             {
@@ -89,6 +88,10 @@ namespace CinemaTicketHub.Controllers
 
         public ActionResult Cart(int masc)
         {
+            List<ViKhuyenMai> khuyenMaiList = _dbContext.ViKhuyenMai.ToList();
+            ViewBag.KhuyenMaiList = khuyenMaiList;
+
+
             List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
             if (lstGhe == null)
             {

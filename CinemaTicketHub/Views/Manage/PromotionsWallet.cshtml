@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="~/Content/assets/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <style>
         .btn-submit {
@@ -44,12 +45,15 @@
     @if (ViewBag.Error != null)
     {
         <script>
-        $(document).ready(function () {
-            alert('@HttpUtility.HtmlEncode(ViewBag.Error)');
-            window.location.href = '/Manage/PromotionsWallet';
-        });
+    Swal.fire({
+        icon: 'error',
+        title: 'Thông báo!',
+        text: '@ViewBag.Error'
+    });
         </script>
+
     }
+
 </head>
 
 <body>
