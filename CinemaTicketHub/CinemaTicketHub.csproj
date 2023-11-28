@@ -262,6 +262,7 @@
     <Compile Include="Models\KhuyenMai.cs" />
     <Compile Include="Models\LoaiPhim.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PhanThuong.cs" />
     <Compile Include="Models\Phim.cs" />
     <Compile Include="Models\PhongChieu.cs" />
     <Compile Include="Models\SelectSeatDataModel.cs" />
@@ -639,6 +640,7 @@
     <Content Include="Views\Movies\Upcoming.cshtml" />
     <Content Include="Views\Movies\Detail.cshtml" />
     <Content Include="Views\Manage\PromotionsWallet.cshtml" />
+    <Content Include="Views\Manage\ExchangeRewards.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

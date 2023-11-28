@@ -585,5 +585,39 @@ namespace CinemaTicketHub.Controllers
             _dbContext.SaveChanges();
             return RedirectToAction("PromotionsWallet", "Manage");
         }
+
+        public ActionResult ExchangeRewards()
+        {
+            ViewBag.Reward = _dbContext.PhanThuong.ToList();
+            return View();
+        }
+
+        public ActionResult Exchange(string idkm)
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+
+            var phanthuong = _dbContext.PhanThuong.FirstOrDefault(k => k.IdKM == idkm);
+
+            if (user != null && user.Point >= phanthuong.Diem)
+            {
+                var maKM = _dbContext.CT_KhuyenMai.Where(ct => ct.IdKM == idkm && ct.TrangThai == true).Select(ct => ct.MaKM).FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(maKM))
+                {
+                    ViKhuyenMai viKhuyenMai = new ViKhuyenMai();
+                    viKhuyenMai.id = user.Id;
+                    viKhuyenMai.MaKM = maKM;
+                    viKhuyenMai.IdKM = idkm;
+
+                    _dbContext.ViKhuyenMai.Add(viKhuyenMai);
+                    _dbContext.SaveChanges();
+
+                    user.Point = user.Point - (int)phanthuong.Diem;
+                    userManager.Update(user);
+                }
+            }
+            return RedirectToAction("PromotionsWallet", "Manage");
+        }
     }   
 }

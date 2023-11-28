@@ -1,0 +1,113 @@
+﻿@model CinemaTicketHub.Models.PhanThuong
+@using Microsoft.AspNet.Identity;
+@using CinemaTicketHub.Models
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@{
+    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var user = userManager.FindById(User.Identity.GetUserId());
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>[Đổi Thưởng] Cinema Ticket Hub</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/Content/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/Content/assets/css/templatemo-cyborg-gaming.css">
+    <link rel="stylesheet" href="~/Content/assets/css/owl.css">
+    <link rel="stylesheet" href="~/Content/assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    @*    @if (ViewBag.Error != null)
+        {
+            <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Thông báo!',
+            text: '@ViewBag.Error'
+        });
+            </script>
+
+        }*@
+</head>
+
+<body>
+    <!-- ***** Banner Start ***** -->
+    <div class="main-banner" style="min-height: unset; padding: unset">
+        <div class="row">
+            <div class="header-text">
+                <h4 style="text-align: center; margin: 0"><em>ĐỔI</em> THƯỞNG</h4>
+@*                <h6 style="text-align: center; margin: 0">Now Showing</h6>*@
+            </div>
+        </div>
+    </div>
+    <!-- ***** Banner End ***** -->
+    <!-- ***** Live Stream Start ***** -->
+    <div class="live-stream" style="margin-top: 30px">
+        <div class="col-lg-12">
+            <div class="heading-section">
+                <h4><em>Điểm tích lũy của bạn:</em> @user.Point</h4>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in ViewBag.Reward)
+            {
+                <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                        <div class="thumb">
+                            <img src="@item.HinhAnhQua" alt="">
+                            <div class="hover-effect">
+                                <div class="content">
+                                    <div class="live">
+                                        <a href="#">@item.KhuyenMai.ThoiHan.ToString("dd/MM/yyyy")</a>
+                                    </div>
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-coins"></i> @item.Diem</a></li>
+                                        <li><a href="@Url.Action("Exchange", new { idkm = item.IdKM })"><i class="fa fa-exchange"></i> Đổi quà</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="down-content">
+                            @*<div class="avatar">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/726/726461.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                                </div>*@
+                            @*<span><i class="fa fa-check"></i> Kengan Omeg</span>*@
+                            <h4 style="margin: 0">@item.KhuyenMai.TenKM</h4>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="col-lg-12">
+                <div class="main-button" style="text-align: right">
+                    <a href="/Manage/PromotionsWallet">Ví Khuyến Mãi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Live Stream End ***** -->
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="~/Content/assets/js/isotope.min.js"></script>
+    <script src="~/Content/assets/js/owl-carousel.js"></script>
+    <script src="~/Content/assets/js/tabs.js"></script>
+    <script src="~/Content/assets/js/popup.js"></script>
+    <script src="~/Content/assets/js/custom.js"></script>
+
+</body>
+</html>

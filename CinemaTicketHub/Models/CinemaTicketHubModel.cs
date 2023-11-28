@@ -19,6 +19,7 @@ namespace CinemaTicketHub.Models
         public virtual DbSet<HoaDon> HoaDon { get; set; }
         public virtual DbSet<KhuyenMai> KhuyenMai { get; set; }
         public virtual DbSet<LoaiPhim> LoaiPhim { get; set; }
+        public virtual DbSet<PhanThuong> PhanThuong { get; set; }
         public virtual DbSet<Phim> Phim { get; set; }
         public virtual DbSet<PhongChieu> PhongChieu { get; set; }
         public virtual DbSet<SuatChieu> SuatChieu { get; set; }
@@ -45,6 +46,11 @@ namespace CinemaTicketHub.Models
 
             modelBuilder.Entity<KhuyenMai>()
                 .HasMany(e => e.CT_KhuyenMai)
+                .WithRequired(e => e.KhuyenMai)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<KhuyenMai>()
+                .HasMany(e => e.PhanThuong)
                 .WithRequired(e => e.KhuyenMai)
                 .WillCascadeOnDelete(false);
 

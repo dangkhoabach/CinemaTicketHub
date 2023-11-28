@@ -1,4 +1,6 @@
 ﻿using CinemaTicketHub.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +29,6 @@ namespace CinemaTicketHub.Controllers
             return View();
         }
 
-        //Trang lỗi 404 Not Found
         public ActionResult Error()
         {
             return View();

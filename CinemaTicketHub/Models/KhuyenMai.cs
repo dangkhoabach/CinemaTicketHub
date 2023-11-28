@@ -13,6 +13,7 @@ namespace CinemaTicketHub.Models
         public KhuyenMai()
         {
             CT_KhuyenMai = new HashSet<CT_KhuyenMai>();
+            PhanThuong = new HashSet<PhanThuong>();
             ViKhuyenMai = new HashSet<ViKhuyenMai>();
         }
 
@@ -34,6 +35,9 @@ namespace CinemaTicketHub.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_KhuyenMai> CT_KhuyenMai { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhanThuong> PhanThuong { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ViKhuyenMai> ViKhuyenMai { get; set; }

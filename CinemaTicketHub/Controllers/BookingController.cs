@@ -167,9 +167,25 @@ namespace CinemaTicketHub.Controllers
             double? sotiengiam;
             if (promocode != null)
             {
-                var promotion = _dbContext.CT_KhuyenMai.Where(x => x.MaKM == promocode).FirstOrDefault();
-                phantramgiam = promotion.KhuyenMai.PhanTram;
-                sotiengiam = promotion.KhuyenMai.SoTienGiam;
+                var promotion = _dbContext.CT_KhuyenMai.Where(x => x.MaKM == promocode.Substring(3)).FirstOrDefault();
+
+                if (promotion.KhuyenMai.PhanTram == null)
+                {
+                    phantramgiam = 0;
+                }
+                else
+                {
+                    phantramgiam = promotion.KhuyenMai.PhanTram;
+                }
+
+                if (promotion.KhuyenMai.SoTienGiam == null)
+                {
+                    sotiengiam = 0;
+                }
+                else
+                {
+                    sotiengiam = promotion.KhuyenMai.SoTienGiam;
+                }
             }
             else
             {
@@ -332,9 +348,25 @@ namespace CinemaTicketHub.Controllers
             double? sotiengiam;
             if (promocode != null)
             {
-                var promotion = _dbContext.CT_KhuyenMai.Where(x => x.MaKM == promocode).FirstOrDefault();
-                phantramgiam = promotion.KhuyenMai.PhanTram;
-                sotiengiam = promotion.KhuyenMai.SoTienGiam;
+                var promotion = _dbContext.CT_KhuyenMai.Where(x => x.MaKM == promocode.Substring(3)).FirstOrDefault();
+
+                if (promotion.KhuyenMai.PhanTram == null)
+                {
+                    phantramgiam = 0;
+                }    
+                else
+                {
+                    phantramgiam = promotion.KhuyenMai.PhanTram;
+                }
+                
+                if (promotion.KhuyenMai.SoTienGiam == null)
+                {
+                    sotiengiam = 0;
+                }    
+                else
+                {
+                    sotiengiam = promotion.KhuyenMai.SoTienGiam;
+                }    
             }
             else
             {
