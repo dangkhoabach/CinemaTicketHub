@@ -104,11 +104,11 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="top-streamers" style="padding: 0 30px">
-                                        <select id="dropdownPromotions" name="promotionCode" class="dropdown-promotions" required="">
+                                        <select id="dropdownPromotions" name="promotionCode" class="dropdown-promotions" required="" style="background-color: #27292a; height: 50px; width: 100%; border-radius: 23px; border: none; color: white; font-size: 14px; padding: 0px 15px 0px 45px; margin-bottom: 10px">
                                             <option value="">Chọn mã khuyến mãi</option>
                                             @foreach (var khuyenmai in ViewBag.KhuyenMaiList)
                                             {
-                                                <option value="@khuyenmai.IdKM@khuyenmai.MaKM">
+                                                <option value="@khuyenmai.IdKM@khuyenmai.MaKM" style="padding: 0">
                                                     @if (khuyenmai.KhuyenMai.PhanTram == 0)
                                                     {
                                                         @Html.Raw($"{khuyenmai.KhuyenMai.TenKM}: Giảm {string.Format("{0:#,0}", khuyenmai.KhuyenMai.SoTienGiam)}")

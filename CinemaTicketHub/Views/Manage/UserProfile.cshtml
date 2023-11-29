@@ -38,7 +38,31 @@
             <div class="main-profile ">
                 <div class="row">
                     <div class="col-lg-4">
-                        <img src="@user.Avatar" alt="" style="border-radius: 23px;">
+                        <!-- Thẻ <a> để mở popup -->
+                        <a href="#" id="changeAvatarLink" data-toggle="modal" data-target="#changeAvatarModal">
+                            <img src="@user.Avatar" alt="" style="border-radius: 23px; width: 340px; height: 340px">
+                        </a>
+                        <!-- PopupModal -->
+                        <div class="modal fade" id="changeAvatarModal" tabindex="-1" role="dialog" aria-labelledby="changeAvatarModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="changeAvatarModalLabel">Đổi Avatar</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @using (Html.BeginForm("ChangeAvatar", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            <input type="file" name="file" />
+                                            <input type="submit" value="Đổi Avatar" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="col-lg-4 align-self-center">
                         <div class="main-info header-text">
@@ -78,7 +102,6 @@
                 {
                     <div class="item">
                         <ul>
-                            @**@                        @*<li><img src="~/Content/assets/images/game-01.jpg" alt="" class="templatemo-item"></li>*@
                             <li><h4>@item.tenphim</h4><span>@item.ngaychieu.ToShortDateString() - @item.giobatdau.ToString("hh\\:mm")</span></li>
                             <li><h4>Phòng chiếu</h4><span>@item.phongchieu</span></li>
 
@@ -138,7 +161,6 @@
         </div>
     </div>
     <!-- ***** My Ticket End ***** -->
-
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>
@@ -153,19 +175,29 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-    // Bắt sự kiện click trên thẻ <a> trong thẻ <div> có class "main-border-button"
-            $('#ticketdetail').on('click', function(e) {
-        // Ngăn chặn hành vi mặc định của thẻ <a> (ngăn chặn chuyển hướng)
-        e.preventDefault();
+        $(document).ready(function () {
+            // Bắt sự kiện click trên thẻ <a> trong thẻ <div> có class "main-border-button"
+            $('#ticketdetail').on('click', function (e) {
+                // Ngăn chặn hành vi mặc định của thẻ <a> (ngăn chặn chuyển hướng)
+                e.preventDefault();
 
-        // Lấy giá trị của item mahoadon từ thuộc tính data-mahoadon của thẻ <a>
-        var mahoadon = $(this).data('mahoadon');
+                // Lấy giá trị của item mahoadon từ thuộc tính data-mahoadon của thẻ <a>
+                var mahoadon = $(this).data('mahoadon');
 
-        // Chuyển hướng đến trang Manage/Ticket và truyền giá trị mahoadon
-        window.open('/Manage/Ticket?mahoadon=' + mahoadon, '_blank');
-    });
-});
+                // Chuyển hướng đến trang Manage/Ticket và truyền giá trị mahoadon
+                window.open('/Manage/Ticket?mahoadon=' + mahoadon, '_blank');
+            });
+        });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#changeAvatarLink").click(function (e) {
+                e.preventDefault();
+                $("#changeAvatarModal").modal("show");
+            });
+        });
+    </script>
+
 </body>
 </html>

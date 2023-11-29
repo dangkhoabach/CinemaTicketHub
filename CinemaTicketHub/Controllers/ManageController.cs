@@ -11,6 +11,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using ZXing;
 using Microsoft.AspNet.Identity.EntityFramework;
+using CinemaTicketHub.API_Calling;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.IO;
+using ImageResizer;
 
 namespace CinemaTicketHub.Controllers
 {
@@ -409,16 +414,42 @@ namespace CinemaTicketHub.Controllers
                 foreach (var ve2 in ve)
                 {
                     var suatchieu = _dbContext.SuatChieu.Where(x => x.MaSuatChieu == ve2.MaSuatChieu).FirstOrDefault();
-                    ticket.giobatdau = suatchieu.GioBatDau;
-                    ticket.ngaychieu = suatchieu.NgayChieu;
-                    /*ticket.tenphim = suatchieu.Phim.TenPhim;*/
-                    ticket.phongchieu = suatchieu.PhongChieu.TenPhong;
-                    var ghes = _dbContext.Ghe.Where(x => x.MaSuatChieu == ve2.MaSuatChieu && x.MaGhe == ve2.MaGhe).FirstOrDefault();
-                    GheViewModel ghe = new GheViewModel();
-                    ghe.maghe = ghes.MaGhe;
-                    ghe.day = ghes.Day;
-                    ghe.cot = ghes.Cot;
-                    lstghe.Add(ghe);
+
+                    if (suatchieu != null)
+                    {
+                        string tmdbApiUrl = $"https://api.themoviedb.org/3/movie/{suatchieu.MaPhim}?api_key={APIKey.Key}&language=vi-VN";
+
+                        using (HttpClient client = new HttpClient())
+                        {
+                            HttpResponseMessage response = client.GetAsync(tmdbApiUrl).Result;
+
+                            if (response.IsSuccessStatusCode)
+                            {
+                                string data = response.Content.ReadAsStringAsync().Result;
+
+                                Movie movie = JsonConvert.DeserializeObject<Movie>(data);
+
+                                ticket.giobatdau = suatchieu.GioBatDau;
+                                ticket.ngaychieu = suatchieu.NgayChieu;
+                                ticket.tenphim = movie.Title;
+                                ticket.phongchieu = suatchieu.PhongChieu.TenPhong;
+
+                                var ghes = _dbContext.Ghe.Where(x => x.MaSuatChieu == ve2.MaSuatChieu && x.MaGhe == ve2.MaGhe).FirstOrDefault();
+
+                                if (ghes != null)
+                                {
+                                    GheViewModel ghe = new GheViewModel
+                                    {
+                                        maghe = ghes.MaGhe,
+                                        day = ghes.Day,
+                                        cot = ghes.Cot
+                                    };
+
+                                    lstghe.Add(ghe);
+                                }
+                            }
+                        }
+                    }
                 }
                 var ct = _dbContext.CT_HoaDon.Where(x => x.MaHoaDon == item.MaHoaDon).ToList();
                 foreach (var ct2 in ct)
@@ -619,5 +650,45 @@ namespace CinemaTicketHub.Controllers
             }
             return RedirectToAction("PromotionsWallet", "Manage");
         }
-    }   
+
+        [HttpPost]
+        public ActionResult ChangeAvatar(HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                try
+                {
+                    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                    var user = userManager.FindById(User.Identity.GetUserId());
+
+                    string uploadPath = Server.MapPath("~/Content/images/authenticate/useravatar/");
+                    string fileName = Path.GetFileName(file.FileName);
+                    string fullPath = Path.Combine(uploadPath, fileName);
+                    file.SaveAs(fullPath);
+
+                    string oldAvatarPath = Server.MapPath(user.Avatar);
+                    if (oldAvatarPath != Server.MapPath("/Content/images/authenticate/blankavatar.jpg"))
+                    {
+                        System.IO.File.Delete(oldAvatarPath);
+                    }
+
+                    user.Avatar = "/Content/images/authenticate/useravatar/square_" + fileName;
+                    userManager.Update(user);
+
+                    string squareImagePath = Server.MapPath("~/Content/images/authenticate/useravatar/square_" + fileName);
+                    ImageBuilder.Current.Build(new ImageJob(fullPath, squareImagePath, new Instructions("format=jpg&width=200&height=200&mode=crop")));
+
+                    System.IO.File.Delete(fullPath);
+
+                    return RedirectToAction("UserProfile", "Manage");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "Lỗi: " + ex.Message;
+                }
+            }
+
+            return View();
+        }
+    }
 }

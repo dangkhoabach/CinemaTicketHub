@@ -27,8 +27,38 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
 
         public ActionResult List()
         {
-            return View(_dbContext.SuatChieu.OrderByDescending(o => o.NgayChieu).ThenBy(t => t.GioBatDau).ToList());
+            var suatChieuList = _dbContext.SuatChieu.OrderByDescending(o => o.NgayChieu).ThenBy(t => t.GioBatDau).ToList();
+
+            // Create a list to store movie names
+            List<string> movieNames = new List<string>();
+
+            foreach (var suatChieu in suatChieuList)
+            {
+                string tmdbApiUrl = $"https://api.themoviedb.org/3/movie/{suatChieu.MaPhim}?api_key={APIKey.Key}&language=vi-VN";
+
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = client.GetAsync(tmdbApiUrl).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string data = response.Content.ReadAsStringAsync().Result;
+
+                        Movie movie = JsonConvert.DeserializeObject<Movie>(data);
+                        movieNames.Add(movie.Title); // Add movie name to the list
+                    }
+                    else
+                    {
+                        movieNames.Add("Không thể lấy thông tin phim"); // Add a placeholder if there's an error
+                    }
+                }
+            }
+
+            // Pass both suatChieuList and movieNames to the view
+            ViewBag.MovieNames = movieNames;
+            return View(suatChieuList);
         }
+
 
         public async Task<ActionResult> Create()
         {
