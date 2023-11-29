@@ -15,7 +15,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -81,7 +80,7 @@
                     </div>
                     @*<a href="/Admin/MoviesManage/List" class="nav-item nav-link"><i class="fa fa-film me-2"></i>Phim</a>*@
                     <a href="/Admin/ShowtimesManage/List" class="nav-item nav-link"><i class="fa fa-calendar-days me-2"></i>Suất Chiếu</a>
-                    <a href="/Admin/OrdersManage/Bills" class="nav-item nav-link"><i class="fa fa-file-invoice me-2"></i>Hóa Đơn</a>
+                    <a href="/Admin/OrdersManage/Invoice" class="nav-item nav-link"><i class="fa fa-file-invoice me-2"></i>Hóa Đơn</a>
                     <a href="/Admin/PromotionsManage/Generate" class="nav-item nav-link"><i class="fa fa-percent me-2"></i>Khuyến Mãi</a>
                     @if (User.IsInRole("Master"))
                     {
@@ -92,6 +91,7 @@
         </div>
     </div>
     <!-- Sidebar End -->
+
     <!-- Content Start -->
     <div class="content">
         <!-- Navbar Start -->
@@ -127,16 +127,17 @@
             </div>
         </nav>
         <!-- Navbar End -->
+
         <!-- Blank Start -->
         <div class="container-fluid pt-4 px-4">
             <div class="row min-vh-100 bg-secondary rounded @*align-items-center*@ justify-content-center mx-0">
                 <div class="col-md-6 text-center">
-                    @*<h3>This is blank page</h3>*@
                     @RenderBody()
                 </div>
             </div>
         </div>
         <!-- Blank End -->
+
         <!-- Footer Start -->
         <div class="container-fluid pt-4 px-4">
             <div class="bg-secondary rounded-top p-4">
@@ -144,16 +145,14 @@
                     <div class="col-12 col-sm-6 text-center text-sm-start">
                         &copy; <a href="#">Cinema Ticket Hub</a>, All Right Reserved.
                     </div>
-                    <div class="col-12 col-sm-6 text-center text-sm-end">
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed & Distributed By <a href="#">Nhóm 002</a>
-                    </div>
+                    <div class="col-12 col-sm-6 text-center text-sm-end">Designed & Distributed By <a href="#">Nhóm 002</a></div>
                 </div>
             </div>
         </div>
         <!-- Footer End -->
     </div>
     <!-- Content End -->
+
     <!-- Back to Top -->
     @*<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>*@
 
@@ -172,5 +171,4 @@
     <!-- Template Javascript -->
     <script src="~/Areas/Admin/Content/js/main.js"></script>
 </body>
-
 </html>

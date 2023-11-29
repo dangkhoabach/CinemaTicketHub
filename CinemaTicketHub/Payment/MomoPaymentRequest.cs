@@ -15,7 +15,6 @@ namespace CinemaTicketHub.Payment
         }
         public static string sendPaymentRequest(string endpoint, string postJsonString)
         {
-
             try
             {
                 HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(endpoint);
@@ -49,11 +48,9 @@ namespace CinemaTicketHub.Payment
                     }
                 }
 
-
                 //todo parse it
                 return jsonresponse;
                 //return new MomoResponse(mtid, jsonresponse);
-
             }
             catch (WebException e)
             {

@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
     <!-- ***** Preloader Start ***** -->
     <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
@@ -44,19 +43,11 @@
                             <img src="~/Content/assets/images/CinemaTicketHUB_LOGO.png" alt="">
                         </a>
                         <!-- ***** Logo End ***** -->
-                        <!-- ***** Search Start ***** -->
-                        <!--<div class="search-input">
-                            <form id="search" action="#">
-                                <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                                <i class="fa fa-search"></i>
-                            </form>
-                        </div>-->
-                        <!-- ***** Search End ***** -->
+
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="/Home/Index" class="active">Trang chủ</a></li>
-                            <li><a href="/Movies/NowShowing">Phim Đang Chiếu</a></li>
-                            <li><a href="/Movies/Upcoming">Phim Sắp Chiếu</a></li>
+                            <li><a href="/Movies/NowShowing">Đặt Vé</a></li>
                             <li><a href="/Manage/ExchangeRewards">Đổi thưởng</a></li>
 
                             @if (User.IsInRole("Admin"))
@@ -70,17 +61,17 @@
                                     <li><a href="/Admin">Master</a></li>
                                 }
                             }
-
-
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i></a></li>
+                            }
                             <li>@Html.Partial("_LoginPartial")</li>
-
-
-                            @*<li><a href="#">Cá nhân <img src="~/Content/assets/images/profile-header.jpg" alt=""></a></li>*@
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
                         </a>
                         <!-- ***** Menu End ***** -->
+
                     </nav>
                 </div>
             </div>
@@ -92,9 +83,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-content">
-
                     @RenderBody()
-
                 </div>
             </div>
         </div>
@@ -124,7 +113,5 @@
     <script src="~/Content/assets/js/tabs.js"></script>
     <script src="~/Content/assets/js/popup.js"></script>
     <script src="~/Content/assets/js/custom.js"></script>
-
 </body>
-
 </html>

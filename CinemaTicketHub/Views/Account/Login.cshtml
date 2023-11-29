@@ -1,5 +1,6 @@
 ﻿@using CinemaTicketHub.Models
 @model LoginViewModel
+
 @{
     Layout = null;
 }
@@ -17,6 +18,7 @@
     <!-- Google ReCaptcha -->
     <script src='https://www.google.com/recaptcha/api.js?hl=vi'></script>
 </head>
+
 <body>
     <div class="login-box">
         <a href="/Home/Index" class="gotosignup" style="float: left"><i class="fa-solid fa-arrow-left"></i></a>
@@ -41,7 +43,6 @@
             <div class="g-recaptcha" data-sitekey="6LfV_EcmAAAAALCj8W5BzV6uZbtOb4vv_GXgFVDb"></div>
             <input type="hidden" name="gRecaptchaResponse" value="@(Request["g-recaptcha-response"])" />
 
-
             <a href="#" onclick="document.querySelector('.btn-default').click(); return false;">
                 <span></span>
                 <span></span>
@@ -49,7 +50,6 @@
                 <span></span>
                 Đăng nhập
             </a>
-
             <input type="submit" value="Log in" class="btn btn-default" />
         }
         <a href="/Account/Register" class="gotosignup">Bạn chưa có tài khoản?</a>

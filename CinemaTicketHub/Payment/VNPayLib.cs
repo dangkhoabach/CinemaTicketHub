@@ -47,9 +47,6 @@ namespace CinemaTicketHub
             return baseUrl;
         }
 
-
-
-
         //------------------------RESPONSE DATA----------------------------------------
         public void AddResponseData(string key, string value)
         {
@@ -105,6 +102,5 @@ namespace CinemaTicketHub
             string myChecksum = VNPayUtil.HmacSHA512(secretKey, rspRaw);
             return myChecksum.Equals(inputHash, StringComparison.InvariantCultureIgnoreCase);
         }
-
     }
 }

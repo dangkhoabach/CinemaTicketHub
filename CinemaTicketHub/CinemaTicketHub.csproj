@@ -544,7 +544,7 @@
     <Content Include="Areas\Admin\Views\ShowtimesManage\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ShowtimesManage\Details.cshtml" />
     <Content Include="Areas\Admin\Views\UsersManage\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\OrdersManage\Bills.cshtml" />
+    <Content Include="Areas\Admin\Views\OrdersManage\Invoice.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\OrdersStatistics.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\TicketsStatistics.cshtml" />
     <Content Include="Content\assets\webfonts\fa-brands-400.ttf" />

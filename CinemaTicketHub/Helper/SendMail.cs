@@ -42,6 +42,5 @@ namespace CinemaTicketHub.Helper
             }
             return true;
         }
-
     }
 }

@@ -44,10 +44,9 @@ namespace CinemaTicketHub.Payment
                 }
 
             }
-
             return result;
-
         }
+
         public string buildQueryHash(string partnerCode, string merchantRefId,
             string requestid, string publicKey)
         {
@@ -72,11 +71,8 @@ namespace CinemaTicketHub.Payment
                 {
                     rsa.PersistKeyInCsp = false;
                 }
-
             }
-
             return result;
-
         }
 
         public string buildRefundHash(string partnerCode, string merchantRefId,
@@ -105,12 +101,10 @@ namespace CinemaTicketHub.Payment
                 {
                     rsa.PersistKeyInCsp = false;
                 }
-
             }
-
             return result;
-
         }
+
         public string signSHA256(string message, string key)
         {
             byte[] keyByte = Encoding.UTF8.GetBytes(key);
@@ -121,7 +115,6 @@ namespace CinemaTicketHub.Payment
                 string hex = BitConverter.ToString(hashmessage);
                 hex = hex.Replace("-", "").ToLower();
                 return hex;
-
             }
         }
     }

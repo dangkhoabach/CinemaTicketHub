@@ -24,7 +24,6 @@ namespace CinemaTicketHub.API_Calling
     { "ru", "Tiếng Nga" },
     { "ko", "Tiếng Hàn" },
     { "ar", "Tiếng Ả Rập" },
-            // Thêm các ngôn ngữ khác cùng với tên đầy đủ của chúng vào đây
         };
         }
 
@@ -37,5 +36,4 @@ namespace CinemaTicketHub.API_Calling
             return languageCode; // Nếu không tìm thấy, trả về mã ngôn ngữ
         }
     }
-
 }

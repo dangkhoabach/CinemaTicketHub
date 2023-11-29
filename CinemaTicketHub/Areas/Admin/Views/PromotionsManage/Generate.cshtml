@@ -38,7 +38,6 @@
                 @Html.EditorFor(model => model.SoTienGiam, new { htmlAttributes = new { @class = "form-control", @id = "SoTienGiam" } })
                 @Html.ValidationMessageFor(model => model.SoTienGiam, "", new { @class = "text-danger" })
             </div>
-
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Số lượng mã</label>
                 @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
@@ -49,7 +48,6 @@
                 @Html.EditorFor(model => model.ThoiHan, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ThoiHan, "", new { @class = "text-danger" })
             </div>
-
             <div class="mb-3">
                 <input type="submit" value="Thêm khuyến mãi" class="btn btn-outline-danger" />
             </div>

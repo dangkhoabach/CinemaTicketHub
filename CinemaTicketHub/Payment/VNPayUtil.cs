@@ -22,7 +22,6 @@ namespace CinemaTicketHub.Payment
                     hash.Append(theByte.ToString("x2"));
                 }
             }
-
             return hash.ToString();
         }
 
@@ -40,7 +39,6 @@ namespace CinemaTicketHub.Payment
             {
                 ipAddress = "Invalid IP:" + ex.Message;
             }
-
             return ipAddress;
         }
     }

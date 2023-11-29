@@ -2,24 +2,17 @@
 @using CinemaTicketHub.Models
 @using Microsoft.AspNet.Identity.EntityFramework;
 
-@{var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-    var user = userManager.FindById(User.Identity.GetUserId()); }
+@{
+    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var user = userManager.FindById(User.Identity.GetUserId());
+}
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
-
-
         <a href="/Manage/UserProfile">@user.Name <img src="@user.Avatar" alt=""></a>
-
-
-        @*        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">@user.Name</a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                <li><a class="dropdown-item" href="/Manage/PersonalInfo"><i class="fa-regular fa-address-card" style="color: #000000"></i> Tài khoản của tôi</a></li>
-                <li><a class="dropdown-item" href="/Manage/MyTicket"><i class="fa-solid fa-ticket" style="color: #000000"></i> Vé của tôi</a></li>
-                <li><a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()"><i class="fa-solid fa-right-from-bracket" style="color: #000000"></i> Đăng xuất</a></li>
-            </ul>*@
     }
 }
 else

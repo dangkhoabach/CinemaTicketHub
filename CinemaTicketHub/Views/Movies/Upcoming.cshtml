@@ -1,9 +1,5 @@
 ﻿@model List<CinemaTicketHub.API_Calling.Movie>
 
-@{
-    ViewBag.Title = "Phim sắp chiếu";
-}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +23,6 @@
 </head>
 
 <body>
-
     <!-- ***** Banner Start ***** -->
     <div class="main-banner" style="min-height: unset; padding: unset">
         <div class="row">
@@ -38,6 +33,7 @@
         </div>
     </div>
     <!-- ***** Banner End ***** -->
+
     <!-- ***** Upcoming Start ***** -->
     <div class="most-popular">
         <div class="row">
@@ -52,7 +48,6 @@
                                 <hr style="margin: 0" />
                                 <ul>
                                     <li><i class="fa fa-language"></i> @movie.Language</li>
-
                                     <li><i class="fa fa-calendar-days"></i> @movie.ReleaseDate</li>
                                 </ul>
                             </div>
@@ -68,6 +63,7 @@
         </div>
     </div>
     <!-- ***** Upcoming End ***** -->
+
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>
