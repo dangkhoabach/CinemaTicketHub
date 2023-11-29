@@ -1,4 +1,5 @@
-﻿using CinemaTicketHub.Models;
+﻿using CinemaTicketHub.API_Calling;
+using CinemaTicketHub.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,6 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
     public class ShowtimesManageController : Controller
     {
         ApplicationDbContext _dbContext = new ApplicationDbContext();
-        string apiKey = "e46908dd5435f6f94058053e73bd2acd";
 
         // GET: Admin/ShowtimesManage
         public ActionResult Index()
@@ -32,7 +32,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
 
         public async Task<ActionResult> Create()
         {
-            string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={apiKey}&language=vi-VN&region=VN";
+            string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language=vi-VN&region=VN";
 
             using (HttpClient client = new HttpClient())
             {
@@ -59,11 +59,9 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 }
                 else
                 {
-                    // Xử lý khi gặp lỗi khi gọi API
                     ViewBag.Error = "Không thể lấy danh sách phim từ API.";
                 }
             }
-
             ViewBag.PhongChieu = _dbContext.PhongChieu.OrderBy(o => o.TenPhong).ToList();
             return View();
         }
@@ -78,7 +76,6 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                     ViewBag.PhongChieu = _dbContext.PhongChieu.ToList();
                     return View("Create", suatchieu);
                 }
-
                 _dbContext.SuatChieu.Add(suatchieu);
 
                 Ghe ghe;
@@ -122,12 +119,10 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                         _dbContext.Ghe.Add(ghe);
                     }
                 }
-
                 _dbContext.SaveChanges();
             }
             catch (Exception)
-            {
-                
+            {            
             }
             return RedirectToAction("List", "ShowtimesManage");
         }
@@ -136,7 +131,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
         {
             SuatChieu suatchieu = _dbContext.SuatChieu.Find(MaSuatChieu);
 
-            string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={apiKey}&language=vi-VN&region=VN";
+            string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language=vi-VN&region=VN";
 
             using (HttpClient client = new HttpClient())
             {
@@ -157,17 +152,13 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                         };
                         phimList.Add(phimItem);
                     }
-
-
                     ViewBag.Phim = phimList;
                 }
                 else
                 {
-                    // Xử lý khi gặp lỗi khi gọi API
                     ViewBag.Error = "Không thể lấy danh sách phim từ API.";
                 }
             }
-
             ViewBag.PhongChieu = _dbContext.PhongChieu.ToList();
             return View(suatchieu);
         }
@@ -183,7 +174,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                     return HttpNotFound();
                 }
 
-                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={apiKey}&language=vi-VN&region=VN";
+                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language=vi-VN&region=VN";
 
                 using (HttpClient client = new HttpClient())
                 {
@@ -204,17 +195,13 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                             };
                             phimList.Add(phimItem);
                         }
-
-
                         ViewBag.Phim = phimList;
                     }
                     else
                     {
-                        // Xử lý khi gặp lỗi khi gọi API
                         ViewBag.Error = "Không thể lấy danh sách phim từ API.";
                     }
                 }
-
                 ViewBag.PhongChieu = _dbContext.PhongChieu.ToList();
 
                 item.NgayChieu = suatchieu.NgayChieu;
@@ -227,8 +214,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 _dbContext.SaveChanges();
             }
             catch (Exception)
-            {
-                
+            {              
             }
             return RedirectToAction("List", "ShowtimesManage");
         }

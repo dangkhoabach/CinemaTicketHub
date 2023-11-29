@@ -210,6 +210,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API_Calling\APIKey.cs" />
     <Compile Include="API_Calling\LanguageManager.cs" />
     <Compile Include="API_Calling\Movie.cs" />
     <Compile Include="API_Calling\MovieDetail.cs" />

@@ -81,7 +81,6 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 {
                     return NotFound();
                 }
-
                 _dbContext.LoaiPhim.Remove(loaiPhim);
                 _dbContext.SaveChanges();
 

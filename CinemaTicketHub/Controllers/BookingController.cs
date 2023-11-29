@@ -1,14 +1,18 @@
 ﻿using Antlr.Runtime.Tree;
+using CinemaTicketHub.API_Calling;
 using CinemaTicketHub.Helper;
 using CinemaTicketHub.Models;
 using CinemaTicketHub.Payment;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -29,10 +33,39 @@ namespace CinemaTicketHub.Controllers
 
         public ActionResult SeatSelection(int MaSuatChieu)
         {
-            ViewBag.moviesdetail = _dbContext.SuatChieu.Where(y => y.MaSuatChieu == MaSuatChieu).FirstOrDefault();
-            SelectSeatDataModel selectSeatDataModel = new SelectSeatDataModel();
-            selectSeatDataModel.listcheck = lstCheckList(MaSuatChieu);
-            return View(selectSeatDataModel);
+            var suatChieu = _dbContext.SuatChieu.Where(y => y.MaSuatChieu == MaSuatChieu).FirstOrDefault();
+
+            if (suatChieu != null)
+            {
+                string tmdbApiUrl = $"https://api.themoviedb.org/3/movie/{suatChieu.MaPhim}?api_key={APIKey.Key}&language=vi-VN";
+
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = client.GetAsync(tmdbApiUrl).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string data = response.Content.ReadAsStringAsync().Result;
+
+                        Movie movie = JsonConvert.DeserializeObject<Movie>(data);
+                        ViewBag.MovieName = movie.Title;
+                    }
+                    else
+                    {
+                        ViewBag.MovieName = "Không thể lấy thông tin phim";
+                    }
+                }
+
+                SelectSeatDataModel selectSeatDataModel = new SelectSeatDataModel();
+                selectSeatDataModel.listcheck = lstCheckList(MaSuatChieu);
+                ViewBag.moviesdetail = suatChieu;
+
+                return View(selectSeatDataModel);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
 
         [HttpPost]
@@ -91,7 +124,6 @@ namespace CinemaTicketHub.Controllers
             List<ViKhuyenMai> khuyenMaiList = _dbContext.ViKhuyenMai.ToList();
             ViewBag.KhuyenMaiList = khuyenMaiList;
 
-
             List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
             if (lstGhe == null)
             {
@@ -100,6 +132,21 @@ namespace CinemaTicketHub.Controllers
             }
             ViewBag.Popcorn = _dbContext.BapNuoc.OrderBy(o => o.MaMon).ToList();
             ViewBag.moviesdetail = _dbContext.SuatChieu.Where(y => y.MaSuatChieu == masc).FirstOrDefault();
+
+            int? maPhim = ViewBag.moviesdetail?.MaPhim;
+
+            if (maPhim.HasValue)
+            {
+                string apiUrl = $"https://api.themoviedb.org/3/movie/{maPhim}?api_key={APIKey.Key}&language=vi-VN";
+
+                using (WebClient client = new WebClient())
+                {
+                    string response = client.DownloadString(apiUrl);
+
+                    dynamic movieDetails = JsonConvert.DeserializeObject(response);
+                    ViewBag.MovieName = movieDetails.title;
+                }
+            }
 
             List<Cart> lstMonAn = Session["Cart2"] as List<Cart>;
             if (lstMonAn == null)

@@ -17,9 +17,7 @@ namespace CinemaTicketHub.Controllers
     public class MoviesController : Controller
     {
         ApplicationDbContext _dbContext = new ApplicationDbContext();
-        string apiKey = "e46908dd5435f6f94058053e73bd2acd";
         LanguageManager languageManager = new LanguageManager();
-
 
         // GET: Movies
         public ActionResult Index()
@@ -31,7 +29,7 @@ namespace CinemaTicketHub.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={apiKey}&language=vi-VN&region=VN";
+                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language=vi-VN&region=VN";
 
                 HttpResponseMessage response = await client.GetAsync(apiUrl);
                 if (response.IsSuccessStatusCode)
@@ -60,13 +58,10 @@ namespace CinemaTicketHub.Controllers
                         };
                         movies.Add(movie);
                     }
-
-
                     return View(movies);
                 }
                 else
                 {
-                    // Handle error
                     return View("Error");
                 }
             }
@@ -76,7 +71,7 @@ namespace CinemaTicketHub.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string apiUrl = $"https://api.themoviedb.org/3/movie/upcoming?api_key={apiKey}&language=vi-VN&region=VN";
+                string apiUrl = $"https://api.themoviedb.org/3/movie/upcoming?api_key={APIKey.Key}&language=vi-VN&region=VN";
 
                 HttpResponseMessage response = await client.GetAsync(apiUrl);
                 if (response.IsSuccessStatusCode)
@@ -105,13 +100,10 @@ namespace CinemaTicketHub.Controllers
                         };
                         movies.Add(movie);
                     }
-
-
                     return View(movies);
                 }
                 else
                 {
-                    // Handle error
                     return View("Error");
                 }
             }
@@ -119,7 +111,7 @@ namespace CinemaTicketHub.Controllers
 
         public async Task<ActionResult> Detail(int id, DateTime? selectedDate)
         {
-            string apiUrl = $"https://api.themoviedb.org/3/movie/{id}?api_key={apiKey}&language=vi-VN";
+            string apiUrl = $"https://api.themoviedb.org/3/movie/{id}?api_key={APIKey.Key}&language=vi-VN";
 
             using (HttpClient client = new HttpClient())
             {
@@ -163,12 +155,10 @@ namespace CinemaTicketHub.Controllers
                     {
                         ViewBag.SuatChieu = _dbContext.SuatChieu.Where(m => m.MaPhim == id && DbFunctions.TruncateTime(m.NgayChieu) == DateTime.Today).ToList();
                     }
-
                     return View(movieDetail);
                 }
                 else
                 {
-                    // Xử lý lỗi
                     return View("Error");
                 }
             }
@@ -176,7 +166,7 @@ namespace CinemaTicketHub.Controllers
 
         private string GetTrailerEmbedUrl(int movieId)
         {
-            string apiUrl = $"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={apiKey}&language=en-US";
+            string apiUrl = $"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={APIKey.Key}&language=en-US";
 
             using (HttpClient client = new HttpClient())
             {
@@ -195,12 +185,9 @@ namespace CinemaTicketHub.Controllers
                         }
                     }
                 }
-
                 // Nếu không tìm thấy trailer hoặc có lỗi, trả về một URL nhúng mặc định hoặc thông báo lỗi
                 return "https://www.youtube.com/embed/default-trailer-key"; // Hoặc trả về URL nhúng mặc định khác hoặc thông báo lỗi
             }
         }
-
-
     }
 }
