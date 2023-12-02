@@ -236,6 +236,7 @@
     <Compile Include="Areas\Admin\Controllers\PromotionsAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\PromotionsDetailAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\PromotionsManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RewardAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoomAPIController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShowtimesManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShowtimesAPIController.cs" />

@@ -34,6 +34,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                     km.TenKM,
                     km.SoLuong,
                     km.PhanTram,
+                    km.SoTienGiam,
                     ThoiHan = km.ThoiHan?.ToString("dd-MM-yyyy")
                 }).ToList();
 
@@ -64,6 +65,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                     khuyenMai.TenKM,
                     khuyenMai.SoLuong,                   
                     khuyenMai.PhanTram,
+                    khuyenMai.SoTienGiam,
                     ThoiHan = khuyenMai.ThoiHan?.ToString("dd-MM-yyyy")
                 };
 

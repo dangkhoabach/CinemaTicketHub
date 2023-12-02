@@ -489,20 +489,35 @@ namespace CinemaTicketHub.Controllers
                     var suatchieu = _dbContext.SuatChieu.FirstOrDefault(x => x.MaSuatChieu == ve2.MaSuatChieu);
                     if (suatchieu != null)
                     {
-                        ticket.giobatdau = suatchieu.GioBatDau;
-                        ticket.gioketthuc = suatchieu.GioKetThuc;
-                        ticket.ngaychieu = suatchieu.NgayChieu;
-                        /*ticket.tenphim = suatchieu.Phim.TenPhim;
-                        ticket.hinhanh = suatchieu.Phim.HinhAnh;*/
-                        ticket.phongchieu = suatchieu.PhongChieu.TenPhong;
-                        var ghes = _dbContext.Ghe.FirstOrDefault(x => x.MaSuatChieu == ve2.MaSuatChieu && x.MaGhe == ve2.MaGhe);
-                        if (ghes != null)
+                        string tmdbApiUrl = $"https://api.themoviedb.org/3/movie/{suatchieu.MaPhim}?api_key={APIKey.Key}&language=vi-VN";
+
+                        using (HttpClient client = new HttpClient())
                         {
-                            GheViewModel ghe = new GheViewModel();
-                            ghe.maghe = ghes.MaGhe;
-                            ghe.day = ghes.Day;
-                            ghe.cot = ghes.Cot;
-                            lstghe.Add(ghe);
+                            HttpResponseMessage response = client.GetAsync(tmdbApiUrl).Result;
+
+                            if (response.IsSuccessStatusCode)
+                            {
+                                string data = response.Content.ReadAsStringAsync().Result;
+
+                                dynamic movieData = JsonConvert.DeserializeObject(data);
+
+                                ticket.giobatdau = suatchieu.GioBatDau;
+                                ticket.gioketthuc = suatchieu.GioKetThuc;
+                                ticket.ngaychieu = suatchieu.NgayChieu;
+                                ticket.tenphim = movieData.original_title;
+                                ticket.hinhanh = "https://image.tmdb.org/t/p/w500" + movieData.poster_path;
+                                ticket.phongchieu = suatchieu.PhongChieu.TenPhong;
+
+                                var ghes = _dbContext.Ghe.FirstOrDefault(x => x.MaSuatChieu == ve2.MaSuatChieu && x.MaGhe == ve2.MaGhe);
+                                if (ghes != null)
+                                {
+                                    GheViewModel ghe = new GheViewModel();
+                                    ghe.maghe = ghes.MaGhe;
+                                    ghe.day = ghes.Day;
+                                    ghe.cot = ghes.Cot;
+                                    lstghe.Add(ghe);
+                                }
+                            }
                         }
                     }
                 }

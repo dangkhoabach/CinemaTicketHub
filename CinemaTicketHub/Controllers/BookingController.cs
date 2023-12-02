@@ -137,14 +137,23 @@ namespace CinemaTicketHub.Controllers
 
             if (maPhim.HasValue)
             {
-                string apiUrl = $"https://api.themoviedb.org/3/movie/{maPhim}?api_key={APIKey.Key}&language=vi-VN";
+                string tmdbApiUrl = $"https://api.themoviedb.org/3/movie/{maPhim}?api_key={APIKey.Key}&language=vi-VN";
 
-                using (WebClient client = new WebClient())
+                using (HttpClient client = new HttpClient())
                 {
-                    string response = client.DownloadString(apiUrl);
+                    HttpResponseMessage response = client.GetAsync(tmdbApiUrl).Result;
 
-                    dynamic movieDetails = JsonConvert.DeserializeObject(response);
-                    ViewBag.MovieName = movieDetails.title;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string data = response.Content.ReadAsStringAsync().Result;
+
+                        Movie movie = JsonConvert.DeserializeObject<Movie>(data);
+                        ViewBag.MovieName = movie.Title;
+                    }
+                    else
+                    {
+                        ViewBag.MovieName = "Không thể lấy thông tin phim";
+                    }
                 }
             }
 
@@ -347,12 +356,12 @@ namespace CinemaTicketHub.Controllers
                             _dbContext.SaveChanges();
                         }
 
-                        //Cộng điểm tích lũy (100k = 1 điểm)
+                        //Cộng điểm tích lũy (10k = 1 điểm)
                         var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
                         var user = userManager.FindById(User.Identity.GetUserId());
                         if (user != null)
                         {
-                            user.Point += (int)Math.Floor((double)Total / 10000000);
+                            user.Point += (int)Math.Floor((double)Total / 1000000);
 
                             userManager.Update(user);
                         }
@@ -545,12 +554,12 @@ namespace CinemaTicketHub.Controllers
                     _dbContext.SaveChanges();
                 }
 
-                //Cộng điểm tích lũy (100k = 1 điểm)
+                //Cộng điểm tích lũy (10k = 1 điểm)
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
                 var user = userManager.FindById(User.Identity.GetUserId());
                 if (user != null)
                 {
-                    user.Point += (int)Math.Floor((double)total / 100000);
+                    user.Point += (int)Math.Floor((double)total / 10000);
 
                     userManager.Update(user);
                 }

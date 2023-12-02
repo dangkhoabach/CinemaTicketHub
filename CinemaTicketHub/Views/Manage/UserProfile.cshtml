@@ -45,18 +45,12 @@
                         <!-- PopupModal -->
                         <div class="modal fade" id="changeAvatarModal" tabindex="-1" role="dialog" aria-labelledby="changeAvatarModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="changeAvatarModalLabel">Đổi Avatar</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
+                                <div class="modal-content" style="background: #27292a; border-radius: 30px">
+                                    <div class="modal-body" style="color: #e75e8d; text-align: center">
                                         @using (Html.BeginForm("ChangeAvatar", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                         {
-                                            <input type="file" name="file" />
-                                            <input type="submit" value="Đổi Avatar" />
+                                            <input type="file" name="file" accept="image/*" />
+                                            <input type="submit" value="Xác nhận" style="border-radius: 20px; border: none; padding: 5px 15px" />
                                         }
                                     </div>
                                 </div>
