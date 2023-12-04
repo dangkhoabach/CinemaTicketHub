@@ -85,7 +85,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 _dbContext.PhongChieu.Remove(phongChieu);
                 _dbContext.SaveChanges();
 
-                return Ok();
+                return Ok("Phòng chiếu đã được xóa thành công.");
             }
             catch (Exception ex)
             {

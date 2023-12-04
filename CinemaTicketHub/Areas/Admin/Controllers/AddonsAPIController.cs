@@ -91,7 +91,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 _dbContext.BapNuoc.Remove(bapNuoc);
                 _dbContext.SaveChanges();
 
-                return Ok();
+                return Ok("Bắp nước đã được xóa thành công.");
             }
             catch (Exception ex)
             {

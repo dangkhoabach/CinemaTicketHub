@@ -87,7 +87,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 _dbContext.CT_KhuyenMai.Remove(ctKhuyenMai);
                 _dbContext.SaveChanges();
 
-                return Ok();
+                return Ok("Chi tiết khuyến mãi đã được xóa thành công.");
             }
             catch (Exception ex)
             {

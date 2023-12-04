@@ -84,7 +84,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 _dbContext.LoaiPhim.Remove(loaiPhim);
                 _dbContext.SaveChanges();
 
-                return Ok();
+                return Ok("Thể loại đã được xóa thành công.");
             }
             catch (Exception ex)
             {

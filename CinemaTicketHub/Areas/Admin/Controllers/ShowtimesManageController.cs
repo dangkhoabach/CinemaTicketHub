@@ -108,44 +108,19 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 }
                 _dbContext.SuatChieu.Add(suatchieu);
 
-                Ghe ghe;
-                for(int i = 1; i <= 5; i++)
+                //Thêm ghế theo suất chiếu
+                for (int i = 1; i <= 5; i++)
                 {
-                    for(int j = 1; j <= 10; j++)
+                    for (int j = 1; j <= 10; j++)
                     {
-                        ghe = new Ghe();
-                        ghe.Cot = j;
-                        if(i == 1)
+                        Ghe ghe = new Ghe
                         {
-                            ghe.Day = "A";
-                        }
-                        else
-                        {
-                            if(i == 2)
-                            {
-                                ghe.Day = "B";
-                            }
-                            else
-                            {
-                                if(i == 3)
-                                {
-                                    ghe.Day = "C";
-                                }    
-                                else
-                                {
-                                    if(i == 4)
-                                    {
-                                        ghe.Day = "D";
-                                    }    
-                                    else
-                                    {
-                                        ghe.Day = "E";
-                                    }    
-                                }    
-                            }
-                        }
-                        ghe.MaSuatChieu = suatchieu.MaSuatChieu;
-                        ghe.TrangThai = false;
+                            Cot = j,
+                            Day = ((char)('A' + i - 1)).ToString(),
+                            MaSuatChieu = suatchieu.MaSuatChieu,
+                            TrangThai = false
+                        };
+
                         _dbContext.Ghe.Add(ghe);
                     }
                 }

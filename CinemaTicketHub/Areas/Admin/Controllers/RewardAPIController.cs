@@ -90,7 +90,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                 _dbContext.PhanThuong.Remove(phanThuong);
                 _dbContext.SaveChanges();
 
-                return Ok();
+                return Ok("Phần thưởng đã được xóa thành công.");
             }
             catch (Exception ex)
             {
