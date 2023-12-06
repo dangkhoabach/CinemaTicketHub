@@ -47,7 +47,7 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="/Home/Index">Trang chủ</a></li>
-                            <li><a href="/Movies/NowShowing">Đặt Vé</a></li>
+                            <li><a href="/Movies/NowShowing">Đặt vé</a></li>
                             <li><a href="/Manage/ExchangeRewards">Đổi thưởng</a></li>
 
                             @if (User.IsInRole("Admin"))
@@ -67,9 +67,6 @@
                             }
                             <li>@Html.Partial("_LoginPartial")</li>
                         </ul>
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
                         <!-- ***** Menu End ***** -->
 
                     </nav>

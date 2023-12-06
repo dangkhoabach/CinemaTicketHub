@@ -23,7 +23,7 @@ namespace CinemaTicketHub.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language=vi-VN&region=VN";
+                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language={APIKey.Language}&region={APIKey.Region}";
 
                 HttpResponseMessage response = await client.GetAsync(apiUrl);
                 if (response.IsSuccessStatusCode)
@@ -62,7 +62,7 @@ namespace CinemaTicketHub.Controllers
 
             using (HttpClient client = new HttpClient())
             {
-                string apiUrl = $"https://api.themoviedb.org/3/movie/upcoming?api_key={APIKey.Key}&language=vi-VN&region=VN";
+                string apiUrl = $"https://api.themoviedb.org/3/movie/upcoming?api_key={APIKey.Key}&language={APIKey.Language}&region={APIKey.Region}";
 
                 HttpResponseMessage response = await client.GetAsync(apiUrl);
                 if (response.IsSuccessStatusCode)

@@ -1,0 +1,111 @@
+﻿@model CinemaTicketHub.Models.CT_KhuyenMai
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <title>[Chi Tiết Khuyến Mãi] Cinema Ticket Hub</title>
+</head>
+
+<h2>Chi Tiết Khuyến Mãi</h2>
+<p>Khuyến mãi: @ViewBag.PromotionName.TenKM</p>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        STT
+                    </th>
+                    <th scope="col">
+                        Mã Khuyến Mãi
+                    </th>
+                    <th scope="col">
+                        Giảm Giá
+                    </th>
+                    <th scope="col">
+                        Thời Hạn
+                    </th>
+                    <th scope="col">
+                        Trạng Thái
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @{
+                    int stt = 1;
+                }
+                @foreach (var item in ViewBag.PromotionDetail)
+                {
+                    <tr>
+                        <td style="vertical-align: middle">
+                            @stt
+                        </td>
+                        <td style="vertical-align: middle; font-weight: bold; color: goldenrod; word-wrap: break-word; max-width: 250px; text-align: center">
+                            @item.IdKM@item.MaKM
+                        </td>
+                        @if (item.KhuyenMai.PhanTram == 0)
+                        {
+                            <td style="vertical-align: middle">
+                                @string.Format("{0:#,0}", item.KhuyenMai.SoTienGiam)
+                            </td>
+                        }
+                        else
+                        {
+                            <td style="vertical-align: middle">
+                                @item.KhuyenMai.PhanTram%
+                            </td>
+                        }
+                        <td style="vertical-align: middle">
+                            @item.KhuyenMai.ThoiHan.ToString("dd/MM/yyyy")
+                        </td>
+                        @if (item.TrangThai == true)
+                        {
+                            <td style="vertical-align: middle">
+                                Có thể sử dụng
+                            </td>
+                        }
+                        else
+                        {
+                            <td style="vertical-align: middle">
+                                Mã đã vô hiệu hóa
+                            </td>
+                        }
+                        @{ stt++; }
+                        <td style="vertical-align: middle">
+                            <a href="@Url.Action("ChangeStatus", new { IdKM = item.IdKM, MaKM = item.MaKM })" style="color: #0dcaf0" onclick="return confirm('Bạn có muốn thay đổi trạng thái mã khuyến mãi này không?');" class="delete-button"><i class="fa-solid fa-rotate"></i></a>
+                        </td>
+                    </tr>
+            }
+                </tbody>
+            </table>
+
+    </div>
+</div>
+<hr />
+@Html.ActionLink("Quay lại danh sách khuyến mãi", "Generate")
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("input[name='LoaiKM']").change(function () {
+            if ($(this).val() == "1") {
+                // Nếu chọn radio 1, ẩn SoTienGiam và cho phép nhập PhanTram
+                $("#SoTienGiam").val("0").prop("disabled", true).css("display", "none");
+                $("#PhanTram").prop("disabled", false).css("display", "block");
+            } else {
+                // Nếu chọn radio 2, ẩn PhanTram và cho phép nhập SoTienGiam
+                $("#PhanTram").val("0").prop("disabled", true).css("display", "none");
+                $("#SoTienGiam").prop("disabled", false).css("display", "block");
+            }
+        });
+
+        // Mặc định ẩn SoTienGiam khi trang được load
+        $("#SoTienGiam").val("0").prop("disabled", true).css("display", "none");
+        $("#PhanTram").prop("disabled", false).css("display", "block");
+    });
+
+</script>

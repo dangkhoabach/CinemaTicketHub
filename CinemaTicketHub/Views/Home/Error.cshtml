@@ -2,7 +2,7 @@
     Layout = null;
 }
 
-<head>
+@*<head>
     <title>[404 Not Found] Cinema Ticket Hub</title>
     <link rel="icon" type="image/x-icon" href="~/Content/assets/favicon.ico" />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
@@ -64,4 +64,56 @@
             </div>
         </div>
     </section>
+</body>*@
+
+
+
+
+
+<head>
+    <title>[404 Not Found] Cinema Ticket Hub</title>
+    <link rel="icon" type="image/x-icon" href="~/Content/assets/favicon.ico" />
+    <link rel='stylesheet' href='~/Content/css/errorstyle.css'>
+</head>
+<body class="bg-purple">
+
+    <div class="stars">
+        <div class="custom-navbar">
+            @*<div class="brand-logo">
+                <img src="~/Content/images/" width="80px">
+            </div>*@
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="/Home/Index">Trang chủ</a></li>
+                    <li><a href="/Movies/NowShowing">Đặt vé</a></li>
+                    <li><a href="/Home/About">Thông tin</a></li>
+                    @*<li><a href="http://salehriaz.com/404Page/404.html" class="btn-request">Request A Demo</a></li>*@
+                </ul>
+            </div>
+        </div>
+        <div class="central-body">
+            <img class="image-404" src="http://salehriaz.com/404Page/img/404.svg" style="width: 300px">
+            <a href="/Home/Index" class="btn-go-home">VỀ TRANG CHỦ</a>
+        </div>
+        <div class="objects">
+            <img class="object_rocket" src="http://salehriaz.com/404Page/img/rocket.svg" style="width: 40px">
+            <div class="earth-moon">
+                <img class="object_earth" src="http://salehriaz.com/404Page/img/earth.svg" style="width: 100px">
+                <img class="object_moon" src="http://salehriaz.com/404Page/img/moon.svg" style="width: 80px">
+            </div>
+            <div class="box_astronaut">
+                <img class="object_astronaut" src="http://salehriaz.com/404Page/img/astronaut.svg" style="width: 140px">
+            </div>
+        </div>
+        <div class="glowing_stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+
+        </div>
+
+    </div>
+
 </body>

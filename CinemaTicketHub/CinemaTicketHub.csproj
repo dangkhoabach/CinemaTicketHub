@@ -385,6 +385,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\css\aboutstyle.css" />
     <Content Include="Content\css\authenticatestyle.css" />
+    <Content Include="Content\css\errorstyle.css" />
     <Content Include="Content\css\mainstyle.css" />
     <Content Include="Content\css\profilestyle.css" />
     <Content Include="Content\css\seatstyle.css" />
@@ -591,6 +592,7 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Areas\Admin\Views\PromotionsManage\Detail.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />

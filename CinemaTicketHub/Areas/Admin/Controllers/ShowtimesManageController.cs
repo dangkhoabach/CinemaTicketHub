@@ -34,7 +34,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
 
             foreach (var suatChieu in suatChieuList)
             {
-                string tmdbApiUrl = $"https://api.themoviedb.org/3/movie/{suatChieu.MaPhim}?api_key={APIKey.Key}&language=vi-VN";
+                string tmdbApiUrl = $"https://api.themoviedb.org/3/movie/{suatChieu.MaPhim}?api_key={APIKey.Key}&language={APIKey.Language}";
 
                 using (HttpClient client = new HttpClient())
                 {
@@ -62,7 +62,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
 
         public async Task<ActionResult> Create()
         {
-            string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language=vi-VN&region=VN";
+            string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language={APIKey.Language}&region={APIKey.Region}";
 
             using (HttpClient client = new HttpClient())
             {
@@ -136,7 +136,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
         {
             SuatChieu suatchieu = _dbContext.SuatChieu.Find(MaSuatChieu);
 
-            string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language=vi-VN&region=VN";
+            string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language={APIKey.Language}&region={APIKey.Region}";
 
             using (HttpClient client = new HttpClient())
             {
@@ -179,7 +179,7 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                     return HttpNotFound();
                 }
 
-                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language=vi-VN&region=VN";
+                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language={APIKey.Language}&region={APIKey.Region}";
 
                 using (HttpClient client = new HttpClient())
                 {

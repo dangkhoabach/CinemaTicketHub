@@ -19,9 +19,9 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
             return View();
         }
 
-
         public ActionResult Generate()
         {
+            ViewBag.Promotions = _dbContext.KhuyenMai.ToList();
             return View();
         }
 
@@ -57,12 +57,66 @@ namespace CinemaTicketHub.Areas.Admin.Controllers
                     _dbContext.SaveChanges();
                 }
 
+                //Nếu ID RE thì thêm vào phần thưởng
+/*                if (khuyenmai.IdKM.StartsWith("RE"))
+                {
+                    PhanThuong phanThuong = new PhanThuong();
+                    phanThuong.IdKM = khuyenmai.IdKM;
+                    phanThuong.Diem = 0;
+                    phanThuong.HinhAnhQua = "";
+
+                    _dbContext.PhanThuong.Add(phanThuong);
+                    _dbContext.SaveChanges();
+                }*/
             }
             catch (Exception)
             {
 
             }
             return RedirectToAction("Generate", "PromotionsManage");
+        }
+
+        public ActionResult DeletePromotion(KhuyenMai khuyenMai)
+        {
+            var promo = _dbContext.KhuyenMai.Find(khuyenMai.IdKM);
+            if (promo == null)
+            {
+                return HttpNotFound();
+            }
+            var promodetail = _dbContext.CT_KhuyenMai.Where(x => x.IdKM == khuyenMai.IdKM).ToList();
+            foreach (var item in promodetail)
+            {
+                _dbContext.CT_KhuyenMai.Remove(item);
+            }
+
+            _dbContext.KhuyenMai.Remove(promo);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Generate", "PromotionsManage");
+        }
+
+        public ActionResult Detail(string IdKM)
+        {
+            ViewBag.PromotionName = _dbContext.KhuyenMai.Where(x => x.IdKM == IdKM).FirstOrDefault();
+            ViewBag.PromotionDetail = _dbContext.CT_KhuyenMai.Where(x => x.IdKM == IdKM).ToList();
+            return View();
+        }
+
+        public ActionResult ChangeStatus(string IdKM, string MaKM)
+        {
+            var prostatus = _dbContext.CT_KhuyenMai.Where(x => x.IdKM == IdKM && x.MaKM == MaKM).FirstOrDefault();
+            if (prostatus != null)
+            {
+                if(prostatus.TrangThai == true)
+                {
+                    prostatus.TrangThai = false;
+                }
+                else
+                {
+                    prostatus.TrangThai = true;
+                }
+                _dbContext.SaveChanges();
+            }
+            return RedirectToAction("Detail", "PromotionsManage", new { IdKM = IdKM });
         }
     }
 }
