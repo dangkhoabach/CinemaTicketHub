@@ -14,6 +14,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using ZXing;
@@ -367,9 +368,15 @@ namespace CinemaTicketHub.Controllers
                         }
 
                         // Gửi email với button "Xem chi tiết vé"
-                        string callbackUrl = "https://localhost:44351/Manage/Ticket?mahoadon=" + orderId;
+                        /*string callbackUrl = "https://localhost:44351/Manage/Ticket?mahoadon=" + orderId;
                         string emailContent = $"<br/><br/>" + $"<a href=\"{callbackUrl}\" style=\"padding: 15px 25px; font-weight: bold; font-size: 16px; text-align: center; text-transform: uppercase; transition: 0.5s; background-size: 200% auto; color: white; border-radius: 10px; display: inline-block; border: 0px; box-shadow: 0px 0px 14px -7px #f09819; background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%); cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; text-decoration: none;\">Xem chi tiết vé</a>";
-                        SendMail.SendEmail(user.Email, "Thanh toán thành công - Cinema Ticket Hub", "Vui lòng ấn vào nút bên dưới để xem chi tiết vé!" + emailContent + "", "");
+                        SendMail.SendEmail(user.Email, "Thanh toán thành công - Cinema Ticket Hub", "Vui lòng ấn vào nút bên dưới để xem chi tiết vé!" + emailContent + "", "");*/
+
+                        // Gửi email với button "Mở app React Native Expo "
+                        string callbackUrl = "http://" + NetworkUtility.GetIPv4Address() + ":8081/two?content=" + orderId;
+                        string emailContent = $"<br/><br/>" + $"<a href=\"{callbackUrl}\" style=\"padding: 15px 25px; font-weight: bold; font-size: 16px; text-align: center; text-transform: uppercase; transition: 0.5s; background-size: 200% auto; color: white; border-radius: 10px; display: inline-block; border: 0px; box-shadow: 0px 0px 14px -7px #f09819; background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%); cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; text-decoration: none;\">Mở App</a>";
+                        SendMail.SendEmail(user.Email, "Thanh toán thành công - Cinema Ticket Hub", "Vui lòng ấn vào nút bên dưới để mở App!" + emailContent + "", "");
+
 
                         TempData["Promocode"] = null;
                         lstGhe.Clear();
@@ -565,9 +572,14 @@ namespace CinemaTicketHub.Controllers
                 }
 
                 // Gửi email với button "Xem chi tiết vé"
-                string callbackUrl = "https://localhost:44351/Manage/Ticket?mahoadon=" + result.orderId;
+                /*string callbackUrl = "https://localhost:44351/Manage/Ticket?mahoadon=" + result.orderId;
                 string emailContent = $"<br/><br/>" + $"<a href=\"{callbackUrl}\" style=\"padding: 15px 25px; font-weight: bold; font-size: 16px; text-align: center; text-transform: uppercase; transition: 0.5s; background-size: 200% auto; color: white; border-radius: 10px; display: inline-block; border: 0px; box-shadow: 0px 0px 14px -7px #f09819; background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%); cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; text-decoration: none;\">Xem chi tiết vé</a>";
-                SendMail.SendEmail(user.Email, "Thanh toán thành công - Cinema Ticket Hub", "Vui lòng ấn vào nút bên dưới để xem chi tiết vé!" + emailContent + "", "");
+                SendMail.SendEmail(user.Email, "Thanh toán thành công - Cinema Ticket Hub", "Vui lòng ấn vào nút bên dưới để xem chi tiết vé!" + emailContent + "", "");*/
+
+                // Gửi email với button "Mở app React Native Expo "
+                string callbackUrl = "http://" + NetworkUtility.GetIPv4Address() + ":8081/two?content=" + result.orderId;
+                string emailContent = $"<br/><br/>" + $"<a href=\"{callbackUrl}\" style=\"padding: 15px 25px; font-weight: bold; font-size: 16px; text-align: center; text-transform: uppercase; transition: 0.5s; background-size: 200% auto; color: white; border-radius: 10px; display: inline-block; border: 0px; box-shadow: 0px 0px 14px -7px #f09819; background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%); cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; text-decoration: none;\">Mở App</a>";
+                SendMail.SendEmail(user.Email, "Thanh toán thành công - Cinema Ticket Hub", "Vui lòng ấn vào nút bên dưới để mở App!" + emailContent + "", "");
 
                 TempData["Promocode"] = null;
                 lstGhe.Clear();
