@@ -84,38 +84,38 @@
                             <ul>
                                 @if (Model.ReleaseDate != null)
                                 {
-                                    <li>Ngày khởi chiếu <span>@Model.ReleaseDate</span></li>
+                                    <li>@CinemaTicketHub.MultiLanguage.Language.ReleaseDate <span>@Model.ReleaseDate</span></li>
                                 }
                                 else
                                 {
-                                    <li>Ngày khởi chiếu <span>Chưa xác định</span></li>
+                            <li>@CinemaTicketHub.MultiLanguage.Language.ReleaseDate <span>@CinemaTicketHub.MultiLanguage.Language.Unknown</span></li>
                                 }
 
                                 @if (Model.Duration != null)
                                 {
-                                    <li>Thời lượng <span>@Model.Duration phút</span></li>
+                                    <li>@CinemaTicketHub.MultiLanguage.Language.Duration <span>@Model.Duration @CinemaTicketHub.MultiLanguage.Language.Minutes</span></li>
                                 }
                                 else
                                 {
-                                    <li>Thời lượng <span>Chưa xác định</span></li>
+                            <li>@CinemaTicketHub.MultiLanguage.Language.Duration <span>@CinemaTicketHub.MultiLanguage.Language.Unknown</span></li>
                                 }
 
                                 @if (Model.Language != null)
                                 {
-                                    <li>Ngôn ngữ <span>@Model.Language</span></li>
+                                    <li>@CinemaTicketHub.MultiLanguage.Language.language <span>@Model.Language</span></li>
                                 }
                                 else
                                 {
-                                    <li>Ngôn ngữ <span>Chưa xác định</span></li>
+                            <li>@CinemaTicketHub.MultiLanguage.Language.language <span>@CinemaTicketHub.MultiLanguage.Language.Unknown</span></li>
                                 }
 
                                 @if (string.Join(", ", Model.Genres) != null)
                                 {
-                                    <li>Thể loại <span style="width: 200px; text-align: right">@string.Join(", ", Model.Genres)</span></li>
+                                    <li>@CinemaTicketHub.MultiLanguage.Language.Genres <span style="width: 200px; text-align: right">@string.Join(", ", Model.Genres)</span></li>
                                 }
                                 else
                                 {
-                                    <li>Thể loại <span style="width: 200px; text-align: right">Chưa xác định</span></li>
+                            <li>@CinemaTicketHub.MultiLanguage.Language.Genres <span style="width: 200px; text-align: right">@CinemaTicketHub.MultiLanguage.Language.Unknown</span></li>
                                 }
                             </ul>
                         </div>
@@ -135,12 +135,12 @@
                                 }
                                 else
                                 {
-                                    <li style="list-style: none; text-align: center; margin-left: -32px"><p>Hôm nay chưa có suất chiếu dành cho phim này</p></li>
+                                    <li style="list-style: none; text-align: center; margin-left: -32px"><p>@CinemaTicketHub.MultiLanguage.Language.NoShowtimeAvailable</p></li>
                                 }
                             </ul>
                         </div>
                         <div class="col-lg-2 align-self-center">
-                            <input type="button" id="datepicker" value="Chọn ngày chiếu" class="btn btn-outline-light">
+                            <input type="button" id="datepicker" value="@CinemaTicketHub.MultiLanguage.Language.SelectDate" class="btn btn-outline-light">
                             @*<button id="setTodayBtn" class="btn btn-primary" style="text-align: right">Hôm nay</button>*@
                         </div>
                     </div>

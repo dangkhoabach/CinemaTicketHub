@@ -57,12 +57,12 @@
     <div class="gaming-library" style="margin: 0">
         <div class="col-lg-12">
             <div class="heading-section">
-                <h4 style="margin-bottom: 0"><em>Ví</em> khuyến mãi</h4>
+                <h4 style="margin-bottom: 0">@CinemaTicketHub.MultiLanguage.Language.PromotionsWallet</h4>
                 <p style="margin-bottom: 30px">Dưới đây là các mã khuyến mãi bạn đã lưu vào ví.</p>
             </div>
             @if (ViewBag.PromoWallet == null || ViewBag.PromoWallet.Count == 0)
             {
-                <h6>Bạn không có mã khuyến mãi nào!</h6>
+                <h6>@CinemaTicketHub.MultiLanguage.Language.EmptyPromo!</h6>
             }
             else
             {
@@ -75,27 +75,27 @@
 
                             @if (@item.KhuyenMai.PhanTram == 0)
                             {
-                                <li><h4>Ưu đãi</h4><span>Giảm @string.Format("{0:#,0}", item.KhuyenMai.SoTienGiam)</span></li>
+                                <li><h4>@CinemaTicketHub.MultiLanguage.Language.Discount</h4><span>@string.Format("{0:#,0}", item.KhuyenMai.SoTienGiam)</span></li>
                             }
                             else
                             {
-                                <li><h4>Ưu đãi</h4><span>Giảm @item.KhuyenMai.PhanTram%</span></li>
+                                <li><h4>@CinemaTicketHub.MultiLanguage.Language.Discount</h4><span>@item.KhuyenMai.PhanTram%</span></li>
                             }
 
-                            <li><h4>Hạn sử dụng</h4><span>@item.KhuyenMai.ThoiHan.ToString("dd/MM/yyyy")</span></li>
+                            <li><h4>@CinemaTicketHub.MultiLanguage.Language.Period</h4><span>@item.KhuyenMai.ThoiHan.ToString("dd/MM/yyyy")</span></li>
 
                             @if (item.CT_KhuyenMai.TrangThai == true)
                             {
-                                <li><h4>Trạng thái</h4><span>Có thể sử dụng</span></li>
+                                <li><h4>@CinemaTicketHub.MultiLanguage.Language.Status</h4><span>@CinemaTicketHub.MultiLanguage.Language.Available</span></li>
                             }
                             else
                             {
-                                <li><h4>Trạng thái</h4><span>Đã được sử dụng hoặc đã hết hạn</span></li>
+                                <li><h4>@CinemaTicketHub.MultiLanguage.Language.Status</h4><span>@CinemaTicketHub.MultiLanguage.Language.Unavailable</span></li>
                             }
 
                             <li>
                                 <div class="main-border-button border-no-active">
-                                    <a href="@Url.Action("DeletePromotion", new { MaKM = item.MaKM })" onclick="return confirm('Bạn có muốn xóa mã khuyến mãi này không?');">Xóa</a>
+                                    <a href="@Url.Action("DeletePromotion", new { MaKM = item.MaKM })" onclick="return confirm('Bạn có muốn xóa mã khuyến mãi này không?');">@CinemaTicketHub.MultiLanguage.Language.Delete</a>
                                 </div>
                             </li>
                         </ul>
@@ -116,15 +116,15 @@
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary("", new { @class = "text-danger" })
                     <div class="form-group" style="margin: 10px 0">
-                        <label style="font-size: 15px; color: white; margin-right: 74px">Thêm khuyến mãi</label>
-                        <input type="text" name="" class="textboxnew" required="" id="txtaddpromo1" placeholder="Thêm mã khuyến mãi vào ví" style="width: 50%">
+                        <label style="font-size: 15px; color: white; margin-right: 74px">@CinemaTicketHub.MultiLanguage.Language.AddPromotionsToWallet</label>
+                        <input type="text" name="" class="textboxnew" required="" id="txtaddpromo1" placeholder="@CinemaTicketHub.MultiLanguage.Language.AddPromotionsToWallet" style="width: 50%">
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.MaKM, new { htmlAttributes = new { @class = "form-control", id = "txtaddpromo2" } })
                             @Html.ValidationMessageFor(model => model.MaKM, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
-                    <button class="btn-submit" type="submit" style="margin: 10px 0">Thêm khuyến mãi</button>
+                    <button class="btn-submit" type="submit" style="margin: 10px 0">@CinemaTicketHub.MultiLanguage.Language.Add</button>
 
                     @*<div class="main-border-button">
                         <a href="#" style="width: 17%" onclick="document.querySelector('.btn-submit').click(); return false;">Thêm vào ví</a>
@@ -133,7 +133,7 @@
             </div>
             <div class="col-lg-4" style="text-align: center">
                 <div class="main-border-button" style="margin-top: 22px">
-                    <a href="#" style="width: 50%" onclick="document.querySelector('.btn-submit').click(); return false;">Thêm vào ví</a>
+                    <a href="#" style="width: 30%" onclick="document.querySelector('.btn-submit').click(); return false;">@CinemaTicketHub.MultiLanguage.Language.Add</a>
                 </div>
             </div>
             </div>

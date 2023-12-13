@@ -32,7 +32,7 @@
         <div class="row">
             <div class="header-text">
                 <h4 style="text-align: center; margin: 30px 0 0; color: #ffff00">@ViewBag.MovieName</h4>
-                <h6 style="text-align: center; margin: 0"><b style="color: #ec6090; font-size: 18px">[Suất chiếu: @ViewBag.moviesdetail.MaSuatChieu]</b> <b style="font-size: 17px">Ngày chiếu: @ViewBag.moviesdetail.NgayChieu.ToShortDateString() - Giờ chiếu: @ViewBag.moviesdetail.GioBatDau.ToString("hh\\:mm") - @ViewBag.moviesdetail.PhongChieu.TenPhong</b></h6>
+                <h6 style="text-align: center; margin: 0"><b style="color: #ec6090; font-size: 18px">[@CinemaTicketHub.MultiLanguage.Language.Showtimes: @ViewBag.moviesdetail.MaSuatChieu]</b> <b style="font-size: 17px">@CinemaTicketHub.MultiLanguage.Language.ShowDate: @ViewBag.moviesdetail.NgayChieu.ToShortDateString() - @CinemaTicketHub.MultiLanguage.Language.StartTime: @ViewBag.moviesdetail.GioBatDau.ToString("hh\\:mm") - @ViewBag.moviesdetail.PhongChieu.TenPhong</b></h6>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
                         <div class="col-lg-8">
                             <div class="featured-games header-text" style="max-height: 515px;">
                                 <div class="heading-section">
-                                    <h4><em>Chọn</em> Bắp Nước</h4>
+                                    <h4>@CinemaTicketHub.MultiLanguage.Language.Addons</h4>
                                 </div>
                                 <div class="owl-features owl-carousel">
                                     @foreach (var foodndrink in ViewBag.Popcorn)
@@ -71,16 +71,16 @@
                         <div class="col-lg-4">
                             <div class="top-downloaded" style="max-height: 515px">
                                 <div class="heading-section">
-                                    <h4 style="margin-bottom: 10px"><em>Thông Tin</em> Vé</h4>
+                                    <h4 style="margin-bottom: 10px">@CinemaTicketHub.MultiLanguage.Language.Ticket</h4>
                                 </div>
                                 <div class="card" style="padding: 10px; max-height: 370px; overflow: auto; background: none; border: none">
-                                    <span style="text-align: center; color: #ffff00"><b>Vị Trí</b></span>
+                                    <span style="text-align: center; color: #ffff00"><b>@CinemaTicketHub.MultiLanguage.Language.Seats</b></span>
                                     @foreach (var item in Model)
                                     {
-                                        <p class="fw-bold" style="color: white">Ghế @item.Day@item.Cot</p>
+                                        <p class="fw-bold" style="color: white">@item.Day@item.Cot</p>
                                     }
 
-                                    <span style="text-align: center; color: #ffff00"><b>Bắp Nước</b></span>
+                                    <span style="text-align: center; color: #ffff00"><b>@CinemaTicketHub.MultiLanguage.Language.Addons</b></span>
                                     @foreach (var item2 in ViewBag.CartMonAn)
                                     {
                                         <div class="list-group-item d-flex justify-content-between align-items-start">
@@ -99,13 +99,13 @@
 
                                 <div class="col-lg-12">
                                     <div class="heading-section">
-                                        <h4><em>Khuyến Mãi</em></h4>
+                                        <h4>@CinemaTicketHub.MultiLanguage.Language.Promotion</h4>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="top-streamers" style="padding: 0 30px">
                                         <select id="dropdownPromotions" name="promotionCode" class="dropdown-promotions" required="" style="background-color: #27292a; height: 50px; width: 100%; border-radius: 23px; border: none; color: white; font-size: 14px; padding: 0px 15px 0px 45px; margin-bottom: 10px">
-                                            <option value="">Chọn mã khuyến mãi</option>
+                                            <option value="">@CinemaTicketHub.MultiLanguage.Language.SelectPromotion</option>
                                             @foreach (var khuyenmai in ViewBag.KhuyenMaiList)
                                             {
                                                 <option value="@khuyenmai.IdKM@khuyenmai.MaKM" style="padding: 0">
@@ -124,12 +124,12 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="top-streamers" style="padding: 0 30px">
-                                        <input type="text" name="" class="textboxpromotions" required="" placeholder="Mã khuyến mãi">
+                                        <input type="text" name="" class="textboxpromotions" required="" placeholder="@CinemaTicketHub.MultiLanguage.Language.PromotionCode">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="main-button">
-                                        <a href="#" id="promocheck">Áp Dụng</a>
+                                        <a href="#" id="promocheck">@CinemaTicketHub.MultiLanguage.Language.Apply</a>
                                     </div>
                                 </div>
 
@@ -142,7 +142,7 @@
                             <div class="live-stream">
                                 <div class="col-lg-12">
                                     <div class="heading-section">
-                                        <h4><em>Phương Thức</em> Thanh Toán</h4>
+                                        <h4>@CinemaTicketHub.MultiLanguage.Language.PaymentMethods</h4>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
@@ -151,22 +151,22 @@
                                             <li>
                                                 <input type="radio" name="paymentMethod" value="VNPay" style="margin-right: 15px" />
                                                 <img src="~/Content/images/vnpay_logo.png" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                                                <h6>Thanh toán VNPay</h6>
+                                                <h6>VNPay</h6>
                                             </li>
                                             <li>
                                                 <input type="radio" name="paymentMethod" value="Momo" style="margin-right: 15px" />
                                                 <img src="~/Content/images/momo_logo.png" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                                                <h6>Thanh toán Momo</h6>
+                                                <h6>Momo</h6>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
-                                    <h4 style="text-align: center; margin-bottom: 20px"><b>TỔNG TIỀN: @string.Format("{0:#,0}", ViewBag.TongTien)</b></h4>
+                                    <h4 style="text-align: center; margin-bottom: 20px; text-transform: uppercase"><b>@CinemaTicketHub.MultiLanguage.Language.Total: @string.Format("{0:#,0}", ViewBag.TongTien)</b></h4>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="main-button">
-                                        <a href="#" onclick="handleButtonClick()">Thanh Toán</a>
+                                        <a href="#" onclick="handleButtonClick()">@CinemaTicketHub.MultiLanguage.Language.Purchase</a>
                                     </div>
                                 </div>
                             </div>

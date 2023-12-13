@@ -48,7 +48,7 @@
                                         @using (Html.BeginForm("ChangeAvatar", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                         {
                                             <input type="file" name="file" accept="image/*" />
-                                            <input type="submit" value="Xác nhận" style="border-radius: 20px; border: none; padding: 5px 15px" />
+                                            <input type="submit" value="@CinemaTicketHub.MultiLanguage.Language.Confirm" style="border-radius: 20px; border: none; padding: 5px 15px" />
                                         }
                                     </div>
                                 </div>
@@ -62,17 +62,17 @@
                             <h4>@user.Name</h4>
                             <p>Giới thiệu bản thân!</p>
                             <div class="main-border-button">
-                                <a href="#" style="margin-right: 20px">Sửa thông tin</a>
-                                <a href="/Manage/ChangePassword">Đổi Mật Khẩu</a>
+                                <a href="#" style="margin-right: 14px">@CinemaTicketHub.MultiLanguage.Language.EditProfile</a>
+                                <a href="/Manage/ChangePassword">@CinemaTicketHub.MultiLanguage.Language.ChangePassword</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 align-self-center">
                         <ul>
                             <li>Email <span>@user.Email</span></li>
-                            <li>Số điện thoại <span>@user.PhoneNumber</span></li>
-                            <li>Ngày sinh <span>@user.Birthday.ToShortDateString()</span></li>
-                            <li>Điểm tích lũy <span>@user.Point <a href="/Manage/PromotionsWallet"><i class="fa fa-gift"></i></a></span></li>
+                            <li>@CinemaTicketHub.MultiLanguage.Language.PhoneNumber <span>@user.PhoneNumber</span></li>
+                            <li>@CinemaTicketHub.MultiLanguage.Language.Birthday <span>@user.Birthday.ToShortDateString()</span></li>
+                            <li>@CinemaTicketHub.MultiLanguage.Language.Point <span>@user.Point <a href="/Manage/PromotionsWallet"><i class="fa fa-gift"></i></a></span></li>
                         </ul>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
     <div class="gaming-library">
         <div class="col-lg-12">
             <div class="heading-section">
-                <h4 style="margin-bottom: 0"><em>Vé</em> của bạn</h4>
+                <h4 style="margin-bottom: 0">@CinemaTicketHub.MultiLanguage.Language.MyTicket</h4>
                 <p style="margin-bottom: 30px">Bạn chỉ có thể xem các vé đã mua trong tháng hiện tại.</p>
             </div>
             @foreach (var item in ViewBag.hoadon)
@@ -95,7 +95,7 @@
                     <div class="item">
                         <ul>
                             <li><h4>@item.tenphim</h4><span>@item.ngaychieu.ToShortDateString() - @item.giobatdau.ToString("hh\\:mm")</span></li>
-                            <li><h4>Phòng chiếu</h4><span>@item.phongchieu</span></li>
+                            <li><h4>@CinemaTicketHub.MultiLanguage.Language.Room</h4><span>@item.phongchieu</span></li>
 
                             @{
                                 var itemsGheNgoi = "";
@@ -118,7 +118,7 @@
                                     itemsGheNgoi2 = itemsGheNgoi2.Substring(0, itemsGheNgoi2.Length - 2);
                                 }
                             }
-                            <li><h4>@demghe ghế</h4><span>@itemsGheNgoi2</span></li>
+                            <li><h4>@demghe @CinemaTicketHub.MultiLanguage.Language.Seats</h4><span>@itemsGheNgoi2</span></li>
 
                             @{
                                 // Đặt dấu "," giữa các items bắp nước
@@ -137,15 +137,15 @@
                             @*Kiểm tra khách hàng có mua bắp nước không*@
                             @if (itemsBapNuoc == "" || itemsBapNuoc == null)
                             {
-                                <li><h4>Bắp nước</h4><span>Không có</span></li>
+                                <li><h4>@CinemaTicketHub.MultiLanguage.Language.Addons</h4><span>@CinemaTicketHub.MultiLanguage.Language.Non</span></li>
                             }
                             else
                             {
-                                <li><h4>Bắp nước</h4><span>@itemsBapNuoc</span></li>
+                                <li><h4>@CinemaTicketHub.MultiLanguage.Language.Addons</h4><span>@itemsBapNuoc</span></li>
                             }
 
                             <li><h4>@item.payment</h4><span>@string.Format("{0:#,0}", @item.tongtien)</span></li>
-                            <li><div class="main-border-button border-no-active"><a href="#" id="ticketdetail" data-mahoadon="@item.mahoadon">Chi Tiết</a></div></li>
+                            <li><div class="main-border-button border-no-active"><a href="#" id="ticketdetail" data-mahoadon="@item.mahoadon">@CinemaTicketHub.MultiLanguage.Language.Detail</a></div></li>
                         </ul>
                     </div>
                 }

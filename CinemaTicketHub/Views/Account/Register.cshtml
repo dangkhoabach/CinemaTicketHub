@@ -16,7 +16,7 @@
 <body>
     <div class="login-box">
         <a href="/Home/Index" class="gotosignup" style="float: left"><i class="fa-solid fa-arrow-left"></i></a>
-        <h2 style="margin-top: 20px">Đăng ký</h2>
+        <h2 style="margin-top: 20px">@CinemaTicketHub.MultiLanguage.Language.Register</h2>
         @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
@@ -28,28 +28,28 @@
             </div>
             <div class="user-box">
                 <input type="text" name="" required="" id="txtname1">
-                <label>Họ và Tên</label>
+                <label>@CinemaTicketHub.MultiLanguage.Language.Fullname</label>
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "txtname2" })
             </div>
             <div class="user-box">
                 <input type="text" name="" required="" id="txtphone1">
-                <label>Số điện thoại</label>
+                <label>@CinemaTicketHub.MultiLanguage.Language.PhoneNumber</label>
                 @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", id = "txtphone2" })
             </div>
             <div class="user-box">
                 <input type="text" name="" required="" id="txtbirthday1">
-                <label>Ngày sinh</label>
+                <label>@CinemaTicketHub.MultiLanguage.Language.Birthday</label>
                 @Html.TextBoxFor(m => m.Birthday, new { @class = "form-control", id = "txtbirthday2" })
                 @Html.ValidationMessageFor(m => m.Birthday, "", new { @class = "error-message" })
             </div>
             <div class="user-box">
                 <input type="password" name="" required="" id="txtpassword1">
-                <label>Mật khẩu</label>
+                <label>@CinemaTicketHub.MultiLanguage.Language.Password</label>
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "txtpassword2" })
             </div>
             <div class="user-box">
                 <input type="password" name="" required="" id="txtpassword3">
-                <label>Nhập lại mật khẩu</label>
+                <label>@CinemaTicketHub.MultiLanguage.Language.ConfirmPassword</label>
                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", id = "txtpassword4" })
             </div>
             <a href="#" onclick="document.querySelector('.btn-default').click(); return false;">
@@ -57,11 +57,11 @@
                 <span></span>
                 <span></span>
                 <span></span>
-                Đăng ký
+                @CinemaTicketHub.MultiLanguage.Language.Register
             </a>
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-default" value="@CinemaTicketHub.MultiLanguage.Language.Register" />
         }
-        <a href="/Account/Login" class="gotosignup">Bạn đã có tài khoản?</a>
+    <a href="/Account/Login" class="gotosignup">@CinemaTicketHub.MultiLanguage.Language.AlreadyHaveAnAccount?</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

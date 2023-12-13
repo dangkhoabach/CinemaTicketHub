@@ -44,9 +44,9 @@
 <body>
     <div class="header">
         <h1 style="color: #ffff00; text-transform: uppercase">@ViewBag.MovieName</h1>
-        <p><b style="color: #ec6090; font-size: 18px">[Suất chiếu: @ViewBag.moviesdetail.MaSuatChieu]</b> <b style="font-size: 17px">Ngày chiếu: @ViewBag.moviesdetail.NgayChieu.ToShortDateString() - Giờ chiếu: @ViewBag.moviesdetail.GioBatDau.ToString("hh\\:mm") - @ViewBag.moviesdetail.PhongChieu.TenPhong</b></p>
+        <p><b style="color: #ec6090; font-size: 18px">[@CinemaTicketHub.MultiLanguage.Language.Showtimes: @ViewBag.moviesdetail.MaSuatChieu]</b> <b style="font-size: 17px">@CinemaTicketHub.MultiLanguage.Language.ShowDate: @ViewBag.moviesdetail.NgayChieu.ToShortDateString() - @CinemaTicketHub.MultiLanguage.Language.StartTime: @ViewBag.moviesdetail.GioBatDau.ToString("hh\\:mm") - @ViewBag.moviesdetail.PhongChieu.TenPhong</b></p>
     </div>
-    <div class="screen" style="width: 800px; margin-bottom: 70px"><h1 style="color: black; font-size: 30px; text-align: center">SCREEN</h1></div>
+    <div class="screen" style="width: 800px; margin-bottom: 70px"><h1 style="color: black; font-size: 30px; text-align: center; text-transform: uppercase">@CinemaTicketHub.MultiLanguage.Language.Screen</h1></div>
     <div class="seat-container" style="align-items: center; justify-content: center; width: 95vh">
         <div class="row" style="margin-left: 50px">
 
@@ -97,24 +97,24 @@
             <label class="checkbox-label">
                 <input type="checkbox" style="appearance: none; -webkit-appearance: none; width: 50px; height: 50px; border-top-left-radius: 20px; border-top-right-radius: 20px; outline: none; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background-color: #666666" disabled>
             </label>
-            <span style="margin: 18px 50px 0 0">Ghế trống</span>
+            <span style="margin: 18px 50px 0 0">@CinemaTicketHub.MultiLanguage.Language.Empty</span>
 
             <label class="checkbox-label">
                 <input type="checkbox" style=" appearance: none; -webkit-appearance: none; width: 50px; height: 50px; border-top-left-radius: 20px; border-top-right-radius: 20px; outline: none; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background-color: white" disabled>
             </label>
-            <span style="margin: 18px 50px 0 0">Ghế đang chọn</span>
+            <span style="margin: 18px 50px 0 0">@CinemaTicketHub.MultiLanguage.Language.Selected</span>
 
             <label class="checkbox-label">
                 <input type="checkbox" style=" appearance: none; -webkit-appearance: none; width: 50px; height: 50px; border-top-left-radius: 20px; border-top-right-radius: 20px; outline: none; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background-color: #ec6090" disabled>
             </label>
-            <span style="margin: 18px 50px 0 0">Ghế đã chọn</span>
+            <span style="margin: 18px 50px 0 0">@CinemaTicketHub.MultiLanguage.Language.Occupied</span>
         </div>
     </div>
     <div class="right-column" style="margin-right: 50px">
         <div class="rounded-div">
             <div class="row">
-                <p style="margin-right: 20px; color: black"><b>TỔNG TIỀN:</b> <b id="totalAmount" style="font-size: 20px">0</b></p>
-                <button id="continueButton" type="button" class="btn danger" disabled style="border-radius: 40px" onclick="thanhToan()">Tiếp tục</button> @*Nếu không chọn ghế thì không thể tiếp tục thanh toán*@
+                <p style="margin-right: 20px; color: black; text-transform: uppercase"><b>@CinemaTicketHub.MultiLanguage.Language.Total:</b> <b id="totalAmount" style="font-size: 20px">0</b></p>
+                <button id="continueButton" type="button" class="btn danger" disabled style="border-radius: 40px" onclick="thanhToan()">@CinemaTicketHub.MultiLanguage.Language.Continues</button> @*Nếu không chọn ghế thì không thể tiếp tục thanh toán*@
             </div>
         </div>
     </div>

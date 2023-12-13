@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace CinemaTicketHub.Controllers
 {
@@ -110,5 +111,22 @@ namespace CinemaTicketHub.Controllers
         {
             return View();
         }
+
+        public ActionResult ManageLanguage(string language)
+        {
+            if (!string.IsNullOrEmpty(language))
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            }
+
+            HttpCookie cookie = new HttpCookie("Languages");
+            cookie.Value = language;
+            Response.Cookies.Add(cookie);
+
+            string returnUrl = Request.UrlReferrer?.ToString();
+            return Redirect(returnUrl ?? "/");
+        }
+
     }
 }

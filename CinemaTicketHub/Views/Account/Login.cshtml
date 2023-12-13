@@ -22,7 +22,7 @@
 <body>
     <div class="login-box">
         <a href="/Home/Index" class="gotosignup" style="float: left"><i class="fa-solid fa-arrow-left"></i></a>
-        <h2 style="margin-top: 20px">Đăng nhập</h2>
+        <h2 style="margin-top: 20px">@CinemaTicketHub.MultiLanguage.Language.Login</h2>
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
@@ -35,7 +35,7 @@
             </div>
             <div class="user-box">
                 <input type="password" name="" required="" id="txtpassword1">
-                <label>Mật khẩu</label>
+                <label>@CinemaTicketHub.MultiLanguage.Language.Password</label>
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "txtpassword2" })
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
             </div>
@@ -48,13 +48,13 @@
                 <span></span>
                 <span></span>
                 <span></span>
-                Đăng nhập
+                @CinemaTicketHub.MultiLanguage.Language.Login
             </a>
             <input type="submit" value="Log in" class="btn btn-default" />
         }
-        <a href="/Account/Register" class="gotosignup">Bạn chưa có tài khoản?</a>
+    <a href="/Account/Register" class="gotosignup">@CinemaTicketHub.MultiLanguage.Language.DoNotHaveAnAccount?</a>
         <hr />
-        <a href="/Account/ForgotPassword" class="gotosignup">Bạn quên mật khẩu?</a>
+        <a href="/Account/ForgotPassword" class="gotosignup">@CinemaTicketHub.MultiLanguage.Language.ForgotPassword?</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

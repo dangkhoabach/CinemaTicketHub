@@ -48,9 +48,9 @@
 
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="/Home/Index">Trang chủ</a></li>
-                            <li><a href="/Movies/NowShowing">Đặt vé</a></li>
-                            <li><a href="/Manage/ExchangeRewards">Đổi thưởng</a></li>
+                            <li><a href="/Home/Index">@CinemaTicketHub.MultiLanguage.Language.Home</a></li>
+                            <li><a href="/Movies/NowShowing">@CinemaTicketHub.MultiLanguage.Language.Book</a></li>
+                            <li><a href="/Manage/ExchangeRewards">@CinemaTicketHub.MultiLanguage.Language.Reward</a></li>
 
                             @if (User.IsInRole("Admin"))
                             {
@@ -97,6 +97,10 @@
 
                         <br>Design by <a href="https://www.facebook.com/dangkhoabach.1609" target="_blank" title="free CSS templates">dangkhoabach</a>
                     </p>
+                    <ul>
+                        <li>@Html.ActionLink("Tiếng việt", "ManageLanguage", "Home", new { language = "vi" }, null)</li>
+                        <li>@Html.ActionLink("English", "ManageLanguage", "Home", new { language = "en" }, null)</li>
+                    </ul>
                 </div>
             </div>
         </div>
