@@ -7,24 +7,24 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Danh sách hóa đơn</h2>
+<h2>@CinemaTicketHub.MultiLanguage.Language.Invoice</h2>
 <table class="table">
     <thead>
         <tr>
             <th scope="col">
-                Mã Hóa Đơn
+                @CinemaTicketHub.MultiLanguage.Language.InvoiceID
             </th>
             <th scope="col">
-                Khách Hàng
+                @CinemaTicketHub.MultiLanguage.Language.Customer
             </th>
             <th scope="col">
-                Ngày Lập
+                @CinemaTicketHub.MultiLanguage.Language.DateCreated
             </th>
             <th scope="col">
-                Tổng Tiền
+                @CinemaTicketHub.MultiLanguage.Language.Total
             </th>
             <th scope="col">
-                Phương Thức Thanh Toán
+                @CinemaTicketHub.MultiLanguage.Language.PaymentMethods
             </th>
             <th scope="col"></th>
         </tr>

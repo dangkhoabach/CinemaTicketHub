@@ -4,8 +4,8 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Chi Tiết Khuyến Mãi</h2>
-<p>Khuyến mãi: @ViewBag.PromotionName.TenKM</p>
+<h2>@CinemaTicketHub.MultiLanguage.Language.Details</h2>
+<p>@CinemaTicketHub.MultiLanguage.Language.Promotion: @ViewBag.PromotionName.TenKM</p>
 <hr />
 <div class="row">
     <div class="col-12">
@@ -13,19 +13,19 @@
             <thead>
                 <tr>
                     <th scope="col">
-                        STT
+                        @CinemaTicketHub.MultiLanguage.Language.Ordinal
                     </th>
                     <th scope="col">
-                        Mã Khuyến Mãi
+                        @CinemaTicketHub.MultiLanguage.Language.PromotionCode
                     </th>
                     <th scope="col">
-                        Giảm Giá
+                        @CinemaTicketHub.MultiLanguage.Language.Discount
                     </th>
                     <th scope="col">
-                        Thời Hạn
+                        @CinemaTicketHub.MultiLanguage.Language.Period
                     </th>
                     <th scope="col">
-                        Trạng Thái
+                        @CinemaTicketHub.MultiLanguage.Language.Status
                     </th>
                     <th scope="col"></th>
                 </tr>
@@ -61,18 +61,18 @@
                         @if (item.TrangThai == true)
                         {
                             <td style="vertical-align: middle">
-                                Có thể sử dụng
+                                @CinemaTicketHub.MultiLanguage.Language.Available
                             </td>
                         }
                         else
                         {
-                            <td style="vertical-align: middle">
-                                Mã đã vô hiệu hóa
-                            </td>
+                    <td style="vertical-align: middle">
+                        @CinemaTicketHub.MultiLanguage.Language.Unavailable
+                    </td>
                         }
                         @{ stt++; }
                         <td style="vertical-align: middle">
-                            <a href="@Url.Action("ChangeStatus", new { IdKM = item.IdKM, MaKM = item.MaKM })" style="color: #0dcaf0" onclick="return confirm('Bạn có muốn thay đổi trạng thái mã khuyến mãi này không?');" class="delete-button"><i class="fa-solid fa-rotate"></i></a>
+                            <a href="@Url.Action("ChangeStatus", new { IdKM = item.IdKM, MaKM = item.MaKM })" style="color: #0dcaf0" onclick="return confirm('@CinemaTicketHub.MultiLanguage.Language.ChangeStatusNotify?');" class="delete-button"><i class="fa-solid fa-rotate"></i></a>
                         </td>
                     </tr>
             }
@@ -82,7 +82,7 @@
     </div>
 </div>
 <hr />
-@Html.ActionLink("Quay lại danh sách khuyến mãi", "Generate")
+@Html.ActionLink(@CinemaTicketHub.MultiLanguage.Language.Back, "Generate")
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>

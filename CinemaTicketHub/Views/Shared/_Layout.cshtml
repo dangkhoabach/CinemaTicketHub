@@ -93,14 +93,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <p>
-                        Copyright © 2023 <a href="/Home/About">Cinema Ticket Hub</a>
-
-                        <br>Design by <a href="https://www.facebook.com/dangkhoabach.1609" target="_blank" title="free CSS templates">dangkhoabach</a>
+                        @Html.ActionLink("Tiếng việt", "ManageLanguage", "Home", new { language = "vi" }, null) |
+                        @Html.ActionLink("English", "ManageLanguage", "Home", new { language = "en" }, null)
+                        <br />Copyright © 2023 <a href="/Home/About">Cinema Ticket Hub</a>
+                        <br />Design by <a href="https://www.facebook.com/dangkhoabach.1609" target="_blank" title="free CSS templates">dangkhoabach</a>
                     </p>
-                    <ul>
-                        <li>@Html.ActionLink("Tiếng việt", "ManageLanguage", "Home", new { language = "vi" }, null)</li>
-                        <li>@Html.ActionLink("English", "ManageLanguage", "Home", new { language = "en" }, null)</li>
-                    </ul>
                 </div>
             </div>
         </div>

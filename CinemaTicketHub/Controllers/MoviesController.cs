@@ -166,7 +166,7 @@ namespace CinemaTicketHub.Controllers
 
         private string GetTrailerEmbedUrl(int movieId)
         {
-            string apiUrl = $"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={APIKey.Key}&language=en-US";
+            string apiUrl = $"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={APIKey.Key}&language={APIKey.Language}";
 
             using (HttpClient client = new HttpClient())
             {

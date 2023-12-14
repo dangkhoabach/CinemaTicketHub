@@ -35,37 +35,37 @@
                 userManager.RemoveFromRoles(userId, userManager.GetRoles(userId).ToArray());
                 userManager.AddToRole(userId, newRole);
 
-                <script>
+    <script>
                     function showAlert() {
                         Swal.fire(
-                            'Role của @user.Email đã được thay đổi thành @newRole',
+                            '@CinemaTicketHub.MultiLanguage.Language.RoleOf @user.Email @CinemaTicketHub.MultiLanguage.Language.ChangedTo @newRole',
                         )
                     }
                     window.onload = showAlert;
-                </script>
+    </script>
             }
             else
             {
-                <script>
+<script>
                     function showAlert() {
                         Swal.fire(
-                            'Vui lòng chọn Role muốn thay đổi!',
+                            '@CinemaTicketHub.MultiLanguage.Language.ChangeRoleNotify!',
                         )
                     }
                     window.onload = showAlert;
-                </script>
+</script>
             }
         }
         else
         {
-            <script>
+<script>
                 function showAlert() {
                     Swal.fire(
-                        'Không tìm thấy User!',
+                        '@CinemaTicketHub.MultiLanguage.Language.UserNotFound!',
                     )
                 }
                 window.onload = showAlert;
-            </script>
+</script>
         }
     }
 }
@@ -76,31 +76,31 @@
     var users = userManagerInfo.Users.OrderBy(o => o.Name).ToList();
 }
 
-<h2>Quản lý Users</h2>
+<h2>@CinemaTicketHub.MultiLanguage.Language.UsersManage</h2>
 <div class="row" style="margin-top: 50px">
     <div class="col-8">
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">
-                        Role
+                        @CinemaTicketHub.MultiLanguage.Language.Role
                     </th>
                     <th scope="col">
-                        Avatar
+                        @CinemaTicketHub.MultiLanguage.Language.Avatar
                     </th>
                     <th scope="col">
-                        Họ và Tên
+                        @CinemaTicketHub.MultiLanguage.Language.Fullname
                     </th>
                     <th scope="col">
                         Email
                     </th>
                     <th scope="col">
-                        Số điện thoại
+                        @CinemaTicketHub.MultiLanguage.Language.PhoneNumber
                     </th>
                     <th scope="col">
-                        Ngày Sinh
+                        @CinemaTicketHub.MultiLanguage.Language.Birthday
                     </th>
-                    <th scope="col"></th>
+                    @*<th scope="col"></th>*@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -127,31 +127,31 @@
                         <td style="vertical-align: middle">
                             @item.Birthday.ToShortDateString()
                         </td>
-                        <td style="vertical-align: middle">
+                        @*<td style="vertical-align: middle">
                             <a href="@Url.Action("DeleteUser", "UsersManage", new { userId = item.Id })" onclick="return confirm('Bạn có muốn xóa User này không?')"><i class="fa-solid fa-trash"></i></a>
-                        </td>
+                        </td>*@
                     </tr>
                 }
         </table>
     </div>
     <div class="col-4">
-        <p class="card-text"><small class="text-body-secondary" style="color: #0dcaf0; font-size: large"><b>Thay đổi Role cho Users</b></small></p>
+        <p class="card-text"><small class="text-body-secondary" style="color: #0dcaf0; font-size: large"><b>@CinemaTicketHub.MultiLanguage.Language.ChangeRoles</b></small></p>
         <div class="border border-info" style="padding: 35px">
             <form method="post">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Chọn User</label>
-                    @Html.DropDownList("UserId", ViewBag.Users as SelectList, "--Vui lòng chọn User--", new { @class = "form-control", name = "userId" })
+                    <label for="formGroupExampleInput2" class="form-label">@CinemaTicketHub.MultiLanguage.Language.User</label>
+                    @Html.DropDownList("UserId", ViewBag.Users as SelectList, "--" + @CinemaTicketHub.MultiLanguage.Language.SelectOption + "--", new { @class = "form-control", name = "userId" })
                 </div>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Chọn Role muốn đổi</label>
+                    <label for="formGroupExampleInput2" class="form-label">@CinemaTicketHub.MultiLanguage.Language.Role</label>
                     <select name="newRole" class="form-control">
-                        <option value="" disabled selected>--Vui lòng chọn Role--</option>
+                        <option value="" disabled selected>--@CinemaTicketHub.MultiLanguage.Language.SelectOption--</option>
                         <option value="Admin">Admin</option>
                         <option value="Member">Member</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-outline-info">Lưu thay đổi</button>
+                    <button type="submit" class="btn btn-outline-info">@CinemaTicketHub.MultiLanguage.Language.SaveChanges</button>
                 </div>
             </form>
         </div>

@@ -4,33 +4,33 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Danh sách tất cả phim</h2>
+<h2>@CinemaTicketHub.MultiLanguage.Language.Movies</h2>
 <p>
-    @Html.ActionLink("Thêm Phim Mới", "Create")
+    @Html.ActionLink(@CinemaTicketHub.MultiLanguage.Language.Add, "Create")
 </p>
 <table class="table">
     <thead>
         <tr>
             <th scope="col">
-                Tên Phim
+                @CinemaTicketHub.MultiLanguage.Language.Movie
             </th>
             <th scope="col">
-                Thể Loại
+                @CinemaTicketHub.MultiLanguage.Language.Genres
             </th>
             <th scope="col">
-                Ngày Khởi Chiếu
+                @CinemaTicketHub.MultiLanguage.Language.ShowDate
             </th>
             <th scope="col">
                 Đối Tượng
             </th>
             <th scope="col">
-                Ngôn ngữ
+                @CinemaTicketHub.MultiLanguage.Language.language
             </th>
             <th scope="col">
-                Thời Lượng
+                @CinemaTicketHub.MultiLanguage.Language.Duration
             </th>
             <th scope="col">
-                Trạng Thái
+                @CinemaTicketHub.MultiLanguage.Language.Status
             </th>
             <th scope="col">
                 Poster

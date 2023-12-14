@@ -129,6 +129,9 @@
   <data name="AlreadyHaveAnAccount" xml:space="preserve">
     <value>Do you already have an account</value>
   </data>
+  <data name="ApiLanguage" xml:space="preserve">
+    <value>en-US</value>
+  </data>
   <data name="Apply" xml:space="preserve">
     <value>Apply</value>
   </data>
@@ -156,14 +159,26 @@
   <data name="BookNow" xml:space="preserve">
     <value>Book Now</value>
   </data>
+  <data name="ChangedTo" xml:space="preserve">
+    <value>has been changed to</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Change Password</value>
+  </data>
+  <data name="ChangeRoleNotify" xml:space="preserve">
+    <value>Please choose the Role you want to change</value>
   </data>
   <data name="ChangeRoles" xml:space="preserve">
     <value>Change Roles</value>
   </data>
+  <data name="ChangeStatusNotify" xml:space="preserve">
+    <value>Do you want to change the status</value>
+  </data>
   <data name="CheckEmail" xml:space="preserve">
     <value>Please check your Email</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>Choose a File</value>
   </data>
   <data name="ComingSoon" xml:space="preserve">
     <value>ComingSoon</value>
@@ -195,8 +210,14 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="DeleteNotify" xml:space="preserve">
+    <value>Do you want to delete it</value>
+  </data>
   <data name="Detail" xml:space="preserve">
     <value>Detail</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
   </data>
   <data name="Discount" xml:space="preserve">
     <value>Discount</value>
@@ -252,6 +273,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="IdPromoAttention" xml:space="preserve">
+    <value>Attention: The promotional code for users to redeem gifts has the first 2 characters RE</value>
+  </data>
   <data name="Invoice" xml:space="preserve">
     <value>Invoice</value>
   </data>
@@ -287,6 +311,9 @@
   </data>
   <data name="MyTicket" xml:space="preserve">
     <value>My Ticket</value>
+  </data>
+  <data name="MyTicketAttention" xml:space="preserve">
+    <value>You can only view tickets purchased during the current month</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
     <value>New Password</value>
@@ -327,6 +354,9 @@
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="PromoNameAttention" xml:space="preserve">
+    <value>Attention: The promotional code for users to redeem gifts must have the first name [Reward]</value>
+  </data>
   <data name="Promotion" xml:space="preserve">
     <value>Promotion</value>
   </data>
@@ -339,14 +369,23 @@
   <data name="PromotionName" xml:space="preserve">
     <value>Promotion Name</value>
   </data>
+  <data name="Promotions" xml:space="preserve">
+    <value>Promotions</value>
+  </data>
   <data name="PromotionsWallet" xml:space="preserve">
     <value>Promotions Wallet</value>
+  </data>
+  <data name="PromoWalletAttention" xml:space="preserve">
+    <value>These are the promotion codes you saved to your wallet</value>
   </data>
   <data name="Purchase" xml:space="preserve">
     <value>Purchase</value>
   </data>
   <data name="Quantity" xml:space="preserve">
     <value>Quantity</value>
+  </data>
+  <data name="reCaptchaLanguage" xml:space="preserve">
+    <value>en</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
@@ -362,6 +401,9 @@
   </data>
   <data name="Role" xml:space="preserve">
     <value>Role</value>
+  </data>
+  <data name="RoleOf" xml:space="preserve">
+    <value>The role of</value>
   </data>
   <data name="Room" xml:space="preserve">
     <value>Room</value>
@@ -412,7 +454,7 @@
     <value>Showtimes List</value>
   </data>
   <data name="Slogan" xml:space="preserve">
-    <value>Watch all movies in our theaters</value>
+    <value>Get your tickets, embrace the cinematic experience with</value>
   </data>
   <data name="StartTime" xml:space="preserve">
     <value>Start Time</value>
@@ -423,8 +465,14 @@
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Team002" xml:space="preserve">
+    <value>002 Team</value>
+  </data>
   <data name="ThaiLanguage" xml:space="preserve">
     <value>Thai Language</value>
+  </data>
+  <data name="ThreeToFiveCharacters" xml:space="preserve">
+    <value>3 - 5 characters</value>
   </data>
   <data name="Ticket" xml:space="preserve">
     <value>Ticket</value>
@@ -450,8 +498,14 @@
   <data name="User" xml:space="preserve">
     <value>User</value>
   </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User not found</value>
+  </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="UsersManage" xml:space="preserve">
+    <value>Users Manage</value>
   </data>
   <data name="Vietnamese" xml:space="preserve">
     <value>Vietnamese</value>

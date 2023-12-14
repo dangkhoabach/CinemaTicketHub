@@ -2,33 +2,33 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Danh sách suất chiếu phim</h2>
+<h2>@CinemaTicketHub.MultiLanguage.Language.ShowtimesList</h2>
 <p>
-    @Html.ActionLink("Thêm Suất Chiếu Mới", "Create")
+    @Html.ActionLink(@CinemaTicketHub.MultiLanguage.Language.Add + " " + @CinemaTicketHub.MultiLanguage.Language.Showtimes, "Create")
 </p>
 <table class="table">
     <thead>
         <tr>
             <th scope="col">
-                Mã suất chiếu
+                @CinemaTicketHub.MultiLanguage.Language.ShowtimeID
             </th>
             <th scope="col">
-                Phim
+                @CinemaTicketHub.MultiLanguage.Language.Movie
             </th>
             <th scope="col">
-                Mã phòng
+                @CinemaTicketHub.MultiLanguage.Language.RoomName
             </th>
             <th scope="col">
-                Ngày chiếu
+                @CinemaTicketHub.MultiLanguage.Language.ShowDate
             </th>
             <th scope="col">
-                Giờ bắt đầu
+                @CinemaTicketHub.MultiLanguage.Language.StartTime
             </th>
             <th scope="col">
-                Giờ kết thúc
+                @CinemaTicketHub.MultiLanguage.Language.EndTime
             </th>
             <th scope="col">
-                Trạng thái
+                @CinemaTicketHub.MultiLanguage.Language.Status
             </th>
             <th scope="col"></th>
         </tr>
@@ -61,27 +61,27 @@
                 @if (item.NgayChieu.ToShortDateString() == DateTime.Now.ToShortDateString())
                 {
                     <td style="vertical-align: middle; color: cyan">
-                        Chiếu hôm nay
+                        @CinemaTicketHub.MultiLanguage.Language.Today
                     </td>
                 }
                 else
                 {
                     if (DateTime.Parse(item.NgayChieu.ToShortDateString()) > DateTime.Now.Date)
                     {
-                        <td style="vertical-align: middle; color: lime">
-                            Chờ chiếu
-                        </td>
+            <td style="vertical-align: middle; color: lime">
+                @CinemaTicketHub.MultiLanguage.Language.ComingSoon
+            </td>
                     }
                     else
                     {
-                        <td style="vertical-align: middle; color: red">
-                            Đã chiếu
-                        </td>
+            <td style="vertical-align: middle; color: red">
+                @CinemaTicketHub.MultiLanguage.Language.Screened
+            </td>
                     }
                 }
                 <td style="vertical-align: middle">
                     <a href="@Url.Action("Details", new { MaSuatChieu = item.MaSuatChieu })" style="color: goldenrod"><i class="fa-solid fa-pen-to-square"></i></a> |
-                    <a href="@Url.Action("Delete", new { MaSuatChieu = item.MaSuatChieu })" style="color: #eb1616" onclick="return confirm('Bạn có muốn xóa suất chiếu này không?');" class="delete-button"><i class="fa-solid fa-trash"></i></a>
+                    <a href="@Url.Action("Delete", new { MaSuatChieu = item.MaSuatChieu })" style="color: #eb1616" onclick="return confirm('@CinemaTicketHub.MultiLanguage.Language.DeleteNotify?');" class="delete-button"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
         }

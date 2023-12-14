@@ -16,7 +16,15 @@
     <link href="~/Content/css/authenticatestyle.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/818e023cf2.js" crossorigin="anonymous"></script>
     <!-- Google ReCaptcha -->
-    <script src='https://www.google.com/recaptcha/api.js?hl=vi'></script>
+    <script>
+  var reCaptchaLanguage = "@CinemaTicketHub.MultiLanguage.Language.reCaptchaLanguage";
+
+  var scriptSrc = 'https://www.google.com/recaptcha/api.js?hl=' + encodeURIComponent(reCaptchaLanguage);
+
+  var scriptElement = document.createElement('script');
+  scriptElement.src = scriptSrc;
+  document.head.appendChild(scriptElement);
+    </script>
 </head>
 
 <body>

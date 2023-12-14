@@ -7,39 +7,39 @@
 @using (Html.BeginForm("Edit", "MoviesManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    <h2>Thông tin chi tiết phim</h2>
+<h2>@CinemaTicketHub.MultiLanguage.Language.Details</h2>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.MaPhim)
     <div class="row">
         <div class="col-7">
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Tên phim</label>
+                <label for="formGroupExampleInput2" class="form-label">@CinemaTicketHub.MultiLanguage.Language.Movie</label>
                 @Html.EditorFor(model => model.TenPhim, new { htmlAttributes = new { @class = "form-control", id = "txtTenPhim" } })
                 @Html.ValidationMessageFor(model => model.TenPhim, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Thể loại</label>
-                @Html.DropDownList("MaLoai", new SelectList(ViewBag.TheLoai, "MaLoai", "TenLoai"), "--Vui lòng chọn thể loại phim--", htmlAttributes: new { @class = "form-control", id = "ChonTheLoai" })
+                <label for="formGroupExampleInput2" class="form-label">@CinemaTicketHub.MultiLanguage.Language.Genres</label>
+                @Html.DropDownList("MaLoai", new SelectList(ViewBag.TheLoai, "MaLoai", "TenLoai"), "--" + @CinemaTicketHub.MultiLanguage.Language.SelectOption + "--", htmlAttributes: new { @class = "form-control", id = "ChonTheLoai" })
                 @Html.ValidationMessageFor(model => model.MaLoai, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Đối tượng</label>
-                @Html.DropDownListFor(model => model.DoiTuong, new SelectList(new List<string> { "P", "C13", "C16", "C18" }), "--Vui lòng chọn đối tượng (độ tuổi)--", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.DoiTuong, new SelectList(new List<string> { "P", "C13", "C16", "C18" }), "--" + @CinemaTicketHub.MultiLanguage.Language.SelectOption + "--", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DoiTuong, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Ngôn ngữ</label>
+                <label for="formGroupExampleInput2" class="form-label">@CinemaTicketHub.MultiLanguage.Language.language</label>
                 @Html.EditorFor(model => model.NgonNgu, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NgonNgu, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Ngày khởi chiếu</label>
+                <label for="formGroupExampleInput2" class="form-label">@CinemaTicketHub.MultiLanguage.Language.ReleaseDate</label>
                 @Html.EditorFor(model => model.NgayKhoiChieu, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NgayKhoiChieu, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Thời lượng phim (Phút)</label>
+                <label for="formGroupExampleInput2" class="form-label">@CinemaTicketHub.MultiLanguage.Language.Duration (@CinemaTicketHub.MultiLanguage.Language.Minutes)</label>
                 @Html.EditorFor(model => model.ThoiLuong, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ThoiLuong, "", new { @class = "text-danger" })
             </div>
@@ -59,7 +59,7 @@
                 @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
-                <button type="submit" class="btn btn-outline-danger">Lưu thay đổi</button>
+                <button type="submit" class="btn btn-outline-danger">@CinemaTicketHub.MultiLanguage.Language.SaveChanges</button>
             </div>
         </div>
         <div class="col-5">
@@ -77,7 +77,7 @@
     </div>
 }
 <hr />
-@Html.ActionLink("Quay lại danh sách phim", "List")
+@Html.ActionLink(@CinemaTicketHub.MultiLanguage.Language.Back, "List")
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

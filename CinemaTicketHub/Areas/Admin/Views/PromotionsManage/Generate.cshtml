@@ -4,7 +4,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Khuyến Mãi</h2>
+<h2>@CinemaTicketHub.MultiLanguage.Language.Promotions</h2>
 <hr />
 <div class="row">
     <div class="col-5">
@@ -13,21 +13,21 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">ID khuyến mãi (3-5 ký tự)</label>
-                @Html.EditorFor(model => model.IdKM, new { htmlAttributes = new { @class = "form-control", placeholder = "Lưu ý: Mã khuyến mãi dành cho User đổi quà có 2 ký tự đầu là RE" } })
+                <label for="formGroupExampleInput2" class="form-label">@CinemaTicketHub.MultiLanguage.Language.PromotionID (@CinemaTicketHub.MultiLanguage.Language.ThreeToFiveCharacters)</label>
+                @Html.EditorFor(model => model.IdKM, new { htmlAttributes = new { @class = "form-control", placeholder = @CinemaTicketHub.MultiLanguage.Language.IdPromoAttention } })
                 @Html.ValidationMessageFor(model => model.IdKM, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Tên khuyến mãi</label>
-                @Html.EditorFor(model => model.TenKM, new { htmlAttributes = new { @class = "form-control", placeholder = "Lưu ý: Mã khuyến mãi dành cho User đổi quà phải có tên đầu là [Reward]" } })
+                <label for="formGroupExampleInput2" class="form-label">@CinemaTicketHub.MultiLanguage.Language.PromotionName</label>
+                @Html.EditorFor(model => model.TenKM, new { htmlAttributes = new { @class = "form-control", placeholder = @CinemaTicketHub.MultiLanguage.Language.PromoNameAttention } })
                 @Html.ValidationMessageFor(model => model.TenKM, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
                 <input class="form-check-input" type="radio" name="LoaiKM" id="radio1" value="1" checked>
-                <label for="formGroupExampleInput2" class="form-label" style="margin-right: 60px">Phần trăm giảm</label>
+                <label for="formGroupExampleInput2" class="form-label" style="margin-right: 60px">@CinemaTicketHub.MultiLanguage.Language.DiscountByPercentage</label>
 
                 <input class="form-check-input" type="radio" name="LoaiKM" id="radio2" value="2">
-                <label for="formGroupExampleInput2" class="form-label">Số tiền giảm</label>
+                <label for="formGroupExampleInput2" class="form-label">@CinemaTicketHub.MultiLanguage.Language.DiscountByAmount</label>
 
                 @Html.EditorFor(model => model.PhanTram, new { htmlAttributes = new { @class = "form-control", @id = "PhanTram" } })
                 @Html.ValidationMessageFor(model => model.PhanTram, "", new { @class = "text-danger" })
@@ -36,17 +36,17 @@
                 @Html.ValidationMessageFor(model => model.SoTienGiam, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Số lượng mã</label>
+                <label for="formGroupExampleInput2" class="form-label">@CinemaTicketHub.MultiLanguage.Language.Quantity</label>
                 @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Thời hạn khuyến mãi</label>
+                <label for="formGroupExampleInput2" class="form-label">@CinemaTicketHub.MultiLanguage.Language.Period</label>
                 @Html.EditorFor(model => model.ThoiHan, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ThoiHan, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
-                <input type="submit" value="Thêm khuyến mãi" class="btn btn-outline-danger" />
+                <input type="submit" value="@CinemaTicketHub.MultiLanguage.Language.Add" class="btn btn-outline-danger" />
             </div>
         }
     </div>
@@ -55,19 +55,19 @@
             <thead>
                 <tr>
                     <th scope="col">
-                        ID
+                        @CinemaTicketHub.MultiLanguage.Language.PromotionID
                     </th>
                     <th scope="col">
-                        Tên Khuyến Mãi
+                        @CinemaTicketHub.MultiLanguage.Language.PromotionName
                     </th>
                     <th scope="col">
-                        Giảm Giá
+                        @CinemaTicketHub.MultiLanguage.Language.Discount
                     </th>
                     <th scope="col">
-                        Số Lượng Mã
+                        @CinemaTicketHub.MultiLanguage.Language.Quantity
                     </th>
                     <th scope="col">
-                        Thời Hạn
+                        @CinemaTicketHub.MultiLanguage.Language.Period
                     </th>
                     <th scope="col"></th>
                 </tr>
@@ -102,7 +102,7 @@
                         </td>
                         <td style="vertical-align: middle">
                             <a href="@Url.Action("Detail", new { IdKM = item.IdKM })" style="color: #0dcaf0"><i class="fa-solid fa-circle-info"></i></a> |
-                            <a href="@Url.Action("DeletePromotion", new { IdKM = item.IdKM })" style="color: #eb1616" onclick="return confirm('Bạn có muốn xóa khuyến mãi này không?');" class="delete-button"><i class="fa-solid fa-trash"></i></a>
+                            <a href="@Url.Action("DeletePromotion", new { IdKM = item.IdKM })" style="color: #eb1616" onclick="return confirm('@CinemaTicketHub.MultiLanguage.Language.DeleteNotify?');" class="delete-button"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                 }

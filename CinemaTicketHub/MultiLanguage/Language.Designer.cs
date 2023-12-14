@@ -97,6 +97,15 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to vi-VN.
+        /// </summary>
+        public static string ApiLanguage {
+            get {
+                return ResourceManager.GetString("ApiLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Áp dụng.
         /// </summary>
         public static string Apply {
@@ -178,11 +187,29 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to đã được thay đổi thành.
+        /// </summary>
+        public static string ChangedTo {
+            get {
+                return ResourceManager.GetString("ChangedTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đổi mật khẩu.
         /// </summary>
         public static string ChangePassword {
             get {
                 return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vui lòng chọn Role muốn thay đổi.
+        /// </summary>
+        public static string ChangeRoleNotify {
+            get {
+                return ResourceManager.GetString("ChangeRoleNotify", resourceCulture);
             }
         }
         
@@ -196,11 +223,29 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bạn có muốn thay đổi trạng thái không.
+        /// </summary>
+        public static string ChangeStatusNotify {
+            get {
+                return ResourceManager.GetString("ChangeStatusNotify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vui lòng kiểm tra Email của bạn.
         /// </summary>
         public static string CheckEmail {
             get {
                 return ResourceManager.GetString("CheckEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chọn một tệp.
+        /// </summary>
+        public static string ChooseFile {
+            get {
+                return ResourceManager.GetString("ChooseFile", resourceCulture);
             }
         }
         
@@ -295,11 +340,29 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bạn có muốn xóa không.
+        /// </summary>
+        public static string DeleteNotify {
+            get {
+                return ResourceManager.GetString("DeleteNotify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chi tiết.
         /// </summary>
         public static string Detail {
             get {
                 return ResourceManager.GetString("Detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thông tin chi tiết.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
             }
         }
         
@@ -466,6 +529,15 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lưu ý: Mã khuyến mãi dành cho User đổi quà có 2 ký tự đầu là RE.
+        /// </summary>
+        public static string IdPromoAttention {
+            get {
+                return ResourceManager.GetString("IdPromoAttention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hóa đơn.
         /// </summary>
         public static string Invoice {
@@ -570,6 +642,15 @@ namespace CinemaTicketHub.MultiLanguage {
         public static string MyTicket {
             get {
                 return ResourceManager.GetString("MyTicket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bạn chỉ có thể xem các vé đã mua trong tháng hiện tại.
+        /// </summary>
+        public static string MyTicketAttention {
+            get {
+                return ResourceManager.GetString("MyTicketAttention", resourceCulture);
             }
         }
         
@@ -691,6 +772,15 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lưu ý: Mã khuyến mãi dành cho User đổi quà phải có tên đầu là [Reward].
+        /// </summary>
+        public static string PromoNameAttention {
+            get {
+                return ResourceManager.GetString("PromoNameAttention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Khuyến mãi.
         /// </summary>
         public static string Promotion {
@@ -727,11 +817,29 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Khuyến mãi.
+        /// </summary>
+        public static string Promotions {
+            get {
+                return ResourceManager.GetString("Promotions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ví khuyến mãi.
         /// </summary>
         public static string PromotionsWallet {
             get {
                 return ResourceManager.GetString("PromotionsWallet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đây là các mã khuyến mãi bạn đã lưu vào ví.
+        /// </summary>
+        public static string PromoWalletAttention {
+            get {
+                return ResourceManager.GetString("PromoWalletAttention", resourceCulture);
             }
         }
         
@@ -750,6 +858,15 @@ namespace CinemaTicketHub.MultiLanguage {
         public static string Quantity {
             get {
                 return ResourceManager.GetString("Quantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to vi.
+        /// </summary>
+        public static string reCaptchaLanguage {
+            get {
+                return ResourceManager.GetString("reCaptchaLanguage", resourceCulture);
             }
         }
         
@@ -799,6 +916,15 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role của.
+        /// </summary>
+        public static string RoleOf {
+            get {
+                return ResourceManager.GetString("RoleOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phòng chiếu.
         /// </summary>
         public static string Room {
@@ -808,7 +934,7 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tên phòng.
+        ///   Looks up a localized string similar to Phòng chiếu.
         /// </summary>
         public static string RoomName {
             get {
@@ -943,7 +1069,7 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Xem tất cả phim tại rạp của chúng tôi.
+        ///   Looks up a localized string similar to Sắm vé, trải nghiệm điện ảnh tuyệt vời cùng.
         /// </summary>
         public static string Slogan {
             get {
@@ -979,11 +1105,29 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nhóm 002.
+        /// </summary>
+        public static string Team002 {
+            get {
+                return ResourceManager.GetString("Team002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tiếng Thái.
         /// </summary>
         public static string ThaiLanguage {
             get {
                 return ResourceManager.GetString("ThaiLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3 đến 5 ký tự.
+        /// </summary>
+        public static string ThreeToFiveCharacters {
+            get {
+                return ResourceManager.GetString("ThreeToFiveCharacters", resourceCulture);
             }
         }
         
@@ -1060,11 +1204,29 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Không tìm thấy User.
+        /// </summary>
+        public static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Người dùng.
         /// </summary>
         public static string Users {
             get {
                 return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quản lý người dùng.
+        /// </summary>
+        public static string UsersManage {
+            get {
+                return ResourceManager.GetString("UsersManage", resourceCulture);
             }
         }
         
