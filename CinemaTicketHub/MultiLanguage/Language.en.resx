@@ -387,6 +387,9 @@
   <data name="reCaptchaLanguage" xml:space="preserve">
     <value>en</value>
   </data>
+  <data name="Recommendations" xml:space="preserve">
+    <value>Recommendations</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
@@ -464,6 +467,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="Suggestion" xml:space="preserve">
+    <value>Suggestion</value>
   </data>
   <data name="Team002" xml:space="preserve">
     <value>002 Team</value>

@@ -213,10 +213,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API_Calling\APIKey.cs" />
+    <Compile Include="API_Calling\ApiUtility.cs" />
     <Compile Include="API_Calling\LanguageManager.cs" />
     <Compile Include="API_Calling\Movie.cs" />
     <Compile Include="API_Calling\MovieDetail.cs" />
+    <Compile Include="API_Calling\MovieRecommendation.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />

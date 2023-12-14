@@ -24,7 +24,7 @@ namespace CinemaTicketHub.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language={APIKey.Language}&region={APIKey.Region}";
+                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={ApiUtility.Key}&language={ApiUtility.Language}&region={ApiUtility.Region}";
 
                 HttpResponseMessage response = await client.GetAsync(apiUrl);
                 if (response.IsSuccessStatusCode)
@@ -32,6 +32,9 @@ namespace CinemaTicketHub.Controllers
                     string data = await response.Content.ReadAsStringAsync();
                     dynamic moviesData = JsonConvert.DeserializeObject(data);
                     List<Movie> NSmovies = new List<Movie>();
+
+                    int moviesToRetrieve = 4;  // Set the number of movies you want to retrieve
+                    int counter = 0;
 
                     foreach (var item in moviesData.results)
                     {
@@ -52,7 +55,14 @@ namespace CinemaTicketHub.Controllers
                             Language = languageManager.GetLanguageName(item["original_language"].ToString())
                         };
                         NSmovies.Add(movie);
+
+                        counter++;
+                        if (counter >= moviesToRetrieve)
+                        {
+                            break;  // Exit the loop after retrieving the desired number of movies
+                        }
                     }
+
                     ViewBag.NowShowing = NSmovies;
                 }
                 else
@@ -63,7 +73,7 @@ namespace CinemaTicketHub.Controllers
 
             using (HttpClient client = new HttpClient())
             {
-                string apiUrl = $"https://api.themoviedb.org/3/movie/upcoming?api_key={APIKey.Key}&language={APIKey.Language}&region={APIKey.Region}";
+                string apiUrl = $"https://api.themoviedb.org/3/movie/upcoming?api_key={ApiUtility.Key}&language={ApiUtility.Language}&region={ApiUtility.Region}";
 
                 HttpResponseMessage response = await client.GetAsync(apiUrl);
                 if (response.IsSuccessStatusCode)
@@ -71,6 +81,9 @@ namespace CinemaTicketHub.Controllers
                     string data = await response.Content.ReadAsStringAsync();
                     dynamic moviesData = JsonConvert.DeserializeObject(data);
                     List<Movie> UCmovies = new List<Movie>();
+
+                    int moviesToRetrieve = 4;  // Set the number of upcoming movies you want to retrieve
+                    int counter = 0;
 
                     foreach (var item in moviesData.results)
                     {
@@ -91,14 +104,22 @@ namespace CinemaTicketHub.Controllers
                             Language = languageManager.GetLanguageName(item["original_language"].ToString())
                         };
                         UCmovies.Add(movie);
+
+                        counter++;
+                        if (counter >= moviesToRetrieve)
+                        {
+                            break;  // Exit the loop after retrieving the desired number of upcoming movies
+                        }
                     }
-                    ViewBag.Upcoming = UCmovies;                 
+
+                    ViewBag.Upcoming = UCmovies;
                 }
                 else
                 {
                     return View("Error");
                 }
             }
+
             return View();
         }
 

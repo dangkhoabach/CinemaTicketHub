@@ -29,7 +29,7 @@ namespace CinemaTicketHub.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={APIKey.Key}&language={APIKey.Language}&region={APIKey.Region}";
+                string apiUrl = $"https://api.themoviedb.org/3/movie/now_playing?api_key={ApiUtility.Key}&language={ApiUtility.Language}&region={ApiUtility.Region}";
 
                 HttpResponseMessage response = await client.GetAsync(apiUrl);
                 if (response.IsSuccessStatusCode)
@@ -71,7 +71,7 @@ namespace CinemaTicketHub.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string apiUrl = $"https://api.themoviedb.org/3/movie/upcoming?api_key={APIKey.Key}&language={APIKey.Language}&region={APIKey.Region}";
+                string apiUrl = $"https://api.themoviedb.org/3/movie/upcoming?api_key={ApiUtility.Key}&language={ApiUtility.Language}&region={ApiUtility.Region}";
 
                 HttpResponseMessage response = await client.GetAsync(apiUrl);
                 if (response.IsSuccessStatusCode)
@@ -111,7 +111,7 @@ namespace CinemaTicketHub.Controllers
 
         public async Task<ActionResult> Detail(int id, DateTime? selectedDate)
         {
-            string apiUrl = $"https://api.themoviedb.org/3/movie/{id}?api_key={APIKey.Key}&language={APIKey.Language}";
+            string apiUrl = $"https://api.themoviedb.org/3/movie/{id}?api_key={ApiUtility.Key}&language={ApiUtility.Language}";
 
             using (HttpClient client = new HttpClient())
             {
@@ -144,6 +144,42 @@ namespace CinemaTicketHub.Controllers
                         Language = languageManager.GetLanguageName(movieData["original_language"].ToString())
                     };
 
+                    // Lấy danh sách phim được đề xuất
+                    string recommendationsUrl = $"https://api.themoviedb.org/3/movie/{id}/recommendations?api_key={ApiUtility.Key}&language={ApiUtility.Language}";
+                    HttpResponseMessage recommendationsResponse = await client.GetAsync(recommendationsUrl);
+
+                    if (recommendationsResponse.IsSuccessStatusCode)
+                    {
+                        string recommendationsData = await recommendationsResponse.Content.ReadAsStringAsync();
+                        dynamic recommendations = JsonConvert.DeserializeObject(recommendationsData);
+
+                        List<MovieRecommendation> movieRecommendations = new List<MovieRecommendation>();
+
+                        // Lấy tối đa 8 phim và kiểm tra poster_path không phải null
+                        int count = 0;
+                        foreach (var recommendation in recommendations.results)
+                        {
+                            if (count >= 8)
+                            {
+                                break;
+                            }
+
+                            if (recommendation.poster_path != null)
+                            {
+                                MovieRecommendation movieRecommendation = new MovieRecommendation
+                                {
+                                    Title = recommendation.title,
+                                    Id = recommendation.id,
+                                    PosterPath = "https://image.tmdb.org/t/p/w500" + recommendation.poster_path
+                                };
+                                movieRecommendations.Add(movieRecommendation);
+
+                                count++;
+                            }
+                        }
+                        ViewBag.Recommendations = movieRecommendations;
+                    }
+
                     //Chọn ngày hiện suất chiếu
                     if (selectedDate.HasValue)
                     {
@@ -166,7 +202,7 @@ namespace CinemaTicketHub.Controllers
 
         private string GetTrailerEmbedUrl(int movieId)
         {
-            string apiUrl = $"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={APIKey.Key}&language={APIKey.Language}";
+            string apiUrl = $"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={ApiUtility.Key}";  //&language={ApiUtility.Language}
 
             using (HttpClient client = new HttpClient())
             {

@@ -417,7 +417,7 @@ namespace CinemaTicketHub.Controllers
 
                     if (suatchieu != null)
                     {
-                        string tmdbApiUrl = $"https://api.themoviedb.org/3/movie/{suatchieu.MaPhim}?api_key={APIKey.Key}&language={APIKey.Language}";
+                        string tmdbApiUrl = $"https://api.themoviedb.org/3/movie/{suatchieu.MaPhim}?api_key={ApiUtility.Key}&language={ApiUtility.Language}";
 
                         using (HttpClient client = new HttpClient())
                         {
@@ -489,7 +489,7 @@ namespace CinemaTicketHub.Controllers
                     var suatchieu = _dbContext.SuatChieu.FirstOrDefault(x => x.MaSuatChieu == ve2.MaSuatChieu);
                     if (suatchieu != null)
                     {
-                        string tmdbApiUrl = $"https://api.themoviedb.org/3/movie/{suatchieu.MaPhim}?api_key={APIKey.Key}&language={APIKey.Language}";
+                        string tmdbApiUrl = $"https://api.themoviedb.org/3/movie/{suatchieu.MaPhim}?api_key={ApiUtility.Key}&language={ApiUtility.Language}";
 
                         using (HttpClient client = new HttpClient())
                         {

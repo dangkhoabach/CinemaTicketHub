@@ -88,16 +88,16 @@
                                 }
                                 else
                                 {
-                            <li>@CinemaTicketHub.MultiLanguage.Language.ReleaseDate <span>@CinemaTicketHub.MultiLanguage.Language.Unknown</span></li>
+                                    <li>@CinemaTicketHub.MultiLanguage.Language.ReleaseDate <span>@CinemaTicketHub.MultiLanguage.Language.Unknown</span></li>
                                 }
 
-                                @if (Model.Duration != null)
+                                @if (Model.Duration != 0)
                                 {
                                     <li>@CinemaTicketHub.MultiLanguage.Language.Duration <span>@Model.Duration @CinemaTicketHub.MultiLanguage.Language.Minutes</span></li>
                                 }
                                 else
                                 {
-                            <li>@CinemaTicketHub.MultiLanguage.Language.Duration <span>@CinemaTicketHub.MultiLanguage.Language.Unknown</span></li>
+                                    <li>@CinemaTicketHub.MultiLanguage.Language.Duration <span>@CinemaTicketHub.MultiLanguage.Language.Unknown</span></li>
                                 }
 
                                 @if (Model.Language != null)
@@ -106,7 +106,7 @@
                                 }
                                 else
                                 {
-                            <li>@CinemaTicketHub.MultiLanguage.Language.language <span>@CinemaTicketHub.MultiLanguage.Language.Unknown</span></li>
+                                    <li>@CinemaTicketHub.MultiLanguage.Language.language <span>@CinemaTicketHub.MultiLanguage.Language.Unknown</span></li>
                                 }
 
                                 @if (string.Join(", ", Model.Genres) != null)
@@ -115,7 +115,7 @@
                                 }
                                 else
                                 {
-                            <li>@CinemaTicketHub.MultiLanguage.Language.Genres <span style="width: 200px; text-align: right">@CinemaTicketHub.MultiLanguage.Language.Unknown</span></li>
+                                    <li>@CinemaTicketHub.MultiLanguage.Language.Genres <span style="width: 200px; text-align: right">@CinemaTicketHub.MultiLanguage.Language.Unknown</span></li>
                                 }
                             </ul>
                         </div>
@@ -140,13 +140,33 @@
                             </ul>
                         </div>
                         <div class="col-lg-2 align-self-center">
-                            <input type="button" id="datepicker" value="@CinemaTicketHub.MultiLanguage.Language.SelectDate" class="btn btn-outline-light">
+                            <input type="button" id="datepicker" style="width: 100%" value="@CinemaTicketHub.MultiLanguage.Language.SelectDate" class="btn btn-outline-light">
                             @*<button id="setTodayBtn" class="btn btn-primary" style="text-align: right">Hôm nay</button>*@
                         </div>
                     </div>
                 </div>
             </div>
             <!-- ***** Banner End ***** -->
+            <!-- ***** Recommendations Start ***** -->
+            @if (ViewBag.Recommendations != null && ViewBag.Recommendations.Count > 0)
+            {
+                <div class="col-lg-12" style="margin-top: 30px">
+                    <div class="main-profile">
+                        <h3 style="margin: 0 0 20px 0; text-align: center; color: #e75e8d">@CinemaTicketHub.MultiLanguage.Language.Recommendations</h3>
+                        <ul style="padding: 20px 30px">
+                            @foreach (var item in ViewBag.Recommendations)
+                            {
+                                <li style="max-width: 110px; border: none; padding: 0; display: inline-block; margin: 9px">
+                                    <a href="@Url.Action("Detail", "Movies", new { id = item.Id })">
+                                        <img src="@item.PosterPath" alt="" style="border-radius: 20px">
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+            <!-- ***** Recommendations End ***** -->
         </div>
     </div>
     <!-- ***** Details End ***** -->

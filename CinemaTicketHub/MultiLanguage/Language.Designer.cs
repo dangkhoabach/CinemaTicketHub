@@ -871,6 +871,15 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gợi ý.
+        /// </summary>
+        public static string Recommendations {
+            get {
+                return ResourceManager.GetString("Recommendations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đăng ký.
         /// </summary>
         public static string Register {
@@ -1101,6 +1110,15 @@ namespace CinemaTicketHub.MultiLanguage {
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gợi ý.
+        /// </summary>
+        public static string Suggestion {
+            get {
+                return ResourceManager.GetString("Suggestion", resourceCulture);
             }
         }
         

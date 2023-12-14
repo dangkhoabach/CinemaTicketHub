@@ -387,6 +387,9 @@
   <data name="reCaptchaLanguage" xml:space="preserve">
     <value>vi</value>
   </data>
+  <data name="Recommendations" xml:space="preserve">
+    <value>Gợi ý</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Đăng ký</value>
   </data>
@@ -464,6 +467,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Trạng thái</value>
+  </data>
+  <data name="Suggestion" xml:space="preserve">
+    <value>Gợi ý</value>
   </data>
   <data name="Team002" xml:space="preserve">
     <value>Nhóm 002</value>
