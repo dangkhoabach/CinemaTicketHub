@@ -221,8 +221,7 @@ namespace CinemaTicketHub.Controllers
                         }
                     }
                 }
-                // Nếu không tìm thấy trailer hoặc có lỗi, trả về một URL nhúng mặc định hoặc thông báo lỗi
-                return "https://www.youtube.com/embed/default-trailer-key"; // Hoặc trả về URL nhúng mặc định khác hoặc thông báo lỗi
+                return "https://www.youtube.com/embed/default-trailer-key";
             }
         }
     }

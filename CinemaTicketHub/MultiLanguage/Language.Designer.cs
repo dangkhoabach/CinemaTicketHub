@@ -871,7 +871,7 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gợi ý.
+        ///   Looks up a localized string similar to Đề xuất.
         /// </summary>
         public static string Recommendations {
             get {
@@ -1114,7 +1114,7 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gợi ý.
+        ///   Looks up a localized string similar to Đề xuất.
         /// </summary>
         public static string Suggestion {
             get {
