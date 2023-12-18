@@ -1051,6 +1051,15 @@ namespace CinemaTicketHub.MultiLanguage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Xem thêm.
+        /// </summary>
+        public static string ShowMore {
+            get {
+                return ResourceManager.GetString("ShowMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mã suất chiếu.
         /// </summary>
         public static string ShowtimeID {

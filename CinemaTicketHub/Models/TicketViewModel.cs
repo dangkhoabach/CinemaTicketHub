@@ -16,6 +16,7 @@ namespace CinemaTicketHub.Models
         public DateTime? ngaychieu { get; set; }
         public double? tongtien { get; set; }
         public string payment { get; set; }
+        public string backdrop { get; set; }
         public List<BapNuocViewModel> bapNuoc { get; set; }
         public List<GheViewModel> ghe { get; set; }
         public TicketViewModel() { 

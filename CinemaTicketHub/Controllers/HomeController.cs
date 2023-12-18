@@ -33,7 +33,7 @@ namespace CinemaTicketHub.Controllers
                     dynamic moviesData = JsonConvert.DeserializeObject(data);
                     List<Movie> NSmovies = new List<Movie>();
 
-                    int moviesToRetrieve = 4;  // Set the number of movies you want to retrieve
+                    int moviesToRetrieve = 4;
                     int counter = 0;
 
                     foreach (var item in moviesData.results)
@@ -59,7 +59,7 @@ namespace CinemaTicketHub.Controllers
                         counter++;
                         if (counter >= moviesToRetrieve)
                         {
-                            break;  // Exit the loop after retrieving the desired number of movies
+                            break;
                         }
                     }
 
@@ -82,7 +82,7 @@ namespace CinemaTicketHub.Controllers
                     dynamic moviesData = JsonConvert.DeserializeObject(data);
                     List<Movie> UCmovies = new List<Movie>();
 
-                    int moviesToRetrieve = 4;  // Set the number of upcoming movies you want to retrieve
+                    int moviesToRetrieve = 4;
                     int counter = 0;
 
                     foreach (var item in moviesData.results)
@@ -108,7 +108,7 @@ namespace CinemaTicketHub.Controllers
                         counter++;
                         if (counter >= moviesToRetrieve)
                         {
-                            break;  // Exit the loop after retrieving the desired number of upcoming movies
+                            break;
                         }
                     }
 
@@ -148,6 +148,5 @@ namespace CinemaTicketHub.Controllers
             string returnUrl = Request.UrlReferrer?.ToString();
             return Redirect(returnUrl ?? "/");
         }
-
     }
 }

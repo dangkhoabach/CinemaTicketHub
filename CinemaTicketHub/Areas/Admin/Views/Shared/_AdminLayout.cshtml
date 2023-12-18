@@ -142,9 +142,13 @@
             <div class="bg-secondary rounded-top p-4">
                 <div class="row">
                     <div class="col-12 col-sm-6 text-center text-sm-start">
-                        &copy; <a href="#">Cinema Ticket Hub</a>, All Right Reserved.
+                        Copyright &copy; 2023 <a href="/Home/About">Cinema Ticket Hub</a>, All Right Reserved.
+                        @*<br />Design by <a href="#" target="_blank" title="free CSS templates">CTH-Team</a>.*@
                     </div>
-                    <div class="col-12 col-sm-6 text-center text-sm-end">Designed & Distributed By <a href="#">@CinemaTicketHub.MultiLanguage.Language.Team002</a></div>
+                    <div class="col-12 col-sm-6 text-center text-sm-end">
+                        @Html.ActionLink("Tiếng việt", "ManageLanguage", "AdAccount", new { language = "vi" }, null) |
+                        @Html.ActionLink("English", "ManageLanguage", "AdAccount", new { language = "en" }, null)
+                    </div>
                 </div>
             </div>
         </div>

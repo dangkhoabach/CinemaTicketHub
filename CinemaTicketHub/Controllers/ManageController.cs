@@ -507,6 +507,7 @@ namespace CinemaTicketHub.Controllers
                                 ticket.tenphim = movieData.original_title;
                                 ticket.hinhanh = "https://image.tmdb.org/t/p/w500" + movieData.poster_path;
                                 ticket.phongchieu = suatchieu.PhongChieu.TenPhong;
+                                ticket.backdrop = "https://image.tmdb.org/t/p/w500" + movieData.backdrop_path;
 
                                 var ghes = _dbContext.Ghe.FirstOrDefault(x => x.MaSuatChieu == ve2.MaSuatChieu && x.MaGhe == ve2.MaGhe);
                                 if (ghes != null)

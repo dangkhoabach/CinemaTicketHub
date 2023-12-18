@@ -447,6 +447,9 @@
   <data name="ShowDate" xml:space="preserve">
     <value>Show Date</value>
   </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>Show more</value>
+  </data>
   <data name="ShowtimeID" xml:space="preserve">
     <value>Showtime ID</value>
   </data>

@@ -9,10 +9,10 @@
 
 body,
 html {
-    height: 100vh;
+/*    height: 100vh;*/
     display: grid;
     font-family: "Staatliches", cursive;
-    background: #ec6090;
+    /*background: #ec6090;*/
     color: black;
     font-size: 14px;
     letter-spacing: 0.1em;

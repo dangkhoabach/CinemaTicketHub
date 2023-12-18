@@ -86,7 +86,7 @@
         <div class="col-lg-12">
             <div class="heading-section">
                 <h4 style="margin-bottom: 0">@CinemaTicketHub.MultiLanguage.Language.MyTicket</h4>
-                <p style="margin-bottom: 30px">@CinemaTicketHub.MultiLanguage.Language.MyTicketAttention.</p>
+                <p>@CinemaTicketHub.MultiLanguage.Language.MyTicketAttention.</p>
             </div>
             @foreach (var item in ViewBag.hoadon)
             {
@@ -145,7 +145,7 @@
                             }
 
                             <li><h4>@item.payment</h4><span>@string.Format("{0:#,0}", @item.tongtien)</span></li>
-                            <li><div class="main-border-button border-no-active"><a href="#" id="ticketdetail" data-mahoadon="@item.mahoadon">@CinemaTicketHub.MultiLanguage.Language.Detail</a></div></li>
+                            <li><div class="main-border-button border-no-active"><a href="/Manage/Ticket?mahoadon=@item.mahoadon" target="_blank">@CinemaTicketHub.MultiLanguage.Language.Detail</a></div></li>
                         </ul>
                     </div>
                 }
@@ -165,22 +165,6 @@
     <script src="~/Content/assets/js/custom.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            // Bắt sự kiện click trên thẻ <a> trong thẻ <div> có class "main-border-button"
-            $('#ticketdetail').on('click', function (e) {
-                // Ngăn chặn hành vi mặc định của thẻ <a> (ngăn chặn chuyển hướng)
-                e.preventDefault();
-
-                // Lấy giá trị của item mahoadon từ thuộc tính data-mahoadon của thẻ <a>
-                var mahoadon = $(this).data('mahoadon');
-
-                // Chuyển hướng đến trang Manage/Ticket và truyền giá trị mahoadon
-                window.open('/Manage/Ticket?mahoadon=' + mahoadon, '_blank');
-            });
-        });
-    </script>
 
     <script>
         $(document).ready(function () {

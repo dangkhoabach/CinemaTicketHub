@@ -447,6 +447,9 @@
   <data name="ShowDate" xml:space="preserve">
     <value>Ngày chiếu</value>
   </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>Xem thêm</value>
+  </data>
   <data name="ShowtimeID" xml:space="preserve">
     <value>Mã suất chiếu</value>
   </data>

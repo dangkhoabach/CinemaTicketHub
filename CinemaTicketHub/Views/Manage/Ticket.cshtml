@@ -18,6 +18,27 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 <link rel="stylesheet" href="~/Content/css/ticketstyle.css">
 
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+
+        body::before {
+            content: "";
+            background: url("@ViewBag.hoadon.backdrop") center/cover no-repeat fixed;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            filter: blur(10px);
+        }
+</style>
+
 <div class="ticket">
     <div class="left">
         <div class="image" style="background-image: url('@ViewBag.hoadon.hinhanh')">
