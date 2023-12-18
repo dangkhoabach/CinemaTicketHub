@@ -466,7 +466,6 @@
     <Content Include="Content\vendor\jquery\jquery.min.js" />
     <Content Include="Content\vendor\jquery\jquery.slim.js" />
     <Content Include="Content\vendor\jquery\jquery.slim.min.js" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -619,6 +618,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="ticketicon.ico" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

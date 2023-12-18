@@ -25,6 +25,8 @@ namespace CinemaTicketHub.API_Calling
     { "ko", "Tiếng Hàn" },
     { "ar", "Tiếng Ả Rập" },
     { "hi", "Tiếng Hin-đi" },
+    { "te", "Tiếng Te-lu-gu" },
+    { "no", "Tiếng Na Uy" },
         };
         }
 
