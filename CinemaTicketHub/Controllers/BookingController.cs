@@ -122,7 +122,8 @@ namespace CinemaTicketHub.Controllers
 
         public ActionResult Cart(int masc)
         {
-            List<ViKhuyenMai> khuyenMaiList = _dbContext.ViKhuyenMai.ToList();
+            var userId = User.Identity.GetUserId();
+            List<ViKhuyenMai> khuyenMaiList = _dbContext.ViKhuyenMai.Where(x => x.id == userId).ToList();
             ViewBag.KhuyenMaiList = khuyenMaiList;
 
             List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;
@@ -443,8 +444,8 @@ namespace CinemaTicketHub.Controllers
             string accessKey = "iPXneGmrJH0G8FOP";
             string serectkey = "sFcbSGRSJjwGxwhhcEktCHWYUuTuPNDB";
             string orderInfo = "ThanhToan_Momo";
-            string returnUrl = "https://localhost:44351/Booking/MomoConfirmed";
-            string notifyurl = "https://localhost:44351/Booking/MomoSavePayment";
+            string returnUrl = Utility.domain + "/Booking/MomoConfirmed";
+            string notifyurl = Utility.domain +  "/Booking/MomoSavePayment";
 
             //Lấy tổng tiền trong giỏ hàng
             List<Ghe> lstGhe = Session["Cart"] as List<Ghe>;

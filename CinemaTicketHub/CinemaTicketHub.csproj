@@ -43,6 +43,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+    <LegacyPublishPropertiesPageEnabled>true</LegacyPublishPropertiesPageEnabled>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -254,6 +256,7 @@
     <Compile Include="Helper\ConstantHelper.cs" />
     <Compile Include="Helper\NetworkUtility.cs" />
     <Compile Include="Helper\SendMail.cs" />
+    <Compile Include="Helper\Utility.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BapNuoc.cs" />
     <Compile Include="Models\BapNuocViewModel.cs" />
@@ -416,7 +419,6 @@
     <Content Include="Content\images\foodndrink\Sprite.png" />
     <Content Include="Content\images\momo_logo.png" />
     <Content Include="Content\images\navbarbg.png" />
-    <Content Include="Content\images\poster_landscape\air.png" />
     <Content Include="Content\images\poster_landscape\amvucchet.png" />
     <Content Include="Content\images\poster_landscape\barbie.png" />
     <Content Include="Content\images\poster_landscape\bearman.png" />
@@ -425,7 +427,6 @@
     <Content Include="Content\images\poster_landscape\changtraixinhdepcuatoi.png" />
     <Content Include="Content\images\poster_landscape\chuacoposter.png" />
     <Content Include="Content\images\poster_landscape\chuyencuatoivamaquy.png" />
-    <Content Include="Content\images\poster_landscape\clbsatthu.png" />
     <Content Include="Content\images\poster_landscape\connhotmotchong.png" />
     <Content Include="Content\images\poster_landscape\cuuprodautien.png" />
     <Content Include="Content\images\poster_landscape\duhanhvutrunhen.png" />
@@ -666,6 +667,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\images\authenticate\useravatar\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

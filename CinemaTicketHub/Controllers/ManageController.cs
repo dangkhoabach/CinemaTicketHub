@@ -570,12 +570,13 @@ namespace CinemaTicketHub.Controllers
 
         public ActionResult PromotionsWallet(string error)
         {
+            var userId = User.Identity.GetUserId();
             if (!string.IsNullOrEmpty(error))
             {
                 ViewBag.Error = error;
             }
 
-            ViewBag.PromoWallet = _dbContext.ViKhuyenMai.ToList();
+            ViewBag.PromoWallet = _dbContext.ViKhuyenMai.Where(x => x.id == userId).ToList();
             return View();
         }
 
