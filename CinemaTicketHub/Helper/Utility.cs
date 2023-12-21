@@ -7,6 +7,6 @@ namespace CinemaTicketHub.Helper
 {
     public class Utility
     {
-        public static string domain = "http://dangkhoabach.id.vn"; //Riêng VNPay cấu hình domain ở Web.Config
+        public static string domain = "https://dangkhoabach.id.vn/"; //Riêng VNPay cấu hình domain ở Web.Config
     }
 }
