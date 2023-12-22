@@ -417,6 +417,7 @@
     <Content Include="Content\images\foodndrink\CocaCola.png" />
     <Content Include="Content\images\foodndrink\FantaCam.png" />
     <Content Include="Content\images\foodndrink\Sprite.png" />
+    <Content Include="Content\images\momo_banner.jpg" />
     <Content Include="Content\images\momo_logo.png" />
     <Content Include="Content\images\navbarbg.png" />
     <Content Include="Content\images\poster_landscape\amvucchet.png" />
@@ -458,6 +459,7 @@
     <Content Include="Content\images\slide1.png" />
     <Content Include="Content\images\slide2.png" />
     <Content Include="Content\images\slide3.png" />
+    <Content Include="Content\images\vnpay_banner.png" />
     <Content Include="Content\images\vnpay_logo.png" />
     <Content Include="Content\images\wallpaper.jpg" />
     <Content Include="Content\js\scripts.js" />
