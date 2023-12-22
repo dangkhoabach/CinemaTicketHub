@@ -504,7 +504,7 @@ namespace CinemaTicketHub.Controllers
                                 ticket.giobatdau = suatchieu.GioBatDau;
                                 ticket.gioketthuc = suatchieu.GioKetThuc;
                                 ticket.ngaychieu = suatchieu.NgayChieu;
-                                ticket.tenphim = movieData.original_title;
+                                ticket.tenphim = movieData.title;
                                 ticket.hinhanh = "https://image.tmdb.org/t/p/w500" + movieData.poster_path;
                                 ticket.phongchieu = suatchieu.PhongChieu.TenPhong;
                                 ticket.backdrop = "https://image.tmdb.org/t/p/w500" + movieData.backdrop_path;
